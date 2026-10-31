@@ -28,7 +28,7 @@ jobs:
     outputs:
       release_id: ${{ steps.release.outputs.result }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Etiket, tauri.conf.json ve package.json aynı sürümü göstermeli; yoksa güncelleme yanlış sürümü duyurur.
       - name: Sürüm uyumu
@@ -56,7 +56,7 @@ jobs:
 
       # Paralel derlemeler aynı taslağa yüklesin diye taslak önce oluşturulur.
       - id: release
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           result-encoding: string
           script: |
@@ -104,14 +104,14 @@ jobs:
       run:
         working-directory: src/frontend
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
         with:
           global-json-file: src/backend/global.json
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           package_json_file: src/frontend/package.json
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
@@ -152,7 +152,7 @@ jobs:
             require("fs").writeFileSync("apps/desktop/src-tauri/tauri.updater.conf.json", JSON.stringify(config, null, 2));
           '
 
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -163,8 +163,9 @@ jobs:
           tauriScript: pnpm tauri
           args: --target ${{ matrix.target }} --features updater --config src-tauri/tauri.updater.conf.json
           releaseId: ${{ needs.prepare.outputs.release_id }}
-          # Her derleme kendi platformunu latest.json'a ekler.
-          includeUpdaterJson: true
+          # Her derleme kendi platformunu latest.json'a ekler; Windows'ta kullanıcı başına kurulan NSIS paketi güncellenir.
+          uploadUpdaterJson: true
+          updaterJsonPreferNsis: true
 
   # Paralel derlemeler latest.json'ı sırayla günceller; bir platform düşerse yayınlamadan önce yakalanır.
   verify:
@@ -172,7 +173,7 @@ jobs:
     needs: [prepare, build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v9
         env:
           RELEASE_ID: ${{ needs.prepare.outputs.release_id }}
         with:
