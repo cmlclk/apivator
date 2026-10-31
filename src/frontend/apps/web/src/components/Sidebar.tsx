@@ -86,7 +86,7 @@ export function Sidebar() {
     <div className="flex h-full">
       <nav
         aria-label={t('sidebar.sections')}
-        className="flex w-20 shrink-0 flex-col items-center gap-1 border-e border-line bg-surface py-2"
+        className="flex w-[88px] shrink-0 flex-col items-center gap-1 border-e border-line bg-surface py-2"
       >
         {visible.map(({ id, label, icon: Icon }) => (
           <button
@@ -95,7 +95,7 @@ export function Sidebar() {
             onClick={() => setActive(id)}
             aria-current={id === active ? 'page' : undefined}
             className={cn(
-              'flex w-[72px] flex-col items-center gap-1 rounded-md px-1 py-2 text-center text-[10.5px] leading-tight font-medium hyphens-auto [overflow-wrap:anywhere]',
+              'flex w-[80px] flex-col items-center gap-1 rounded-md px-0.5 py-2 text-center text-[10.5px] leading-tight font-medium hyphens-auto [overflow-wrap:anywhere]',
               id === active ? 'bg-accent/10 text-accent' : 'text-fg-subtle hover:bg-muted hover:text-fg',
             )}
           >
@@ -106,7 +106,7 @@ export function Sidebar() {
         {/* Araçlar tam sayfa açılır (/tools); istek ekranının paneli değildir. */}
         <Link
           to="/tools"
-          className="flex w-[72px] flex-col items-center gap-1 rounded-md px-1 py-2 text-center text-[10.5px] leading-tight font-medium hyphens-auto [overflow-wrap:anywhere] text-fg-subtle hover:bg-muted hover:text-fg"
+          className="flex w-[80px] flex-col items-center gap-1 rounded-md px-0.5 py-2 text-center text-[10.5px] leading-tight font-medium hyphens-auto [overflow-wrap:anywhere] text-fg-subtle hover:bg-muted hover:text-fg"
         >
           <Wrench className="h-4.5 w-4.5" aria-hidden="true" />
           {t('sidebar.tools')}

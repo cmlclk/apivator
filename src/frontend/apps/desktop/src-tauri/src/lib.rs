@@ -4,6 +4,7 @@ mod local_mode;
 mod secrets;
 mod sidecar;
 mod updates;
+mod window_fit;
 
 use tauri::{Manager, RunEvent};
 
@@ -41,6 +42,9 @@ pub fn run() {
     let app = builder
         .manage(agent::AgentState::default())
         .setup(|app| {
+            if let Some(window) = app.get_webview_window("main") {
+                window_fit::fit_and_show(&window);
+            }
             // Ajan başlatılamasa da pencere açılır; arayüz agent_info'dan gelen hatayı gösterir.
             if let Err(error) = agent::start(app.handle()) {
                 eprintln!("{error}");
