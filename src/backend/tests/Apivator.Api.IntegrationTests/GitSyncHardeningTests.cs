@@ -141,7 +141,10 @@ public sealed partial class GitSyncTests
             await using (var scope = Factory.Services.CreateAsyncScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                await db.Database.ExecuteSqlRawAsync("UPDATE collection_git_syncs SET next_check_at = now() - interval '1 minute', locked_until = NULL WHERE check_interval_hours IS NOT NULL");
+                var due = DateTimeOffset.UtcNow.AddMinutes(-1);
+                await db.GitSyncs.Where(s => s.CheckIntervalHours != null).ExecuteUpdateAsync(u => u
+                    .SetProperty(s => s.NextCheckAt, due)
+                    .SetProperty(s => s.LockedUntil, (DateTimeOffset?)null));
             }
 
             await scheduler.RunDueAsync();

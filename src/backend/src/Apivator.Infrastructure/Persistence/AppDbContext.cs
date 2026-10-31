@@ -20,9 +20,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Apivator.Infrastructure.Persistence;
 
-public sealed class AppDbContext(DbContextOptions<AppDbContext> options)
-    : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>(options), IApplicationDbContext, IDataProtectionKeyContext
+/// <summary>Uygulamanın veritabanı bağlamı (PostgreSQL). SQLite için <see cref="SqliteAppDbContext"/> kullanılır.</summary>
+public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IApplicationDbContext, IDataProtectionKeyContext
 {
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
+    {
+    }
+
+    /// <summary>Sağlayıcıya özgü alt sınıflar (ayrı migration seti) için.</summary>
+    protected AppDbContext(DbContextOptions options)
+        : base(options)
+    {
+    }
+
     public DbSet<Organization> Organizations => Set<Organization>();
 
     public DbSet<OrganizationMember> OrganizationMembers => Set<OrganizationMember>();

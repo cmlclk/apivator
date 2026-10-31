@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
 import { SessionBoot } from './components/SessionBoot';
 import { RouteError } from './components/RouteError';
-import { GuestOnly, RequireAuth } from './components/RouteGuards';
+import { GuestOnly, RequireAuth, TeamOnly } from './components/RouteGuards';
 import { AppShell } from './components/AppShell';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RequestWorkspace } from './features/requests/RequestWorkspace';
@@ -68,8 +68,13 @@ export const routes: RouteObject[] = [
       },
       // Davet bağlantısı: oturum yoksa davet gösterilir, giriş/kayıt sonrası buraya dönülür.
       {
-        path: '/invite',
-        lazy: () => import('./pages/InvitePage').then((m) => ({ Component: m.InvitePage })),
+        element: <TeamOnly />,
+        children: [
+          {
+            path: '/invite',
+            lazy: () => import('./pages/InvitePage').then((m) => ({ Component: m.InvitePage })),
+          },
+        ],
       },
       // Yayınlanmış doküman: herkese açık olanlar oturumsuz açılır (sayfa kendisi karar verir).
       {
@@ -86,8 +91,13 @@ export const routes: RouteObject[] = [
             children: [
               { index: true, element: <RequestWorkspace /> },
               {
-                path: 'team',
-                lazy: () => import('./pages/TeamPage').then((m) => ({ Component: m.TeamPage })),
+                element: <TeamOnly />,
+                children: [
+                  {
+                    path: 'team',
+                    lazy: () => import('./pages/TeamPage').then((m) => ({ Component: m.TeamPage })),
+                  },
+                ],
               },
               {
                 path: 'account',

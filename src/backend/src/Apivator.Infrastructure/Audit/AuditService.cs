@@ -70,7 +70,10 @@ internal sealed class AuditService(
                 return Error.Validation("audit.cursor", L.T("audit.cursor", "Sayfa bilgisi geçersiz."));
             }
 
-            filtered = filtered.Where(e => EF.Functions.LessThan(ValueTuple.Create(e.CreatedAt, e.Id), ValueTuple.Create(at, id)));
+            // SQLite sağlayıcısı satır değeri karşılaştırmasını çevirmez; aynı koşul açık yazılır.
+            filtered = db.Database.IsSqlite()
+                ? filtered.Where(e => e.CreatedAt < at || (e.CreatedAt == at && e.Id.CompareTo(id) < 0))
+                : filtered.Where(e => EF.Functions.LessThan(ValueTuple.Create(e.CreatedAt, e.Id), ValueTuple.Create(at, id)));
         }
 
         var limit = Math.Clamp(query.Limit ?? DefaultLimit, 1, MaxLimit);
@@ -135,7 +138,9 @@ internal sealed class AuditService(
             var batch = Filter(organizationId, query);
             if (after is { } a)
             {
-                batch = batch.Where(e => EF.Functions.GreaterThan(ValueTuple.Create(e.CreatedAt, e.Id), ValueTuple.Create(a.At, a.Id)));
+                batch = db.Database.IsSqlite()
+                    ? batch.Where(e => e.CreatedAt > a.At || (e.CreatedAt == a.At && e.Id.CompareTo(a.Id) > 0))
+                    : batch.Where(e => EF.Functions.GreaterThan(ValueTuple.Create(e.CreatedAt, e.Id), ValueTuple.Create(a.At, a.Id)));
             }
 
             var rows = await batch.OrderBy(e => e.CreatedAt).ThenBy(e => e.Id).Take(Math.Min(ExportBatch, max - written)).ToListAsync(ct);
@@ -215,9 +220,14 @@ internal sealed class AuditService(
         if (!string.IsNullOrWhiteSpace(query.Search))
         {
             var pattern = "%" + EscapeLike(query.Search.Trim()) + "%";
-            q = q.Where(e => EF.Functions.ILike(e.ActorName, pattern, "\\")
-                || EF.Functions.ILike(e.ActorEmail ?? string.Empty, pattern, "\\")
-                || EF.Functions.ILike(e.TargetName, pattern, "\\"));
+            // SQLite LIKE zaten büyük/küçük harf duyarsız (ASCII); ILike yalnızca PostgreSQL.
+            q = db.Database.IsSqlite()
+                ? q.Where(e => EF.Functions.Like(e.ActorName, pattern, "\\")
+                    || EF.Functions.Like(e.ActorEmail ?? string.Empty, pattern, "\\")
+                    || EF.Functions.Like(e.TargetName, pattern, "\\"))
+                : q.Where(e => EF.Functions.ILike(e.ActorName, pattern, "\\")
+                    || EF.Functions.ILike(e.ActorEmail ?? string.Empty, pattern, "\\")
+                    || EF.Functions.ILike(e.TargetName, pattern, "\\"));
         }
 
         return q;

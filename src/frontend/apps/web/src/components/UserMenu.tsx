@@ -4,6 +4,7 @@ import { Avatar } from './Avatar';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import { api } from '../lib/api';
+import { isLocalMode } from '../lib/localMode';
 import { useSession } from '../stores/session';
 import { useDismiss } from './useDismiss';
 import { useT } from '../i18n';
@@ -62,7 +63,8 @@ export function UserMenu() {
             />
             <div className="min-w-0">
               <p className="truncate text-sm font-medium">{user.displayName}</p>
-              <p className="truncate text-xs text-fg-subtle">{user.email}</p>
+              {/* Yerel kullanıcının e-postası yapaydır (local@apivator.local). */}
+              {!isLocalMode() && <p className="truncate text-xs text-fg-subtle">{user.email}</p>}
             </div>
           </div>
           <div className="my-1 border-t border-line" />
@@ -77,25 +79,29 @@ export function UserMenu() {
           >
             <UserCog className="h-4 w-4" /> {t('userMenu.settings')}
           </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              close();
-              navigate('/team');
-            }}
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-fg-muted hover:bg-muted hover:text-fg"
-          >
-            <Building2 className="h-4 w-4" /> {t('userMenu.team')}
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={logout}
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-fg-muted hover:bg-muted hover:text-fg"
-          >
-            <LogOut className="h-4 w-4" /> {t('userMenu.logout')}
-          </button>
+          {!isLocalMode() && (
+            <>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() => {
+                  close();
+                  navigate('/team');
+                }}
+                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-fg-muted hover:bg-muted hover:text-fg"
+              >
+                <Building2 className="h-4 w-4" /> {t('userMenu.team')}
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={logout}
+                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-fg-muted hover:bg-muted hover:text-fg"
+              >
+                <LogOut className="h-4 w-4" /> {t('userMenu.logout')}
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>

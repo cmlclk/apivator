@@ -3,6 +3,7 @@ using Apivator.Application.Abstractions;
 using Apivator.Infrastructure.Sso;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -14,11 +15,17 @@ namespace Apivator.Api.IntegrationTests;
 /// Testler gerçek bir PostgreSQL'e karşı çalışır. Varsayılan olarak Testcontainers ile geçici bir container
 /// başlatılır (Docker gerekir). Docker yoksa APIVATOR_TEST_POSTGRES ortam değişkenine boş bir veritabanının
 /// bağlantı cümlesi verilebilir; veritabanı test başında sıfırlanır.
+/// APIVATOR_TEST_PROVIDER=Sqlite ise testler geçici bir SQLite dosyasında koşar (yerel mod); PostgreSQL gerekmez.
 /// </summary>
 public sealed class ApivatorApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly string? _externalConnectionString = Environment.GetEnvironmentVariable("APIVATOR_TEST_POSTGRES");
     private PostgreSqlContainer? _postgres;
+    private string? _sqlitePath;
+
+    /// <summary>Testler SQLite üzerinde mi koşuyor (APIVATOR_TEST_PROVIDER=Sqlite).</summary>
+    public static bool IsSqlite { get; } =
+        string.Equals(Environment.GetEnvironmentVariable("APIVATOR_TEST_PROVIDER"), "Sqlite", StringComparison.OrdinalIgnoreCase);
 
     public FakeEmailSender Emails { get; } = new();
 
@@ -29,6 +36,12 @@ public sealed class ApivatorApiFactory : WebApplicationFactory<Program>, IAsyncL
 
     public async Task InitializeAsync()
     {
+        if (IsSqlite)
+        {
+            _sqlitePath = Path.Combine(Path.GetTempPath(), $"apivator-test-{Guid.NewGuid():N}.db");
+            return;
+        }
+
         if (_externalConnectionString is null)
         {
             _postgres = new PostgreSqlBuilder("postgres:16-alpine").Build();
@@ -49,12 +62,37 @@ public sealed class ApivatorApiFactory : WebApplicationFactory<Program>, IAsyncL
         {
             await _postgres.DisposeAsync();
         }
+
+        if (_sqlitePath is not null)
+        {
+            SqliteConnection.ClearAllPools();
+            foreach (var suffix in new[] { "", "-wal", "-shm" })
+            {
+                try
+                {
+                    File.Delete(_sqlitePath + suffix);
+                }
+                catch (IOException)
+                {
+                    // Geçici klasörde kalabilir; bir sonraki koşuyu etkilemez.
+                }
+            }
+        }
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Testing");
-        builder.UseSetting("ConnectionStrings:Postgres", ConnectionString);
+        if (_sqlitePath is not null)
+        {
+            builder.UseSetting("Database:Provider", "Sqlite");
+            builder.UseSetting("ConnectionStrings:Sqlite", $"Data Source={_sqlitePath}");
+        }
+        else
+        {
+            builder.UseSetting("ConnectionStrings:Postgres", ConnectionString);
+        }
+
         builder.UseSetting("Jwt:SigningKey", "integration-test-signing-key-0123456789abcdef");
         builder.UseSetting("App:PublicUrl", "http://localhost:5173");
         builder.UseSetting("Database:MigrateOnStartup", "true");

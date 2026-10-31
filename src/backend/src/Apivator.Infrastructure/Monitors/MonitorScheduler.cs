@@ -66,16 +66,33 @@ internal sealed class MonitorScheduler(
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var now = clock.GetUtcNow();
         var lockedUntil = now + lockFor;
-        return await db.Database.SqlQuery<Guid>($"""
-            UPDATE collection_monitors SET locked_until = {lockedUntil}
-            WHERE id IN (
-                SELECT id FROM collection_monitors
-                WHERE enabled AND next_run_at <= {now} AND (locked_until IS NULL OR locked_until < {now})
-                ORDER BY next_run_at
-                LIMIT {limit}
-                FOR UPDATE SKIP LOCKED)
-            RETURNING id AS "Value"
-            """).ToListAsync(ct);
+        List<Guid> claimed;
+        if (db.Database.IsSqlite())
+        {
+            // Tek süreç (yerel mod): satır kilidi yok; IMMEDIATE işlem aynı süreçteki eşzamanlı taramaları sıraya koyar.
+            await using var tx = await db.Database.BeginTransactionAsync(ct);
+            claimed = await db.Monitors
+                .Where(e => e.Enabled && e.NextRunAt <= now && (e.LockedUntil == null || e.LockedUntil < now))
+                .OrderBy(e => e.NextRunAt).Take(limit).Select(e => e.Id).ToListAsync(ct);
+            await db.Monitors.Where(e => claimed.Contains(e.Id))
+                .ExecuteUpdateAsync(u => u.SetProperty(e => e.LockedUntil, lockedUntil), ct);
+            await tx.CommitAsync(ct);
+        }
+        else
+        {
+            claimed = await db.Database.SqlQuery<Guid>($"""
+                UPDATE collection_monitors SET locked_until = {lockedUntil}
+                WHERE id IN (
+                    SELECT id FROM collection_monitors
+                    WHERE enabled AND next_run_at <= {now} AND (locked_until IS NULL OR locked_until < {now})
+                    ORDER BY next_run_at
+                    LIMIT {limit}
+                    FOR UPDATE SKIP LOCKED)
+                RETURNING id AS "Value"
+                """).ToListAsync(ct);
+        }
+
+        return claimed;
     }
 
     private async Task RunOneAsync(Guid monitorId, CancellationToken ct)

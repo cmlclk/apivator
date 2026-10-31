@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ApiError, type AuthResult, type WorkspaceDto } from '@apivator/core';
@@ -7,6 +7,7 @@ import { useSession } from './stores/session';
 import { safeRedirect } from './lib/safeRedirect';
 import { useUi } from './stores/ui';
 import { resetPreferenceSync } from './features/account/preferences';
+import { setLocalApiForTests } from './lib/localMode';
 
 const mocks = vi.hoisted(() => ({
   refreshSession: vi.fn(),
@@ -94,6 +95,36 @@ describe('oturum ve yönlendirme', () => {
 
     expect(await screen.findByRole('heading', { name: 'Kişisel Workspace' })).toBeInTheDocument();
     expect(screen.getByText(/adresi henüz doğrulanmadı/)).toBeInTheDocument();
+  });
+});
+
+describe('yerel mod (kişisel kullanım)', () => {
+  beforeEach(() => {
+    setLocalApiForTests({ url: 'http://127.0.0.1:5999', token: 't'.repeat(64) });
+    mocks.refreshSession.mockImplementation(async () => {
+      useSession.getState().setSession(session);
+      return session;
+    });
+  });
+  afterEach(() => setLocalApiForTests(null));
+
+  it('girişsiz açılır; ekip menüleri, çıkış ve hesap uyarıları gösterilmez', async () => {
+    renderApp('/');
+
+    expect(await screen.findByRole('heading', { name: 'Kişisel Workspace' })).toBeInTheDocument();
+    expect(screen.queryByText(/adresi henüz doğrulanmadı/)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Aktivite' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: "Merge'ler" })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Collections' })).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Hesap menüsü' }));
+    expect(screen.queryByRole('menuitem', { name: /Ekip ve organizasyonlar/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: /Çıkış yap/ })).not.toBeInTheDocument();
+  });
+
+  it('ekip sayfası açılmaz, ana ekrana dönülür', async () => {
+    const { router } = renderApp('/team');
+    await waitFor(() => expect(router.state.location.pathname).toBe('/'));
   });
 });
 

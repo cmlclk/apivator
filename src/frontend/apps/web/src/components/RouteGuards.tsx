@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useLocation, useSearchParams } from 'react-router';
 import { useSession } from '../stores/session';
 import { safeRedirect } from '../lib/safeRedirect';
+import { isLocalMode } from '../lib/localMode';
 
 export function RequireAuth() {
   const status = useSession((s) => s.status);
@@ -25,4 +26,9 @@ export function GuestOnly() {
   }
 
   return <Outlet />;
+}
+
+/** Ekip sayfaları (ekip, davet): kişisel kullanımda (yerel mod) yok, ana ekrana dönülür. */
+export function TeamOnly() {
+  return isLocalMode() ? <Navigate to="/" replace /> : <Outlet />;
 }

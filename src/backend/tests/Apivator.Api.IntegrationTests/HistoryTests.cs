@@ -130,7 +130,8 @@ public class HistoryTests(ApivatorApiFactory factory)
         {
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             var id = old.Id;
-            await db.Database.ExecuteSqlAsync($"UPDATE request_history SET executed_at = now() - interval '31 days' WHERE id = {id}");
+            var executedAt = DateTimeOffset.UtcNow.AddDays(-31);
+            await db.History.Where(h => h.Id == id).ExecuteUpdateAsync(u => u.SetProperty(h => h.ExecutedAt, executedAt));
         }
 
         Assert.True(await factory.Services.GetRequiredService<HistoryResponseRetention>().PurgeAsync(CancellationToken.None) >= 1);

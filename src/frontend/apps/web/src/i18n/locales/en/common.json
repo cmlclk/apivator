@@ -42,6 +42,13 @@
     "urlScheme": "Only http and https addresses can be opened.",
     "secretKeyNotAllowed": "Key not allowed: {key}",
     "noUpdate": "There is no update to install.",
-    "updatesDisabled": "Automatic updates are turned off in this version."
+    "updatesDisabled": "Automatic updates are turned off in this version.",
+    "localApiStartFailed": "Could not start the local API: {detail}",
+    "localApiExited": "The local API stopped (exit code {code}). {detail}",
+    "localApiTimeout": "The local API was not ready within {seconds} seconds.",
+    "localModeOff": "Personal use (local mode) is not selected.",
+    "invalidMode": "Invalid mode.",
+    "dataDirFailed": "Could not write to the data folder: {detail}",
+    "backupFailed": "Could not back up the database before the update, so the local API was not started to keep your data safe. {detail}"
   }
 }

@@ -28,7 +28,9 @@
     "team": "Ekip ve organizasyonlar",
     "logout": "Çıkış yap"
   },
-  "boot": { "loading": "Yükleniyor" },
+  "boot": {
+    "loading": "Yükleniyor"
+  },
   "routeError": {
     "title": "Bir şeyler ters gitti",
     "hint": "Sayfayı yenilemeyi deneyin. Sorun sürerse açık sekmeleri sıfırlayın; kaydedilmiş istekleriniz etkilenmez, yalnızca kaydedilmemiş taslaklar silinir.",
@@ -173,5 +175,35 @@
     "keyFile": "Anahtar dosyası {index}",
     "keyFilePlaceholder": "Anahtar dosyası (PEM, ayrıysa)",
     "addCertificate": "Sertifika ekle"
+  },
+  "mode": {
+    "choice": {
+      "title": "Apivator'ı nasıl kullanacaksınız?",
+      "subtitle": "Bunu sonradan Ayarlar'dan değiştirebilirsiniz.",
+      "local": {
+        "title": "Kişisel kullanım (bu bilgisayarda)",
+        "description": "Sunucu ve hesap gerekmez. Collection'lar, environment'lar ve geçmiş bu bilgisayarda saklanır."
+      },
+      "server": {
+        "title": "Sunucuya bağlan",
+        "description": "Ekibinizin Apivator sunucusuna giriş yapın; veriler sunucuda, ekiple ortak."
+      },
+      "failed": "Seçim kaydedilemedi: {error}"
+    },
+    "setting": {
+      "title": "Çalışma modu",
+      "current": "Şu an: {mode}",
+      "local": "Kişisel kullanım",
+      "server": "Sunucuya bağlı",
+      "toLocal": "Kişisel kullanıma geç",
+      "toServer": "Sunucuya bağlan",
+      "dataDir": "Yerel veriler: {path}",
+      "keepsData": "Mod değişince yerel veriler silinmez; uygulama yeniden yüklenir.",
+      "moveToTeam": "Verileri ekibe taşımak için collection ve environment'ları dışa aktarıp sunucuda içe aktarın."
+    },
+    "failed": {
+      "title": "Kişisel kullanım başlatılamadı",
+      "retry": "Tekrar dene"
+    }
   }
 }

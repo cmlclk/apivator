@@ -12,6 +12,7 @@ import { ORGANIZATION_ROLE_LABELS, WORKSPACE_ROLE_LABELS } from '../../lib/teams
 import { useSession } from '../../stores/session';
 import { prepareAvatar } from './avatar';
 import { profileQueryKey, useProfile } from './preferences';
+import { isLocalMode } from '../../lib/localMode';
 
 /** Profil değişince üst çubuktaki kullanıcı bilgisi de güncellenir. */
 function useSyncUser() {
@@ -341,12 +342,17 @@ export function ProfileTab() {
           {t('profile.memberSince', { date: formatDate(profile.createdAt, { dateStyle: 'long' }) })}
         </p>
       </Section>
-      <Section title={t('profile.emailTitle')}>
-        <EmailEditor profile={profile} />
-      </Section>
-      <Section title={t('profile.membershipsTitle')}>
-        <Memberships profile={profile} />
-      </Section>
+      {/* Kişisel kullanımda hesap e-postası ve ekip üyelikleri yok. */}
+      {!isLocalMode() && (
+        <>
+          <Section title={t('profile.emailTitle')}>
+            <EmailEditor profile={profile} />
+          </Section>
+          <Section title={t('profile.membershipsTitle')}>
+            <Memberships profile={profile} />
+          </Section>
+        </>
+      )}
     </div>
   );
 }

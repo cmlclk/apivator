@@ -75,6 +75,7 @@ import {
   type TreeNode,
 } from './useCollections';
 import { loadRequest } from '../../lib/offlineCache';
+import { isLocalMode } from '../../lib/localMode';
 
 type PendingDelete =
   | { kind: 'collection'; collection: CollectionTreeDto }
@@ -898,14 +899,18 @@ export function CollectionsPanel() {
                             setRenaming(copy.id);
                           }),
                       },
-                      {
-                        label: t('tree.comments'),
-                        icon: MessageSquare,
-                        onSelect: () =>
-                          useCommentsPanel
-                            .getState()
-                            .open({ type: 'Collection', id: collection.id, name: collection.name }),
-                      },
+                      ...(isLocalMode()
+                        ? []
+                        : [
+                            {
+                              label: t('tree.comments'),
+                              icon: MessageSquare,
+                              onSelect: () =>
+                                useCommentsPanel
+                                  .getState()
+                                  .open({ type: 'Collection', id: collection.id, name: collection.name }),
+                            },
+                          ]),
                       ...(current?.type !== 'Personal'
                         ? [
                             {

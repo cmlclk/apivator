@@ -42,6 +42,13 @@
     "urlScheme": "Yalnızca http ve https adresleri açılabilir.",
     "secretKeyNotAllowed": "İzin verilmeyen anahtar: {key}",
     "noUpdate": "Kurulacak güncelleme yok.",
-    "updatesDisabled": "Bu sürümde otomatik güncelleme kapalı."
+    "updatesDisabled": "Bu sürümde otomatik güncelleme kapalı.",
+    "localApiStartFailed": "Yerel API başlatılamadı: {detail}",
+    "localApiExited": "Yerel API kapandı (çıkış kodu {code}). {detail}",
+    "localApiTimeout": "Yerel API {seconds} saniye içinde hazır olmadı.",
+    "localModeOff": "Kişisel kullanım (yerel mod) seçili değil.",
+    "invalidMode": "Geçersiz çalışma modu.",
+    "dataDirFailed": "Veri klasörüne yazılamadı: {detail}",
+    "backupFailed": "Güncelleme öncesi veritabanı yedeği alınamadı; veriler korunsun diye yerel API başlatılmadı. {detail}"
   }
 }

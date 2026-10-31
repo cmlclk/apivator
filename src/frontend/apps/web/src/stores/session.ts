@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { AuthResult, UserDto } from '@apivator/core';
-import { serverUrl } from '../lib/serverUrl';
+import { serverKey } from '../lib/serverUrl';
 
 /**
  * offline: sunucuya ulaşılamıyor ama bu cihazda daha önce oturum açılmış; uygulama son eşitlenen verilerle açılır,
@@ -22,7 +22,7 @@ interface SessionState {
 }
 
 /** Son oturum açan kullanıcı (sunucu adresi başına); yalnızca kimlik ve görünen ad, token yok. */
-const lastUserKey = () => `apivator-last-user:${serverUrl() || location.origin}`;
+const lastUserKey = () => `apivator-last-user:${serverKey()}`;
 
 export function rememberedUser(): UserDto | null {
   try {

@@ -124,6 +124,11 @@ export interface ApiClientOptions {
   /** Verilirse istekler (execute, OAuth token) sunucu yerine bu yerel ajan üzerinden yürütülür. */
   localAgent?: () => Promise<LocalAgent>;
   refreshTokens?: RefreshTokenStore;
+  /**
+   * Oturumun refresh yerine alındığı yer (masaüstü yerel modu: token uygulamadan gelir, giriş yok). `null` dönerse
+   * normal refresh yapılır; karar her yenilemede verilir.
+   */
+  sessionSource?: () => Promise<AuthResult | null> | null;
   getAccessToken: () => string | null;
   /** Yenilenen oturumu saklar; yenileme başarısızsa `null` ile çağrılır. */
   onSession: (session: AuthResult | null) => void;
@@ -204,6 +209,12 @@ export function createApiClient(options: ApiClientOptions) {
   function refreshSession(): Promise<AuthResult | null> {
     refreshing ??= (async () => {
       try {
+        const custom = options.sessionSource?.();
+        if (custom) {
+          const session = await custom;
+          options.onSession(session);
+          return session;
+        }
         const stored = store ? await store.get() : null;
         if (store && !stored) {
           options.onSession(null);

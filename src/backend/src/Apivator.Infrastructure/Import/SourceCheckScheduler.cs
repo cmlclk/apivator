@@ -71,17 +71,31 @@ internal sealed class SourceCheckScheduler(
             var now = clock.GetUtcNow();
             var lockedUntil = now + LockFor;
             var limit = Math.Max(1, options.Value.MaxConcurrent);
-            claimed = await db.Database.SqlQuery<Guid>($"""
-                UPDATE collection_sources SET locked_until = {lockedUntil}
-                WHERE id IN (
-                    SELECT id FROM collection_sources
-                    WHERE check_interval_hours IS NOT NULL AND next_check_at <= {now}
-                      AND (locked_until IS NULL OR locked_until < {now})
-                    ORDER BY next_check_at
-                    LIMIT {limit}
-                    FOR UPDATE SKIP LOCKED)
-                RETURNING id AS "Value"
-                """).ToListAsync(ct);
+            if (db.Database.IsSqlite())
+            {
+                // Tek süreç (yerel mod): satır kilidi yok; IMMEDIATE işlem aynı süreçteki eşzamanlı taramaları sıraya koyar.
+                await using var tx = await db.Database.BeginTransactionAsync(ct);
+                claimed = await db.CollectionSources
+                    .Where(e => e.CheckIntervalHours != null && e.NextCheckAt <= now && (e.LockedUntil == null || e.LockedUntil < now))
+                    .OrderBy(e => e.NextCheckAt).Take(limit).Select(e => e.Id).ToListAsync(ct);
+                await db.CollectionSources.Where(e => claimed.Contains(e.Id))
+                    .ExecuteUpdateAsync(u => u.SetProperty(e => e.LockedUntil, lockedUntil), ct);
+                await tx.CommitAsync(ct);
+            }
+            else
+            {
+                claimed = await db.Database.SqlQuery<Guid>($"""
+                    UPDATE collection_sources SET locked_until = {lockedUntil}
+                    WHERE id IN (
+                        SELECT id FROM collection_sources
+                        WHERE check_interval_hours IS NOT NULL AND next_check_at <= {now}
+                          AND (locked_until IS NULL OR locked_until < {now})
+                        ORDER BY next_check_at
+                        LIMIT {limit}
+                        FOR UPDATE SKIP LOCKED)
+                    RETURNING id AS "Value"
+                    """).ToListAsync(ct);
+            }
         }
 
         await Task.WhenAll(claimed.Select(id => CheckOneAsync(id, ct)));

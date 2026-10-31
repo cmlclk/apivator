@@ -17,6 +17,7 @@ import { CollectionsPanel } from '../features/collections/CollectionsPanel';
 import { EnvironmentsPanel } from '../features/environments/EnvironmentsPanel';
 import { HistoryPanel } from '../features/history/HistoryPanel';
 import { useT, type MessageKey } from '../i18n';
+import { isLocalMode } from '../lib/localMode';
 
 // Seyrek açılan bölümler ana pakete girmez; yüklenirken yerleri boş panel olarak tutulur.
 const ActivityPanel = lazy(() =>
@@ -70,9 +71,15 @@ const sections: { id: SidebarSection; label: MessageKey<'shell'>; icon: LucideIc
   },
 ];
 
+// Kişisel kullanımda ekip bölümleri (merge istekleri, aktivite) yok.
+const teamSections: SidebarSection[] = ['merges', 'activity'];
+
 export function Sidebar() {
   const t = useT('shell');
-  const active = useUi((s) => s.sidebarSection);
+  const local = isLocalMode();
+  const visible = local ? sections.filter((s) => !teamSections.includes(s.id)) : sections;
+  const stored = useUi((s) => s.sidebarSection);
+  const active = visible.some((s) => s.id === stored) ? stored : 'collections';
   const setActive = useUi((s) => s.setSidebarSection);
 
   return (
@@ -81,7 +88,7 @@ export function Sidebar() {
         aria-label={t('sidebar.sections')}
         className="flex w-20 shrink-0 flex-col items-center gap-1 border-e border-line bg-surface py-2"
       >
-        {sections.map(({ id, label, icon: Icon }) => (
+        {visible.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             type="button"

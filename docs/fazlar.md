@@ -479,7 +479,7 @@ Hedef: önceki fazlarda açık kalan ya da çalışırken ortaya çıkan, tek ba
 **9.1 Yayın ve dağıtım**
 
 - [x] Depo git'e alındı (31 Ekim 2026): `github.com/cmlclk/apivator`, `main` dalı. İlk push öncesi CI'ın yeşil başlaması için `dotnet format` (using sıralaması, `LibGitRemote` alan adı), Prettier (9 dosya) ve yeni clippy uyarısı (`files.rs`) düzeltildi.
-- [x] Yayın iş akışı `.github/workflows/desktop-release.yml`: `desktop-v*` etiketiyle sürüm uyumu denetimi → taslak sürüm → Windows x64, macOS arm64/x64 (ad-hoc imza), Linux x64 (AppImage/deb/rpm, Ubuntu 22.04) paralel derleme → `latest.json`'da dört platform denetimi. `build-agent.mjs --target` ile ajan çapraz derlenir.
+- [x] Yayın iş akışı `.github/workflows/desktop-release.yml`: `desktop-v*` etiketiyle sürüm uyumu denetimi → taslak sürüm → Windows x64, macOS arm64 (ad-hoc imza; Intel Actions kotası için çıkarıldı), Linux x64 (AppImage/deb/rpm, Ubuntu 22.04) paralel derleme → `latest.json`da platform denetimi. `build-agent.mjs --target` ile ajan çapraz derlenir.
 - [ ] İmza anahtarını üret, GitHub secret/variable'larını gir, ilk sürümü (`desktop-v0.1.0`) yayınlayıp kurulu uygulamada güncellemeyi uçtan uca dene (adımlar: `apps/desktop/README.md` → "Bir kez yapılacaklar").
 - [ ] (İsteğe bağlı) macOS notarization ve Windows Authenticode imzası: sertifika alınınca.
 
@@ -513,28 +513,36 @@ Hedef: masaüstü uygulaması sunucu kurmadan ve giriş yapmadan, tek kişilik k
 
 **10.1 Veritabanı sağlayıcısı**
 
-- [ ] EF Core'da sağlayıcı seçimi (`Database:Provider` = `Postgres` | `Sqlite`); SQLite için ayrı migration seti (`Persistence/Migrations/Sqlite`).
-- [ ] PostgreSQL'e özgü kodun sağlayıcıdan bağımsız hâle getirilmesi: `jsonb` sütunları → JSON metni (`HasJsonConversion` sağlayıcıya göre), `ILike` → büyük/küçük harf duyarsız `LIKE`, varsayılan değer SQL'i.
-- [ ] Zamanlayıcılar (monitör, Git kontrolü, kaynak kontrolü): SQLite'ta tek süreç olduğu için satır kilidi yok; sağlayıcıya göre dallanır.
-- [ ] Entegrasyon testlerinin SQLite'ta da koşması (sağlayıcıya özgü testler işaretlenir).
+- [x] EF Core'da sağlayıcı seçimi (`Database:Provider` = `Postgres` | `Sqlite`); SQLite için ayrı migration seti (`Persistence/Migrations/Sqlite`).
+- [x] PostgreSQL'e özgü kodun sağlayıcıdan bağımsız hâle getirilmesi: `jsonb` sütunları → JSON metni (`HasJsonConversion` sağlayıcıya göre), `ILike` → büyük/küçük harf duyarsız `LIKE`, varsayılan değer SQL'i.
+- [x] Zamanlayıcılar (monitör, Git kontrolü, kaynak kontrolü): SQLite'ta tek süreç olduğu için satır kilidi yok; sağlayıcıya göre dallanır.
+- [x] Entegrasyon testlerinin SQLite'ta da koşması (sağlayıcıya özgü testler işaretlenir).
+
+  Yapılan: `SqliteAppDbContext` (ayrı bağlam tipi → ayrı migration seti; `DateTimeOffset` UTC tick olarak INTEGER, `jsonb` → TEXT), WAL pragma'sı, zamanlayıcılarda IMMEDIATE işlemle seç-kilitle, Git kilidi süreç içi semafor, denetim kaydı aramasında `LIKE` ve sayfalamada açık koşul. Testler: `APIVATOR_TEST_PROVIDER=Sqlite` → 505/506 geçti (PostgreSQL'de de 505/506); sağlayıcıya özel işaretlenecek test çıkmadı, testlerdeki iki ham `interval` SQL'i LINQ'e çevrildi. CI'da SQLite koşusu henüz yok.
 
 **10.2 API'de yerel mod**
 
-- [ ] `LocalMode` ayarı: ilk açılışta sabit yerel kullanıcı ve kişisel workspace otomatik oluşturulur; giriş, kayıt, e-posta doğrulama yok.
-- [ ] Kimlik doğrulama: masaüstünün her açılışta ürettiği rastgele token ile (ajandaki gibi); API yalnızca `127.0.0.1`'de dinler, CORS yalnızca uygulama kökenleri.
-- [ ] Ekip uçlarının kapatılması: organizasyon, takım, davet, SSO, e-posta, 2FA, ortak düzenleme (Yjs/SignalR), denetim kaydı. Çalışmaya devam edenler: collection'lar, environment'lar, geçmiş, runner, mock sunucuları, Git senkronu, araçlar, içe/dışa aktarma; monitörler uygulama açıkken.
-- [ ] Sunucu, istemciye yerel modda olduğunu bildirir (ör. `/api/info` → `localMode: true`).
+- [x] `LocalMode` ayarı: ilk açılışta sabit yerel kullanıcı ve kişisel workspace otomatik oluşturulur; giriş, kayıt, e-posta doğrulama yok.
+- [x] Kimlik doğrulama: masaüstünün her açılışta ürettiği rastgele token ile (ajandaki gibi); API yalnızca `127.0.0.1`'de dinler, CORS yalnızca uygulama kökenleri.
+- [x] Ekip uçlarının kapatılması: organizasyon, takım, davet, SSO, e-posta, 2FA, ortak düzenleme (Yjs/SignalR), denetim kaydı. Çalışmaya devam edenler: collection'lar, environment'lar, geçmiş, runner, mock sunucuları, Git senkronu, araçlar, içe/dışa aktarma; monitörler uygulama açıkken.
+- [x] Sunucu, istemciye yerel modda olduğunu bildirir (ör. `/api/info` → `localMode: true`).
+
+  Yapılan (31 Ekim 2026): `LocalMode:Enabled` + `LocalMode:Token` (en az 32 karakter, yoksa açılmaz) + `LocalMode:Port` (0 = boş port). Açılışta migration uygulanır, sabit `LocalUser` (local@apivator.local, şifresiz) kişisel organizasyon/workspace ile oluşturulur; hazır olunca stdout'a `APIVATOR_API_READY {"port":N}` (ajandaki desen). Kimlik: yalnızca `LocalToken` şeması (Bearer; `/hubs` köprülerinde `access_token`), JWT/API anahtarı yok; JWT imza anahtarı her açılışta rastgele, e-posta `Console`. Kestrel yalnızca 127.0.0.1, `AllowedHosts` = localhost;127.0.0.1 (DNS rebinding), CORS yalnızca Tauri kökenleri (`LocalMode:AllowedOrigins` ile değiştirilebilir). Kapalı uçlar 404 `local_mode.unavailable`: `/api/auth/*` (SSO dahil), organizasyon (yalnızca liste GET açık), takım, davet, API anahtarı, 2FA, e-posta/şifre, oturumlar, güvenlik olayları, hesap silme, workspace üyeleri, `/hubs/workspace`. Testler: `LocalModeTests` 26 + 1 (SQLite dosyasında); backend 21 + 532 (1 atlanan) PostgreSQL'de geçti, SQLite'ta da (tek düşen `AwsSigV4_IsAppliedToRequests` yük altında zamana bağlı, tek başına 3/3 geçiyor).
 
 **10.3 Masaüstü**
 
-- [ ] API'nin ikinci sidecar olarak paketlenmesi (tek dosya, kendi .NET çalışma zamanıyla) ve `agent.rs` deseniyle başlatılıp kapatılması; hazır sinyali, port ve token.
-- [ ] Veri klasörü: `%APPDATA%\Apivator\apivator.db` (macOS `~/Library/Application Support/Apivator`, Linux `~/.local/share/Apivator`); ilk açılışta oluşur, güncellemelerde migration'lar otomatik uygulanır, migration öncesi dosya yedeklenir.
-- [ ] İlk açılışta mod seçim ekranı; sonradan Ayarlar'dan değiştirilebilir (yerel veri silinmez).
-- [ ] Yayın iş akışı: API sidecar'ı dört platform için derlenir; paket boyutu ölçülür (tahmini ~55 → ~100 MB). İleride API ile ajanın tek süreçte birleştirilmesi değerlendirilir.
+- [x] API'nin ikinci sidecar olarak paketlenmesi (tek dosya, kendi .NET çalışma zamanıyla) ve `agent.rs` deseniyle başlatılıp kapatılması; hazır sinyali, port ve token.
+- [x] Veri klasörü: `%APPDATA%\Apivator\apivator.db` (macOS `~/Library/Application Support/Apivator`, Linux `~/.local/share/Apivator`); ilk açılışta oluşur, güncellemelerde migration'lar otomatik uygulanır, migration öncesi dosya yedeklenir.
+- [x] İlk açılışta mod seçim ekranı; sonradan Ayarlar'dan değiştirilebilir (yerel veri silinmez).
+- [x] Yayın iş akışı: API sidecar'ı dört platform için derlenir; paket boyutu ölçülür (tahmini ~55 → ~100 MB). İleride API ile ajanın tek süreçte birleştirilmesi değerlendirilir.
+
+  Yapılan (31 Ekim 2026): `Apivator.Api` `-r <rid>` ile tek dosya, kendi çalışma zamanıyla yayınlanır (win-x64: 57 MB; ajan 52 MB). `scripts/build-agent.mjs` → `build-sidecars.mjs` (ikisini de derler, `--only agent|api`); `tauri.conf.json` `externalBin`e `apivator-api` eklendi. Rust: ortak süreç yönetimi `sidecar.rs` (kuşak sayacı: durdurulan sürecin geç olayı yenisini ezmez), `local_mode.rs` (`app_mode`, `set_app_mode`, `local_api_info`; ayarlar veri klasöründe `desktop.json`). API ortam değişkenleriyle başlar (token, `LocalMode__ParentPid`, SQLite yolu; appsettings dosyası gerekmez); yerel modda varsayılan sağlayıcı SQLite, `Proxy:AllowPrivateNetworks` açık (runner/monitör localhost'a gidebilsin), uygulama çökerse API 2 sn içinde kendini kapatır. Sürüm değişince (migration'lardan önce) `apivator.db` (+WAL) `backups/apivator-<eski sürüm>-<zaman>.db` olarak kopyalanır, en yeni 5 kalır; yedek alınamazsa API başlatılmaz. Arayüz: ilk açılışta `ModeChoice` (mod seçilmeden uygulama açılmaz), Hesap → Tercihler'de "Çalışma modu" ve giriş ekranında "Kişisel kullanıma geç"; değişince uygulama yeniden yüklenir, yerel veriler silinmez. Yayın iş akışı API'yi de çapraz derler, `verify` işi paket boyutlarını iş özetine yazar (gerçek boyut ilk yayında görülecek). Elle doğrulandı: yerel modla açılışta veritabanı oluştu, uygulama zorla kapatılınca API ve ajan kapandı, sürüm değişince yedek alındı. **Henüz yok (10.4):** arayüz yerel modda hâlâ sunucu adresine gider ve giriş ekranını gösterir; yerel API'ye bağlanma (`localApiInfo` + token) 10.4'te. Testler: Rust 10, web 689/689 (+3 `ModeChoice`).
 
 **10.4 Web arayüzü**
 
-- [ ] Yerel modda giriş ekranı atlanır; ekip menüleri (organizasyon, takım, davet, aktivite, yorumlar, merge istekleri) ve hesap ayarlarının ilgisiz bölümleri gizlenir.
-- [ ] Yerel veriyi ekibe taşıma: collection/environment dışa aktarma → sunucuda içe aktarma (mevcut); ileride tek tıkla "sunucuya yükle".
+- [x] Yerel modda giriş ekranı atlanır; ekip menüleri (organizasyon, takım, davet, aktivite, yorumlar, merge istekleri) ve hesap ayarlarının ilgisiz bölümleri gizlenir.
+- [x] Yerel veriyi ekibe taşıma: collection/environment dışa aktarma → sunucuda içe aktarma (mevcut); ileride tek tıkla "sunucuya yükle".
+
+  Yapılan (31 Ekim 2026): açılışta (`main.tsx` → `lib/localMode.ts` `bootDesktopMode`) yerel moddaysa API hazır olana kadar beklenir, adres ve token alınır; başlatılamazsa `LocalApiFailed` ekranı (tekrar dene / sunucuya bağlan). `serverUrl()` yerel API'yi döner; core istemcisine `sessionSource` seçeneği eklendi: yerel modda oturum refresh yerine token + `/api/me` ile kurulur (anahtar zinciri kullanılmaz). Çevrimdışı önbellek ve son kullanıcı kaydı yerel modda sabit `local` anahtarıyla tutulur (port her açılışta değişir). Gizlenenler: çevrimiçi listesi, bildirimler, e-posta/2FA/davet uyarıları, canlı kanal (SignalR), kullanıcı menüsünde ekip/çıkış ve e-posta, kenar çubuğunda Merge'ler/Aktivite, istek ve collection yorumları, hesap ayarlarında Güvenlik ve API anahtarları sekmeleri, profilde e-posta ve üyelikler, veri sekmesinde hesap silme; `/team` ve `/invite` ana ekrana döner. Tercihler → Çalışma modu'nda ekibe taşıma notu. Gerçek yerel API'ye karşı denendi: Tauri kökeninden CORS ön isteği, `/api/me`, tercihler, profil, organizasyon listesi 200. Testler: core 1051 (+1), web 691/691 (+2 yerel mod). **Elle denenmedi:** kurulu masaüstü uygulamasında uçtan uca akış (çıkış kriteri: temiz makinede kurulum → collection, istek, runner; güncellemeden sonra verilerin korunması).
 
 **Çıkış kriteri:** temiz bir makinede kurulum sonrası sunucu ve hesap olmadan collection oluşturma, istek gönderme, runner çalıştırma; uygulama güncellendikten sonra verilerin korunması; PostgreSQL ve SQLite'ta entegrasyon testlerinin geçmesi.

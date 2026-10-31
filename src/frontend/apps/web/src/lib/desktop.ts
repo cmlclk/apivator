@@ -12,6 +12,13 @@ const DESKTOP_ERRORS = [
   'secretKeyNotAllowed',
   'noUpdate',
   'updatesDisabled',
+  'localApiStartFailed',
+  'localApiExited',
+  'localApiTimeout',
+  'localModeOff',
+  'invalidMode',
+  'dataDirFailed',
+  'backupFailed',
 ] as const;
 
 /**
@@ -48,6 +55,30 @@ async function invoke<T>(command: string, args?: Record<string, unknown>): Promi
 /** Yerel ajanın adresi ve oturum token'ı; ajan hazır değilse Rust tarafı bekler. */
 export function agentInfo(): Promise<LocalAgent> {
   return invoke<LocalAgent>('agent_info');
+}
+
+/** Çalışma modu: kişisel kullanım (API bu bilgisayarda) ya da bir Apivator sunucusuna bağlanma. */
+export type AppMode = 'local' | 'server';
+
+export interface AppModeInfo {
+  /** İlk açılışta seçilene kadar null. */
+  mode: AppMode | null;
+  /** Yerel verilerin klasörü (apivator.db ve yedekler). */
+  dataDir: string;
+}
+
+export function appMode(): Promise<AppModeInfo> {
+  return invoke<AppModeInfo>('app_mode');
+}
+
+/** Modu kaydeder; yerel moda geçilince uygulamanın içindeki API başlar, sunucu moduna geçilince durur. */
+export function setAppMode(mode: AppMode): Promise<void> {
+  return invoke<void>('set_app_mode', { mode });
+}
+
+/** Yerel API'nin adresi ve oturum token'ı (yalnızca yerel modda); API hazır değilse Rust tarafı bekler. */
+export function localApiInfo(): Promise<LocalAgent> {
+  return invoke<LocalAgent>('local_api_info');
 }
 
 /** İşletim sisteminin anahtar zinciri (yalnızca izin verilen anahtar önekleri: refresh_token:, network:). */

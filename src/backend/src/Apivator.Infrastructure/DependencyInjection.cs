@@ -37,16 +37,26 @@ public static class DependencyInjection
         services.AddScoped<ChangeLogInterceptor>();
         services.AddScoped<Audit.AuditActorSource>();
         services.AddScoped<Audit.AuditInterceptor>();
-        services.AddDbContext<AppDbContext>((sp, options) => options
-            .UseNpgsql(
-                sp.GetRequiredService<IConfiguration>().GetConnectionString("Postgres")
-                    ?? throw new InvalidOperationException("ConnectionStrings:Postgres tanımlı değil."),
-                npgsql => npgsql.MigrationsHistoryTable("__ef_migrations_history"))
-            .AddInterceptors(
-                // Sıra önemli: değişiklik kaydı önce eklenir, bildirim onu da görür.
-                sp.GetRequiredService<ChangeLogInterceptor>(),
-                sp.GetRequiredService<Audit.AuditInterceptor>(),
-                sp.GetRequiredService<ChangeNotificationInterceptor>()));
+        var useSqlite = DatabaseProvider.IsSqlite(configuration);
+        if (useSqlite)
+        {
+            // Kişisel kullanım: tek süreç, tek dosya. Ayrı bağlam tipi = ayrı migration seti.
+            services.AddDbContext<AppDbContext, SqliteAppDbContext>((sp, options) => AddInterceptors(sp, options
+                .UseSqlite(
+                    sp.GetRequiredService<IConfiguration>().GetConnectionString("Sqlite")
+                        ?? throw new InvalidOperationException("ConnectionStrings:Sqlite tanımlı değil."),
+                    sqlite => sqlite.MigrationsHistoryTable(DatabaseProvider.MigrationsHistoryTable))
+                .AddInterceptors(new SqlitePragmaInterceptor())));
+        }
+        else
+        {
+            services.AddDbContext<AppDbContext>((sp, options) => AddInterceptors(sp, options
+                .UseNpgsql(
+                    sp.GetRequiredService<IConfiguration>().GetConnectionString("Postgres")
+                        ?? throw new InvalidOperationException("ConnectionStrings:Postgres tanımlı değil."),
+                    npgsql => npgsql.MigrationsHistoryTable(DatabaseProvider.MigrationsHistoryTable))));
+        }
+
         services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<AppDbContext>());
 
         services.AddOptions<JwtOptions>().Bind(configuration.GetSection(JwtOptions.SectionName)).ValidateDataAnnotations().ValidateOnStart();
@@ -126,13 +136,28 @@ public static class DependencyInjection
         services.AddSingleton<Application.GitSync.IGitRemote, GitSync.LibGitRemote>();
         services.AddScoped<Application.GitSync.IGitRemoteGuard, GitSync.GitRemoteGuard>();
         services.AddSingleton<Application.GitSync.IGitSecretProtector, GitSync.GitSecretProtector>();
-        services.AddScoped<Application.GitSync.IGitLock, GitSync.PgGitLock>();
+        if (useSqlite)
+        {
+            services.AddSingleton<Application.GitSync.IGitLock, GitSync.InProcessGitLock>();
+        }
+        else
+        {
+            services.AddScoped<Application.GitSync.IGitLock, GitSync.PgGitLock>();
+        }
+
         services.AddSingleton<GitSync.GitCheckScheduler>();
         services.AddHostedService(sp => sp.GetRequiredService<GitSync.GitCheckScheduler>());
         services.AddRequestExecution(configuration);
 
         return services;
     }
+
+    private static DbContextOptionsBuilder AddInterceptors(IServiceProvider sp, DbContextOptionsBuilder options) => options
+        .AddInterceptors(
+            // Sıra önemli: değişiklik kaydı önce eklenir, bildirim onu da görür.
+            sp.GetRequiredService<ChangeLogInterceptor>(),
+            sp.GetRequiredService<Audit.AuditInterceptor>(),
+            sp.GetRequiredService<ChangeNotificationInterceptor>());
 
     /// <summary>
     /// HTTP yürütücü, script sandbox'ı ve istek zinciri. Veritabanı gerektirmez; masaüstü ajanı da bunu kullanır.

@@ -32,6 +32,7 @@ Thumbs.db
 src/frontend/apps/desktop/src-tauri/target/
 src/frontend/apps/desktop/src-tauri/gen/
 src/frontend/apps/desktop/src-tauri/binaries/apivator-agent-*
+src/frontend/apps/desktop/src-tauri/binaries/apivator-api-*
 src/frontend/apps/desktop/src-tauri/tauri.updater.conf.json
 
 # Ruflo local secrets and runtime data

@@ -64,11 +64,13 @@ pnpm --filter @apivator/desktop dev
 
 `dev` betiği şunları yapar:
 
-1. Ajan yoksa onu bu platform için yayınlar: `src-tauri/binaries/apivator-agent-<hedef>.exe`.
+1. Sidecar'lar yoksa onları bu platform için yayınlar: `src-tauri/binaries/apivator-agent-<hedef>.exe`
+   (yerel ajan) ve `apivator-api-<hedef>.exe` (kişisel kullanım modunun API'si).
 2. Vite geliştirme sunucusunu başlatır.
 3. Uygulama penceresini açar.
 
-Ajanın C# kodu değişince `pnpm --filter @apivator/desktop agent` ile yeniden yayınlanır. İlk Rust
+Ajanın ya da API'nin C# kodu değişince `pnpm --filter @apivator/desktop sidecars` ile yeniden yayınlanır
+(yalnızca biri için `-- --only agent` / `-- --only api`). İlk Rust
 derlemesi birkaç dakika sürer.
 
 Geliştirmede API'nin CORS listesinde (`appsettings.Development.json`) Tauri kökenleri
@@ -100,14 +102,13 @@ etiketiyle tetiklenir ve şunları yapar:
 - Etiketin, `tauri.conf.json` ve `package.json` sürümüyle aynı olduğunu denetler, GitHub Releases'te taslak açar.
 - Bu özellik açık, imzalı paketleri paralel üretir:
 
-  | Platform                                            | Paketler                    | Otomatik güncellenen |
-  | --------------------------------------------------- | --------------------------- | -------------------- |
-  | Windows x64                                         | NSIS `.exe`, `.msi`         | NSIS ve MSI          |
-  | macOS Apple Silicon (`aarch64`)                     | `.dmg`, `.app.tar.gz`       | `.app`               |
-  | macOS Intel (`x64`, arm64 makinede çapraz derlenir) | `.dmg`, `.app.tar.gz`       | `.app`               |
-  | Linux x64 (Ubuntu 22.04 ile; glibc 2.35+)           | `.AppImage`, `.deb`, `.rpm` | yalnızca AppImage    |
+  | Platform                                  | Paketler                    | Otomatik güncellenen |
+  | ----------------------------------------- | --------------------------- | -------------------- |
+  | Windows x64                               | NSIS `.exe`, `.msi`         | NSIS ve MSI          |
+  | macOS Apple Silicon (`aarch64`)           | `.dmg`, `.app.tar.gz`       | `.app`               |
+  | Linux x64 (Ubuntu 22.04 ile; glibc 2.35+) | `.AppImage`, `.deb`, `.rpm` | yalnızca AppImage    |
 
-- Her platformu ve imzasını `latest.json`'a ekler. Son adım dört platformun da orada olduğunu denetler.
+- Her platformu ve imzasını `latest.json`'a ekler. Son adım üç platformun da orada olduğunu denetler.
 
 Taslak yayınlanınca kurulu uygulamalar açılışta yeni sürümü görür ve üstte "Şimdi güncelle" çıkar. `.deb`/`.rpm`
 ile kurulanlar güncellemeyi paket yöneticisinden alır.
@@ -141,11 +142,15 @@ Güncellemeler imzalıdır; uygulama, açık anahtarla doğrulayamadığı paket
 
 ## Klasörler
 
-- `src-tauri/src/agent.rs`: ajanı başlatır, hazır sinyalini (`APIVATOR_AGENT_READY {"port":…}`)
-  okur, `agent_info` komutunu sağlar.
+- `src-tauri/src/sidecar.rs`: .NET sidecar'larını başlatır/kapatır, hazır satırından portu okur, oturum token'ı üretir.
+- `src-tauri/src/agent.rs`: ajan (`APIVATOR_AGENT_READY {"port":…}`), `agent_info` komutu.
+- `src-tauri/src/local_mode.rs`: çalışma modu (`app_mode`, `set_app_mode`, `local_api_info`). Yerel modda
+  API sidecar'ı (`APIVATOR_API_READY`) veri klasöründeki SQLite dosyasıyla başlar: Windows `%APPDATA%Apivator`,
+  macOS `~/Library/Application Support/Apivator`, Linux `~/.local/share/Apivator` (`apivator.db`, `desktop.json`).
+  Uygulama sürümü değiştiyse API başlamadan veritabanı `backups/` altına kopyalanır (en yeni 5 yedek kalır).
 - `src-tauri/src/secrets.rs`: anahtar zinciri komutları (yalnızca izin verilen anahtar adları).
 - `src-tauri/src/updates.rs`: güncelleme denetimi ve kurulumu (`updater` özelliğiyle).
 - `src-tauri/src/lib.rs`: `open_external` komutunu (yalnızca http/https) ve uygulama yaşam döngüsünü
   içerir.
-- `scripts/build-agent.mjs`: ajanı yayınlar ve Tauri'nin beklediği adla kopyalar.
-- Ajanın kaynağı: `src/backend/src/Apivator.Agent`.
+- `scripts/build-sidecars.mjs`: ajanı ve API'yi yayınlar, Tauri'nin beklediği adla kopyalar.
+- Ajanın kaynağı: `src/backend/src/Apivator.Agent`; yerel API: `src/backend/src/Apivator.Api` (`LocalMode`).

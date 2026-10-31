@@ -19,6 +19,7 @@ import { PresenceAvatars } from './PresenceAvatars';
 import { WorkspaceSide } from './WorkspaceSide';
 import { NotificationsMenu } from './NotificationsMenu';
 import { isDesktop } from '../lib/desktop';
+import { isLocalMode } from '../lib/localMode';
 import { PreferencesSync } from '../features/account/preferences';
 import { useT } from '../i18n';
 
@@ -33,6 +34,8 @@ export function AppShell() {
   const [networkOpen, setNetworkOpen] = useState(false);
   // Ekip sayfası tam genişlik kullanır; collection kenar çubuğu istek ekranına aittir.
   const showSidebar = useLocation().pathname === '/';
+  // Kişisel kullanım: ekip özellikleri (çevrimiçi listesi, bildirimler, davetler, canlı kanal, hesap uyarıları) yok.
+  const team = !isLocalMode();
   return (
     <div className="flex h-full flex-col">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b border-line bg-surface px-3">
@@ -48,7 +51,7 @@ export function AppShell() {
         <div className="h-5 w-px bg-line" />
         <WorkspaceSwitcher />
         <div className="flex-1" />
-        <PresenceAvatars />
+        {team && <PresenceAvatars />}
         <EnvironmentSwitcher />
         {isDesktop() && (
           <button
@@ -61,7 +64,7 @@ export function AppShell() {
             <Network className="h-4 w-4" />
           </button>
         )}
-        <NotificationsMenu />
+        {team && <NotificationsMenu />}
         {/* Seçim hemen uygulanır ve hesaba yazılır (diğer cihazlar ve e-postalar da bu dili kullanır). */}
         <LanguageSelect
           compact
@@ -72,9 +75,13 @@ export function AppShell() {
       </header>
       <OfflineBanner />
       <UpdateBanner />
-      <EmailBanner />
-      <TwoFactorBanner />
-      <InvitationsBanner />
+      {team && (
+        <>
+          <EmailBanner />
+          <TwoFactorBanner />
+          <InvitationsBanner />
+        </>
+      )}
       <div className="flex min-h-0 flex-1">
         {showSidebar && <Sidebar />}
         <main className="flex min-w-0 flex-1 flex-col">
@@ -82,7 +89,7 @@ export function AppShell() {
         </main>
         {showSidebar && <WorkspaceSide />}
       </div>
-      <RealtimeBridge />
+      {team && <RealtimeBridge />}
       <PreferencesSync />
       {networkOpen && (
         <Suspense fallback={null}>

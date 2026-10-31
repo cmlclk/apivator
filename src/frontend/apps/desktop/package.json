@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "agent": "node scripts/build-agent.mjs",
-    "dev": "node scripts/build-agent.mjs --if-missing && tauri dev",
-    "package": "node scripts/build-agent.mjs && tauri build",
+    "sidecars": "node scripts/build-sidecars.mjs",
+    "dev": "node scripts/build-sidecars.mjs --if-missing && tauri dev",
+    "package": "node scripts/build-sidecars.mjs && tauri build",
     "tauri": "tauri"
   },
   "devDependencies": {

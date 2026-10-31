@@ -1,9 +1,11 @@
 mod agent;
 mod files;
+mod local_mode;
 mod secrets;
+mod sidecar;
 mod updates;
 
-use tauri::RunEvent;
+use tauri::{Manager, RunEvent};
 
 /// Arayüze dönen hata: metin yerine kod ve parametreler (JSON). Arayüz bunu etkin dilde gösterir
 /// (`lib/desktop.ts`); böylece arayüz dili sonradan değişse de hata doğru dilde görünür.
@@ -43,10 +45,16 @@ pub fn run() {
             if let Err(error) = agent::start(app.handle()) {
                 eprintln!("{error}");
             }
+            // Yerel mod seçiliyse API de başlar; hata arayüze local_api_info ile döner.
+            app.manage(local_mode::LocalModeState::load(app.handle())?);
+            local_mode::start_if_local(app.handle());
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
             agent::agent_info,
+            local_mode::app_mode,
+            local_mode::set_app_mode,
+            local_mode::local_api_info,
             secrets::secret_get,
             secrets::secret_set,
             secrets::secret_delete,
@@ -62,6 +70,7 @@ pub fn run() {
     app.run(|handle, event| {
         if let RunEvent::Exit = event {
             agent::stop(handle);
+            local_mode::stop(handle);
         }
     });
 }

@@ -7,6 +7,7 @@ import { router } from './router';
 import { bootstrapOffline } from './bootstrap';
 import { useEnvironmentStore } from './features/environments/environmentStore';
 import { isDesktop } from './lib/desktop';
+import { bootDesktopMode } from './lib/localMode';
 import { initI18n } from './i18n';
 import './index.css';
 
@@ -27,12 +28,23 @@ function variablesReady(): Promise<void> {
   });
 }
 
-void Promise.all([variablesReady(), initI18n()]).then(() =>
-  createRoot(document.getElementById('root')!).render(
+// Masaüstü: mod seçilmemişse seçim ekranı; yerel modda API hazır olana kadar beklenir, başlatılamazsa hata ekranı.
+void Promise.all([variablesReady(), initI18n(), bootDesktopMode()]).then(async ([, , boot]) => {
+  const root = createRoot(document.getElementById('root')!);
+  if (boot.kind !== 'ready') {
+    const { ModeChoice, LocalApiFailed } = await import('./components/ModeChoice');
+    root.render(
+      <StrictMode>
+        {boot.kind === 'choose' ? <ModeChoice /> : <LocalApiFailed message={boot.message} />}
+      </StrictMode>,
+    );
+    return;
+  }
+  root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
     </StrictMode>,
-  ),
-);
+  );
+});

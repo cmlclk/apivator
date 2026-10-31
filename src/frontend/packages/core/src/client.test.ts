@@ -338,6 +338,28 @@ describe('masaüstü modu', () => {
   });
 });
 
+describe('oturum kaynağı (masaüstü yerel modu)', () => {
+  it('verilirse refresh yerine kullanılır; null dönerse normal refresh yapılır', async () => {
+    const fetchMock = vi.fn(async (_url: string, _init?: RequestInit) => json(200, session));
+    const onSession = vi.fn();
+    let local = true;
+    const client = createApiClient({
+      getAccessToken: () => null,
+      onSession,
+      sessionSource: () => (local ? Promise.resolve({ ...session, accessToken: 'yerel' }) : null),
+      fetch: fetchMock as unknown as typeof fetch,
+    });
+
+    expect((await client.refreshSession())?.accessToken).toBe('yerel');
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(onSession).toHaveBeenLastCalledWith(expect.objectContaining({ accessToken: 'yerel' }));
+
+    local = false;
+    expect(await client.refreshSession()).toEqual(session);
+    expect(fetchMock.mock.calls[0]![0]).toBe('/api/auth/refresh');
+  });
+});
+
 describe('masaüstü runner', () => {
   const source = {
     collectionId: 'c1',

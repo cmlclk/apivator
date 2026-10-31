@@ -53,6 +53,7 @@ import { RequestVersionsDialog } from '../activity/RequestVersionsDialog';
 import { MessagesEditor } from '../streaming/MessagesEditor';
 import { isActive, useStreams } from '../streaming/streamStore';
 import { GrpcEditor } from '../grpc/GrpcEditor';
+import { isLocalMode } from '../../lib/localMode';
 
 const KINDS: RequestKind[] = ['Http', 'Sse', 'WebSocket', 'Grpc'];
 
@@ -281,26 +282,28 @@ export function RequestEditor({
               >
                 <History className="h-3.5 w-3.5" /> {t('editor.versions')}
               </Button>
-              <Button
-                variant={commentsOpen ? 'secondary' : 'ghost'}
-                size="sm"
-                aria-pressed={commentsOpen}
-                onClick={() =>
-                  commentsOpen
-                    ? useCommentsPanel.getState().close()
-                    : useCommentsPanel
-                        .getState()
-                        .open({ type: 'Request', id: tab.requestId!, name: tab.name })
-                }
-                title={t('editor.commentsTitle')}
-              >
-                <MessageSquare className="h-3.5 w-3.5" /> {t('editor.comments')}
-                {commentCount > 0 && (
-                  <span className="rounded bg-accent/15 px-1.5 text-[11px] font-semibold text-accent">
-                    {commentCount}
-                  </span>
-                )}
-              </Button>
+              {!isLocalMode() && (
+                <Button
+                  variant={commentsOpen ? 'secondary' : 'ghost'}
+                  size="sm"
+                  aria-pressed={commentsOpen}
+                  onClick={() =>
+                    commentsOpen
+                      ? useCommentsPanel.getState().close()
+                      : useCommentsPanel
+                          .getState()
+                          .open({ type: 'Request', id: tab.requestId!, name: tab.name })
+                  }
+                  title={t('editor.commentsTitle')}
+                >
+                  <MessageSquare className="h-3.5 w-3.5" /> {t('editor.comments')}
+                  {commentCount > 0 && (
+                    <span className="rounded bg-accent/15 px-1.5 text-[11px] font-semibold text-accent">
+                      {commentCount}
+                    </span>
+                  )}
+                </Button>
+              )}
             </>
           )}
           {versionsOpen && tab.requestId && (

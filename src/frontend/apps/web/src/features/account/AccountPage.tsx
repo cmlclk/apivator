@@ -7,6 +7,7 @@ import { DataTab } from './DataTab';
 import { PreferencesTab } from './PreferencesTab';
 import { ProfileTab } from './ProfileTab';
 import { SecurityTab } from './SecurityTab';
+import { isLocalMode } from '../../lib/localMode';
 
 type Tab = 'profile' | 'security' | 'api-keys' | 'preferences' | 'data';
 
@@ -17,8 +18,10 @@ export function AccountPage() {
   const t = useT('account');
   const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
-  const tab = tabIds.find((id) => id === params.get('tab')) ?? 'profile';
-  const tabs = tabIds.map((id) => ({ id, label: t(`page.tabs.${id}`) }));
+  // Kişisel kullanımda giriş yok: güvenlik (şifre, 2FA, oturumlar) ve API anahtarları gösterilmez.
+  const ids = isLocalMode() ? tabIds.filter((id) => id !== 'security' && id !== 'api-keys') : tabIds;
+  const tab = ids.find((id) => id === params.get('tab')) ?? 'profile';
+  const tabs = ids.map((id) => ({ id, label: t(`page.tabs.${id}`) }));
 
   return (
     <div className="flex-1 overflow-auto">

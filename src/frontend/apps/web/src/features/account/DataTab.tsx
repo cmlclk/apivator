@@ -7,6 +7,7 @@ import { toUpper, useT } from '../../i18n';
 import { api } from '../../lib/api';
 import { saveFile } from '../../lib/download';
 import { errorMessage, fieldError } from '../../lib/errors';
+import { isLocalMode } from '../../lib/localMode';
 
 function ExportSection() {
   const t = useT('account');
@@ -157,7 +158,7 @@ export function DataTab() {
   return (
     <div className="flex flex-col gap-4">
       <ExportSection />
-      <DeleteSection />
+      {!isLocalMode() && <DeleteSection />}
     </div>
   );
 }

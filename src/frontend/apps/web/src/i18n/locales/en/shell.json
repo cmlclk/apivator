@@ -28,7 +28,9 @@
     "team": "Team and organizations",
     "logout": "Sign out"
   },
-  "boot": { "loading": "Loading" },
+  "boot": {
+    "loading": "Loading"
+  },
   "routeError": {
     "title": "Something went wrong",
     "hint": "Try reloading the page. If the problem persists, reset the open tabs; your saved requests are not affected, only unsaved drafts are discarded.",
@@ -173,5 +175,35 @@
     "keyFile": "Key file {index}",
     "keyFilePlaceholder": "Key file (PEM, if separate)",
     "addCertificate": "Add certificate"
+  },
+  "mode": {
+    "choice": {
+      "title": "How will you use Apivator?",
+      "subtitle": "You can change this later in Settings.",
+      "local": {
+        "title": "Personal use (on this computer)",
+        "description": "No server or account needed. Collections, environments and history are stored on this computer."
+      },
+      "server": {
+        "title": "Connect to a server",
+        "description": "Sign in to your team's Apivator server; data lives on the server, shared with your team."
+      },
+      "failed": "Could not save your choice: {error}"
+    },
+    "setting": {
+      "title": "Mode",
+      "current": "Currently: {mode}",
+      "local": "Personal use",
+      "server": "Connected to a server",
+      "toLocal": "Switch to personal use",
+      "toServer": "Connect to a server",
+      "dataDir": "Local data: {path}",
+      "keepsData": "Local data is kept when you switch; the app reloads.",
+      "moveToTeam": "To move your data to a team, export collections and environments and import them on the server."
+    },
+    "failed": {
+      "title": "Personal use could not start",
+      "retry": "Try again"
+    }
   }
 }

@@ -433,8 +433,18 @@ Tüm ayarlar `appsettings.json` içinde; ortam değişkeniyle ezilir (`Bölüm__
 ```bash
 cd src/backend
 dotnet tool restore
-dotnet ef migrations add <Ad> -p src/Apivator.Infrastructure -s src/Apivator.Api -o Persistence/Migrations
+dotnet ef migrations add <Ad> -p src/Apivator.Infrastructure -s src/Apivator.Api -o Persistence/Migrations \
+  --context Apivator.Infrastructure.Persistence.AppDbContext
+dotnet ef migrations add <Ad> -p src/Apivator.Infrastructure -s src/Apivator.Api -o Persistence/Migrations/Sqlite \
+  --context SqliteAppDbContext --namespace Apivator.Infrastructure.Persistence.Migrations.Sqlite
 ```
+
+Her model değişikliği iki migration ister: PostgreSQL (ekip sunucusu) ve SQLite (kişisel kullanım). PostgreSQL
+bağlamı tam adıyla verilmelidir; kısa ad `SqliteAppDbContext` ile karışır. `--namespace` ile EF, snapshot dosyasını
+yanlış klasöre yazabilir; `Persistence/Migrations/Sqlite` altına taşıyın.
+
+SQLite için: `Database__Provider=Sqlite`, `ConnectionStrings__Sqlite="Data Source=apivator.db"`. Entegrasyon testleri
+`APIVATOR_TEST_PROVIDER=Sqlite` ile geçici bir SQLite dosyasında koşar.
 
 ## Script'ler
 

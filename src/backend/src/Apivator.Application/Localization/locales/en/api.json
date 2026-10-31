@@ -2,5 +2,6 @@
   "api.body_unreadable": "The request body could not be read.",
   "api.unexpected": "An unexpected error occurred.",
   "api.websocket_expected": "A WebSocket connection was expected.",
-  "api.mock_body_too_large": "The request body can be at most {kb} KB."
+  "api.mock_body_too_large": "The request body can be at most {kb} KB.",
+  "local_mode.unavailable": "This feature is not available in personal use (local mode)."
 }

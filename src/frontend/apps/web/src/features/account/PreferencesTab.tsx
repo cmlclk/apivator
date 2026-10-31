@@ -3,7 +3,9 @@ import { Monitor, Moon, Sun } from 'lucide-react';
 import { Alert, cn, Spinner } from '@apivator/ui';
 import type { PreferencesDto, ThemePreference } from '@apivator/core';
 import { LanguageSelect } from '../../components/LanguageSelect';
+import { AppModeSetting } from '../../components/ModeChoice';
 import { useT } from '../../i18n';
+import { isDesktop } from '../../lib/desktop';
 import { errorMessage } from '../../lib/errors';
 import { groupWorkspaces, selectClass } from '../../lib/teams';
 import { useWorkspaces } from '../../lib/useWorkspaces';
@@ -163,6 +165,7 @@ export function PreferencesTab() {
           </span>
         </label>
       </section>
+      {isDesktop() && <AppModeSetting />}
     </div>
   );
 }

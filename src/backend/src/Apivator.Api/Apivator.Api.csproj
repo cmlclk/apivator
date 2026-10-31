@@ -1,6 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <UserSecretsId>apivator-api</UserSecretsId>
+    <!-- Masaüstü yerel modu: dotnet publish -r <rid> ile tek dosya, kendi .NET çalışma zamanıyla (apivator-api sidecar'ı). -->
+    <SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
+    <PublishSingleFile Condition="'$(RuntimeIdentifier)' != ''">true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apivator.Infrastructure\Apivator.Infrastructure.csproj" />

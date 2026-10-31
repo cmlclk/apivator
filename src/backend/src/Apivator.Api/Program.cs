@@ -30,6 +30,13 @@ if (builder.Environment.IsProduction())
     }
 }
 
+// Kişisel kullanım: API masaüstü uygulamasının içinde, giriş olmadan çalışır (bkz. LocalMode).
+var localMode = LocalMode.IsEnabled(builder.Configuration);
+if (localMode)
+{
+    LocalMode.Configure(builder);
+}
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -56,12 +63,24 @@ builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 builder.Services.AddScoped<Apivator.Application.Account.ICurrentClient, CurrentClient>();
 
 // Varsayılan şema isteğe göre seçer: "apv_" ile başlayan anahtar ya da X-Api-Key → API anahtarı, değilse JWT.
-builder.Services
-    .AddAuthentication("Smart")
-    .AddPolicyScheme("Smart", "Smart", options => options.ForwardDefaultSelector = context =>
-        ApiKeyAuthenticationHandler.ReadKey(context.Request) is not null ? ApiKeyAuthenticationHandler.SchemeName : JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer()
-    .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
+// Yerel modda yalnızca uygulamanın oturum token'ı geçerlidir (JWT ve API anahtarı yok).
+if (localMode)
+{
+    builder.Services
+        .AddAuthentication(LocalTokenAuthenticationHandler.SchemeName)
+        .AddScheme<AuthenticationSchemeOptions, LocalTokenAuthenticationHandler>(LocalTokenAuthenticationHandler.SchemeName, null);
+}
+else
+{
+    builder.Services
+        .AddAuthentication("Smart")
+        .AddPolicyScheme("Smart", "Smart", options => options.ForwardDefaultSelector = context =>
+            ApiKeyAuthenticationHandler.ReadKey(context.Request) is not null ? ApiKeyAuthenticationHandler.SchemeName : JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer()
+        .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
+}
+
+
 builder.Services
     .AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme)
     .Configure<IOptions<JwtOptions>>((options, jwtOptions) =>
@@ -177,7 +196,9 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.ForwardLimit = builder.Configuration.GetValue("ForwardedHeaders:ForwardLimit", 1);
 });
 
-var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+var allowedOrigins = localMode
+    ? LocalMode.AllowedOrigins(builder.Configuration)
+    : builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy => policy
@@ -219,6 +240,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+if (localMode)
+{
+    app.UseLocalModeGate();
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseUserLanguage();
@@ -239,6 +265,8 @@ var api = app.MapGroup("/api");
 
 // İstemcinin "sunucu yine ulaşılabilir mi" yoklaması (çevrimdışı mod); /api altında olduğu için web proxy'sinden geçer.
 api.MapGet("/ping", () => Results.NoContent()).AllowAnonymous().ExcludeFromDescription();
+// İstemci sunucunun hangi modda çalıştığını buradan öğrenir (yerel modda giriş ekranı yok).
+api.MapGet("/info", () => Results.Ok(new { localMode })).AllowAnonymous().WithTags("Info");
 api.MapAuthEndpoints();
 api.MapMeEndpoints();
 api.MapAccountEndpoints();
@@ -267,6 +295,12 @@ if (app.Configuration.GetValue("Database:MigrateOnStartup", false))
 {
     await using var scope = app.Services.CreateAsyncScope();
     await scope.ServiceProvider.GetRequiredService<AppDbContext>().Database.MigrateAsync();
+}
+
+if (localMode)
+{
+    await LocalUser.EnsureAsync(app.Services);
+    LocalMode.AnnounceReady(app);
 }
 
 await app.RunAsync();

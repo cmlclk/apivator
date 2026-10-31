@@ -9,7 +9,7 @@ import { isOnline } from './connectivity';
 import { UserError } from './errors';
 import { kv } from './idb';
 import { queryClient as defaultClient } from './queryClient';
-import { serverUrl } from './serverUrl';
+import { serverKey } from './serverUrl';
 
 /**
  * Çevrimdışı önbellek: workspace'ler, collection ağaçları, istek tanımları, environment'lar, globals ve geçmiş
@@ -40,7 +40,7 @@ export function shouldPersist(key: QueryKey): boolean {
   return root !== 'collections' || key.length === 2;
 }
 
-const cachePrefix = () => `apivator-cache:${serverUrl() || location.origin}:`;
+const cachePrefix = () => `apivator-cache:${serverKey()}:`;
 
 let active: { userId: string; stop: () => void } | null = null;
 

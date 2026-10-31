@@ -7,5 +7,6 @@
   "auth_validation.email_password_required": "Email and password are required.",
   "device.desktop": "Apivator Desktop",
   "device.unknown": "Unknown device",
-  "account.avatar_too_large": "The image can be at most {kb} KB."
+  "account.avatar_too_large": "The image can be at most {kb} KB.",
+  "local_mode.user_name": "Local user"
 }
