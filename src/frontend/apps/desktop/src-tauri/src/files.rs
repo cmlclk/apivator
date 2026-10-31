@@ -6,9 +6,7 @@ use tauri_plugin_dialog::DialogExt;
 
 /// Başlıktaki dosya adı (URL kodlu). Yol ayırıcıları ve geçersiz karakterler atılır; diyalog yalnızca öneri olarak gösterir.
 pub fn suggested_name(header: Option<&str>) -> String {
-    let decoded = header
-        .and_then(urlencoding_decode)
-        .unwrap_or_default();
+    let decoded = header.and_then(urlencoding_decode).unwrap_or_default();
     let cleaned: String = decoded
         .chars()
         .map(|c| {

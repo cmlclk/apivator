@@ -504,3 +504,37 @@ Hedef: önceki fazlarda açık kalan ya da çalışırken ortaya çıkan, tek ba
 - [x] Bayt birimleri: tek ayraçtan sonra tam üç rakam varsa ve ayraç etkin dilin binlik ayracıysa binlik okunur (Türkçede `1.000 GB` = 1000 GB, İngilizcede `1,000 GB`); diğer tek ayraçlar ondalık kalır (`1.5`, `1,5`, `1.50`). Araçtaki ipucu metni güncellendi (31 Ekim 2026).
 - [x] Cron açıklaması: tek saat ya da en çok 3 ayrı saat bloğu aralık olarak yazılır: `*/5 9 * * *` → "09:00–09:59 arasında her 5 dakikada bir", `*/10 9-11,17 * * *` → "09:00–11:59 ve 17:00–17:59 arasında…" (İngilizcesi "between 09:00 and 09:59" / "during 09:00–11:59 and 17:00–17:59"); daha dağınık saatlerde eski liste biçimi (31 Ekim 2026).
 - [x] Metin sayacı: 100.000 karakteri aşan metin yazma beklendikten sonra Web Worker'da sayılır (`textStatsWorker.ts`, `useTextStats.ts`); metin değişince süren sayım Worker sonlandırılarak bırakılır, Worker yoksa ya da yüklenemezse aynı iş parçacığında sayılır. Küçük metin eskisi gibi anında sayılır (31 Ekim 2026). Web testleri 680/680.
+
+## Faz 10 · Kişisel kullanım: yerel mod (tahmini 2–3 hafta)
+
+Hedef: masaüstü uygulaması sunucu kurmadan ve giriş yapmadan, tek kişilik kullanım için çalışabilsin. İlk açılışta "Kişisel kullanım (bu bilgisayarda)" ya da "Sunucuya bağlan" seçilir. Yerel modda API uygulamanın içinde çalışır, veriler bu bilgisayardaki bir SQLite dosyasında durur. Ekip modu olduğu gibi kalır.
+
+**Başlangıçtaki durum:** Masaüstü her zaman bir Apivator sunucusuna (PostgreSQL) bağlanır; giriş, collection'lar ve environment'lar sunucudadır, yalnızca istekler yerel ajandan gider. Backend'de PostgreSQL'e özgü kod az: `jsonb` kullanan 6 dosya, 1 `EF.Functions` kullanımı, 3 zamanlayıcıda `FOR UPDATE SKIP LOCKED`, 29 PostgreSQL migration'ı. Redis zaten isteğe bağlı.
+
+**10.1 Veritabanı sağlayıcısı**
+
+- [ ] EF Core'da sağlayıcı seçimi (`Database:Provider` = `Postgres` | `Sqlite`); SQLite için ayrı migration seti (`Persistence/Migrations/Sqlite`).
+- [ ] PostgreSQL'e özgü kodun sağlayıcıdan bağımsız hâle getirilmesi: `jsonb` sütunları → JSON metni (`HasJsonConversion` sağlayıcıya göre), `ILike` → büyük/küçük harf duyarsız `LIKE`, varsayılan değer SQL'i.
+- [ ] Zamanlayıcılar (monitör, Git kontrolü, kaynak kontrolü): SQLite'ta tek süreç olduğu için satır kilidi yok; sağlayıcıya göre dallanır.
+- [ ] Entegrasyon testlerinin SQLite'ta da koşması (sağlayıcıya özgü testler işaretlenir).
+
+**10.2 API'de yerel mod**
+
+- [ ] `LocalMode` ayarı: ilk açılışta sabit yerel kullanıcı ve kişisel workspace otomatik oluşturulur; giriş, kayıt, e-posta doğrulama yok.
+- [ ] Kimlik doğrulama: masaüstünün her açılışta ürettiği rastgele token ile (ajandaki gibi); API yalnızca `127.0.0.1`'de dinler, CORS yalnızca uygulama kökenleri.
+- [ ] Ekip uçlarının kapatılması: organizasyon, takım, davet, SSO, e-posta, 2FA, ortak düzenleme (Yjs/SignalR), denetim kaydı. Çalışmaya devam edenler: collection'lar, environment'lar, geçmiş, runner, mock sunucuları, Git senkronu, araçlar, içe/dışa aktarma; monitörler uygulama açıkken.
+- [ ] Sunucu, istemciye yerel modda olduğunu bildirir (ör. `/api/info` → `localMode: true`).
+
+**10.3 Masaüstü**
+
+- [ ] API'nin ikinci sidecar olarak paketlenmesi (tek dosya, kendi .NET çalışma zamanıyla) ve `agent.rs` deseniyle başlatılıp kapatılması; hazır sinyali, port ve token.
+- [ ] Veri klasörü: `%APPDATA%\Apivator\apivator.db` (macOS `~/Library/Application Support/Apivator`, Linux `~/.local/share/Apivator`); ilk açılışta oluşur, güncellemelerde migration'lar otomatik uygulanır, migration öncesi dosya yedeklenir.
+- [ ] İlk açılışta mod seçim ekranı; sonradan Ayarlar'dan değiştirilebilir (yerel veri silinmez).
+- [ ] Yayın iş akışı: API sidecar'ı dört platform için derlenir; paket boyutu ölçülür (tahmini ~55 → ~100 MB). İleride API ile ajanın tek süreçte birleştirilmesi değerlendirilir.
+
+**10.4 Web arayüzü**
+
+- [ ] Yerel modda giriş ekranı atlanır; ekip menüleri (organizasyon, takım, davet, aktivite, yorumlar, merge istekleri) ve hesap ayarlarının ilgisiz bölümleri gizlenir.
+- [ ] Yerel veriyi ekibe taşıma: collection/environment dışa aktarma → sunucuda içe aktarma (mevcut); ileride tek tıkla "sunucuya yükle".
+
+**Çıkış kriteri:** temiz bir makinede kurulum sonrası sunucu ve hesap olmadan collection oluşturma, istek gönderme, runner çalıştırma; uygulama güncellendikten sonra verilerin korunması; PostgreSQL ve SQLite'ta entegrasyon testlerinin geçmesi.
