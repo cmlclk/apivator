@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Durum kodu ve süre",
+    "source": "Postman'in hazır snippet'leri: Status code is 200, Response time is less than 200ms",
+    "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "body": { "ok": true } },
+    "test": [
+      "pm.test('Status code is 200', function () {",
+      "    pm.response.to.have.status(200);",
+      "});",
+      "pm.test('Response time is less than 2000ms', function () {",
+      "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+      "});",
+      "pm.test('Successful POST request', function () {",
+      "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+      "});",
+      "pm.test('Status code name has string', function () {",
+      "    pm.response.to.have.status('OK');",
+      "});"
+    ]
+  },
+  {
+    "name": "Header ve Content-Type",
+    "source": "Snippet: Content-Type header is present",
+    "response": {
+      "status": 201,
+      "headers": { "Content-Type": "application/json; charset=utf-8", "Location": "/siparisler/42", "X-Request-Id": "abc-123" },
+      "body": { "id": 42 }
+    },
+    "test": [
+      "pm.test('Content-Type is present', function () {",
+      "    pm.response.to.have.header('Content-Type');",
+      "});",
+      "pm.test('JSON döner', function () {",
+      "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+      "    pm.response.to.be.json;",
+      "});",
+      "pm.test('Location header', () => {",
+      "    pm.response.to.have.header('Location', '/siparisler/42');",
+      "    pm.expect(pm.response.headers.has('X-Request-Id')).to.be.true;",
+      "});",
+      "pm.test('201 Created', () => pm.response.to.have.status(201));",
+      "pm.test('2xx', () => pm.response.to.be.success);"
+    ]
+  },
+  {
+    "name": "JSON gövdesi: alanlar, diziler, tipler",
+    "source": "Tipik REST testleri (liste ve kayıt doğrulama)",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": {
+        "data": [
+          { "id": 1, "ad": "Kalem", "fiyat": 12.5, "etiketler": ["ofis"], "aktif": true },
+          { "id": 2, "ad": "Defter", "fiyat": 30, "etiketler": [], "aktif": false }
+        ],
+        "sayfa": { "no": 1, "toplam": 2 },
+        "sonraki": null
+      }
+    },
+    "test": [
+      "var jsonData = pm.response.json();",
+      "pm.test('Liste boş değil', function () {",
+      "    pm.expect(jsonData.data).to.be.an('array').that.is.not.empty;",
+      "    pm.expect(jsonData.data).to.have.lengthOf(2);",
+      "});",
+      "pm.test('İlk ürün', function () {",
+      "    const ilk = jsonData.data[0];",
+      "    pm.expect(ilk).to.have.property('ad', 'Kalem');",
+      "    pm.expect(ilk.fiyat).to.be.a('number').and.above(10);",
+      "    pm.expect(ilk).to.include.keys('id', 'ad', 'fiyat');",
+      "    pm.expect(ilk.etiketler).to.include('ofis');",
+      "});",
+      "pm.test('Sayfalama', () => {",
+      "    pm.expect(jsonData.sayfa).to.deep.equal({ no: 1, toplam: 2 });",
+      "    pm.expect(jsonData.sonraki).to.be.null;",
+      "});",
+      "pm.test('Aktifler', () => {",
+      "    const aktif = jsonData.data.filter(u => u.aktif);",
+      "    pm.expect(aktif.map(u => u.ad)).to.eql(['Kalem']);",
+      "    pm.expect(jsonData.data.every(u => typeof u.id === 'number')).to.be.true;",
+      "});",
+      "pm.test('jsonBody', () => {",
+      "    pm.response.to.have.jsonBody('sayfa.toplam', 2);",
+      "    pm.response.to.have.jsonBody('data[1].ad');",
+      "    pm.response.to.not.have.jsonBody('hata');",
+      "});"
+    ]
+  },
+  {
+    "name": "Metin gövdesi ve regex",
+    "source": "Snippet: Body matches string",
+    "response": { "status": 200, "headers": { "Content-Type": "text/plain" }, "body": "Sipariş #1042 oluşturuldu" },
+    "test": [
+      "pm.test('Body matches string', function () {",
+      "    pm.expect(pm.response.text()).to.include('oluşturuldu');",
+      "});",
+      "pm.test('Sipariş numarası', function () {",
+      "    pm.expect(pm.response.text()).to.match(/#\\d{4}/);",
+      "    pm.response.to.have.body(/Sipariş #\\d+/);",
+      "});",
+      "pm.test('Tam gövde', () => pm.response.to.have.body('Sipariş #1042 oluşturuldu'));"
+    ]
+  },
+  {
+    "name": "Hata yanıtları",
+    "source": "Negatif senaryo testleri",
+    "response": {
+      "status": 404,
+      "headers": { "Content-Type": "application/problem+json" },
+      "body": { "title": "Bulunamadı", "status": 404 }
+    },
+    "test": [
+      "pm.test('404', () => pm.response.to.have.status(404));",
+      "pm.test('İstemci hatası', () => { pm.response.to.be.clientError; pm.response.to.be.notFound; pm.response.to.not.be.ok; });",
+      "pm.test('Problem detayı', () => pm.expect(pm.response.json().title).to.equal('Bulunamadı'));",
+      "pm.test('Bilerek kalan', () => pm.response.to.have.status(200));"
+    ],
+    "expect": {
+      "tests": { "404": "passed", "İstemci hatası": "passed", "Problem detayı": "passed", "Bilerek kalan": "failed" }
+    }
+  },
+  {
+    "name": "Cookie",
+    "source": "pm.cookies ve pm.response.cookies",
+    "response": {
+      "status": 200,
+      "headers": { "Set-Cookie": "oturum=xyz789; Path=/; HttpOnly" },
+      "body": ""
+    },
+    "test": [
+      "pm.test('Cookie geldi', function () {",
+      "    pm.expect(pm.cookies.has('oturum')).to.be.true;",
+      "    pm.expect(pm.cookies.get('oturum')).to.eql('xyz789');",
+      "    pm.expect(pm.response.cookies.get('oturum')).to.eql('xyz789');",
+      "});"
+    ]
+  },
+  {
+    "name": "JSON şema doğrulama (pm.response.to.have.jsonSchema)",
+    "source": "Snippet: Use JSON schema validation",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": { "id": 7, "email": "ayse@ornek.com", "roller": ["admin"] }
+    },
+    "test": [
+      "const schema = {",
+      "  type: 'object',",
+      "  required: ['id', 'email'],",
+      "  properties: {",
+      "    id: { type: 'integer' },",
+      "    email: { type: 'string' },",
+      "    roller: { type: 'array', items: { type: 'string' } }",
+      "  }",
+      "};",
+      "pm.test('Şemaya uyar', () => pm.response.to.have.jsonSchema(schema));",
+      "pm.test('Şemaya uymaz', () => pm.response.to.have.jsonSchema({ type: 'object', required: ['ad'] }));"
+    ],
+    "expect": { "tests": { "Şemaya uyar": "passed", "Şemaya uymaz": "failed" } }
+  },
+  {
+    "name": "Yanıt boyutu ve sebep",
+    "source": "pm.response.size(), reason()",
+    "response": { "status": 202, "statusText": "Accepted", "headers": {}, "body": "kuyrukta" },
+    "test": [
+      "pm.test('Boyut', () => {",
+      "    const size = pm.response.size();",
+      "    pm.expect(size.body).to.equal(8);",
+      "    pm.expect(size.total).to.be.at.least(8);",
+      "});",
+      "pm.test('Sebep', () => {",
+      "    pm.expect(pm.response.reason()).to.equal('Accepted');",
+      "    pm.expect(pm.response.status).to.equal('Accepted');",
+      "    pm.response.to.be.accepted;",
+      "});"
+    ]
+  }
+]

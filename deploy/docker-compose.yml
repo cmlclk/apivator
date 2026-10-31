@@ -1,0 +1,131 @@
+# Apivator — üretim kurulumu (tek sunucu).
+#   cp .env.example .env   # değerleri doldurun
+#   docker compose up -d --build
+# Ayrıntılar: docs/kurulum.md
+name: apivator
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "20m"
+    max-file: "5"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: apivator
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?.env içinde POSTGRES_PASSWORD gerekli}
+      POSTGRES_DB: apivator
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U apivator -d apivator"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *logging
+
+  redis:
+    # Canlı güncellemelerin birden fazla API container'ına dağıtılması için. Tek API ile de zararsızdır.
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    logging: *logging
+
+  api:
+    build:
+      context: ../src/backend
+    image: apivator-api:${APIVATOR_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Postgres: Host=postgres;Port=5432;Database=apivator;Username=apivator;Password=${POSTGRES_PASSWORD}
+      Jwt__SigningKey: ${JWT_SIGNING_KEY:?.env içinde JWT_SIGNING_KEY gerekli (en az 32 karakter)}
+      App__PublicUrl: ${APIVATOR_PUBLIC_URL:?.env içinde APIVATOR_PUBLIC_URL gerekli (ör. https://apivator.sirket.com)}
+      Database__MigrateOnStartup: "true"
+      Redis__ConnectionString: redis:6379
+      # Caddy ve nginx: istemcinin IP'si iki proxy arkasından okunur (hız sınırı ve loglar).
+      ForwardedHeaders__ForwardLimit: "2"
+      Email__Mode: Smtp
+      Smtp__Host: ${SMTP_HOST:?.env içinde SMTP_HOST gerekli}
+      Smtp__Port: ${SMTP_PORT:-587}
+      Smtp__EnableSsl: ${SMTP_ENABLE_SSL:-true}
+      Smtp__UserName: ${SMTP_USERNAME:-}
+      Smtp__Password: ${SMTP_PASSWORD:-}
+      Smtp__FromAddress: ${SMTP_FROM_ADDRESS:?.env içinde SMTP_FROM_ADDRESS gerekli}
+      Smtp__FromName: ${SMTP_FROM_NAME:-Apivator}
+      # Web'den atılan istekler sunucu üzerinden gider; iç ağ adresleri varsayılan kapalıdır (SSRF koruması).
+      # Şirket içi API'leri web'den test edecekseniz .env'de PROXY_ALLOWED_NETWORKS ile açın.
+      # (Masaüstü uygulaması ve CLI istekleri kendi bilgisayarından attığı için bu ayardan etkilenmez.)
+      Proxy__AllowedNetworks__0: ${PROXY_ALLOWED_NETWORKS:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    healthcheck:
+      # İmajda curl yok; bash'in /dev/tcp'siyle hazır olma kontrolü.
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /health/ready HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && head -n1 <&3 | grep -q ' 200 '"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    logging: *logging
+
+  web:
+    build:
+      context: ../src/frontend
+    image: apivator-web:${APIVATOR_VERSION:-latest}
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    logging: *logging
+
+  caddy:
+    # HTTPS (CADDY_TLS): auto = Let's Encrypt (alan adı internetten erişilebilir olmalı), files = şirket
+    # sertifikası (./certs/cert.pem ve key.pem), internal = Caddy'nin kendi CA'sı. Ayrıntılar: docs/kurulum.md
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      APIVATOR_DOMAIN: ${APIVATOR_DOMAIN:?.env içinde APIVATOR_DOMAIN gerekli (ör. apivator.sirket.com)}
+      CADDY_TLS: ${CADDY_TLS:-auto}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/certs:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
+    logging: *logging
+
+  backup:
+    # Her gün veritabanının tam yedeği ./backups klasörüne; BACKUP_KEEP_DAYS günden eskiler silinir.
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      PGHOST: postgres
+      PGUSER: apivator
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: apivator
+      BACKUP_HOUR: ${BACKUP_HOUR:-3}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+      TZ: ${TZ:-Europe/Istanbul}
+    volumes:
+      - ./backups:/backups
+      - ./backup-loop.sh:/usr/local/bin/backup-loop.sh:ro
+    entrypoint: ["sh", "/usr/local/bin/backup-loop.sh"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    logging: *logging
+
+volumes:
+  postgres-data:
+  caddy-data:
+  caddy-config:

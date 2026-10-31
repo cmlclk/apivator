@@ -1,0 +1,70 @@
+{
+  "dialog": {
+    "title": "Runner: {name}",
+    "titleFolder": "Runner: {name} / {folder}",
+    "tabsLabel": "Runner sections",
+    "tabRun": "Run",
+    "tabHistory": "Past runs"
+  },
+  "data": {
+    "empty": "The file has no data rows.",
+    "summary": "{rows, plural, one {# row} other {# rows}} · columns: {columns}",
+    "remove": "remove",
+    "fileLabel": "Data file (CSV or JSON)",
+    "pickFile": "Choose file",
+    "fileAria": "Data file",
+    "rowLimit": "The data file has {rows, plural, one {# row} other {# rows}}; at most that many iterations will run."
+  },
+  "select": {
+    "section": "Requests to run",
+    "count": "{chosen}/{total} requests selected",
+    "all": "Select all",
+    "none": "None",
+    "empty": "There are no requests to run here."
+  },
+  "settings": {
+    "section": "Run settings",
+    "iterations": "Iterations",
+    "delay": "Delay between requests (ms)",
+    "keepVariables": "Keep variables changed by scripts",
+    "keepVariablesHint": "Saved as the current value in this browser only.",
+    "environment": "Environment: {name}",
+    "environmentNone": "none",
+    "local": "Requests are sent from this computer (including localhost and the internal network); the report is shared with the team.",
+    "start": "Run {requests, plural, one {# request} other {# requests}} × {iterations, plural, one {# iteration} other {# iterations}}"
+  },
+  "status": {
+    "running": "Running…",
+    "stopped": "Stopped",
+    "failed": "Aborted",
+    "completed": "Completed"
+  },
+  "stoppedMessage": "The run was stopped; the report was saved as \"Stopped\".",
+  "results": {
+    "testsPassed": "{count, plural, one {# test passed} other {# tests passed}}",
+    "testsFailed": "{count, plural, one {# test failed} other {# tests failed}}",
+    "failedRequests": "{count, plural, one {# failed request} other {# failed requests}}",
+    "summary": "{requests, plural, one {# request} other {# requests}} · {duration}",
+    "stop": "Stop",
+    "settings": "Settings",
+    "rerun": "Run again",
+    "onlyFailures": "Failures only",
+    "list": "Run results",
+    "waiting": "Waiting for the first result…",
+    "none": "No results to show.",
+    "iteration": "Iteration {number}",
+    "noTests": "This request has no tests."
+  },
+  "history": {
+    "list": "Past runs",
+    "empty": "This collection has not been run yet.",
+    "success": "Passed",
+    "failure": "Failed",
+    "deleteReport": "Delete report",
+    "iterations": "{count, plural, one {# iteration} other {# iterations}}",
+    "requests": "{requests, plural, one {# request} other {# requests}} · {duration}",
+    "fromDesktop": "from desktop",
+    "fromCli": "from CLI",
+    "fromMonitor": "from monitor"
+  }
+}

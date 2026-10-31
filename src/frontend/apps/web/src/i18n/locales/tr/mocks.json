@@ -1,0 +1,79 @@
+{
+  "detail": {
+    "title": "Mock: {name}",
+    "address": "Adres",
+    "copyAddress": "Adresi kopyala",
+    "private": "Gizli (API anahtarı ister)",
+    "public": "Herkese açık",
+    "delay": "{ms} ms gecikme",
+    "off": "Kapalı",
+    "settings": "Ayarlar",
+    "newAddress": "Yeni adres",
+    "delete": "Sil",
+    "tabsLabel": "Mock ayrıntıları",
+    "tabRoutes": "Uç noktalar",
+    "tabCalls": "Çağrılar",
+    "tabUsage": "Kullanım",
+    "regenerateTitle": "Yeni adres üretilsin mi?",
+    "regenerateConfirm": "Yeni adres üret",
+    "regenerateBody": "Şu anki adres hemen çalışmaz olur; mock'u kullanan uygulamalardaki adresi güncellemeniz gerekir. Adres yanlış yerlere gittiyse bunu kullanın.",
+    "deleteTitle": "Mock silinsin mi?",
+    "deleteConfirm": "Sil",
+    "deleteBody": "“{name}” ve çağrı kayıtları silinir; adres 404 dönmeye başlar. Collection ve örnekler etkilenmez."
+  },
+  "routes": {
+    "empty": "“{collection}” collection'ında henüz örnek yanıt yok. Bir isteği gönderin ve yanıt panelinden “Örnek olarak kaydet” deyin; mock o yanıtı hemen sunmaya başlar.",
+    "copyCurl": "{method} {path} için curl komutunu kopyala",
+    "open": "İsteği aç",
+    "openNamed": "{name} isteğini aç"
+  },
+  "calls": {
+    "empty": "Henüz çağrı yok. Mock'a gelen istekler burada birkaç saniye içinde görünür.",
+    "summary": "Son {count} çağrı; mock başına en yeni 500 kayıt saklanır.",
+    "clear": "Temizle",
+    "noMatch": "Eşleşme yok"
+  },
+  "usage": {
+    "intro": "Uygulamanızda API'nin taban adresini mock adresiyle değiştirin. Örneklerin URL'sindeki host (ya da <code>{baseUrl}</code>) yok sayılır; yol, method, query ve body'ye göre en uygun örnek döner. <code>:id</code> gibi parçalar her değere uyar.",
+    "copyCommand": "Komutu kopyala",
+    "private": "Bu mock gizli: <code>x-api-key</code> header'ında bu workspace'in bir üyesine ait API anahtarını gönderin (Hesap menüsü › Hesap ayarları › API anahtarları).",
+    "pickTitle": "Yanıtı seçmek",
+    "pickIntro": "Aynı yola birden çok örnek varsa (ör. 200 ve 404) istekle birlikte şu header'lar gönderilebilir:",
+    "byCode": "<code>x-mock-response-code: 404</code>: bu durum koduna sahip örnek",
+    "byName": "<code>x-mock-response-name: Bulunamadı</code>: bu adlı örnek",
+    "byId": "<code>x-mock-response-id: …</code>: belirli bir örnek",
+    "byBody": "<code>x-mock-match-request-body: true</code>: yalnızca body'si aynı olan örnek (JSON'da boşluk ve alan sırası önemsiz)",
+    "byHeaders": "<code>x-mock-match-request-headers: x-tenant,accept</code>: bu header'ları aynı olan örnek",
+    "fallback": "Hiçbir şey belirtilmezse en çok parçası tutan örnek, eşitlikte 2xx yanıt seçilir. Eşleşme yoksa <code>404 mockRequestNotFoundError</code> döner; nedenini Çağrılar sekmesinde görebilirsiniz."
+  },
+  "settings": {
+    "titleEdit": "Mock ayarları: {name}",
+    "titleNew": "Yeni mock",
+    "cancel": "Vazgeç",
+    "save": "Kaydet",
+    "create": "Oluştur",
+    "intro": "Mock, collection'daki isteklere kaydedilmiş örnek yanıtları (Example) gerçek bir API gibi sunar. Gelen istek method, yol, query ve body'ye göre en uygun örnekle eşleştirilir.",
+    "collection": "Collection",
+    "noCollections": "Bu workspace'te collection yok",
+    "name": "Ad",
+    "environment": "Environment",
+    "environmentNone": "Yok (yalnızca collection değişkenleri ve globals)",
+    "variableName": "değişken",
+    "environmentHint": "Örneklerdeki {token}'ler buradan çözülür. Gizli işaretli değerler hiçbir zaman yanıta yazılmaz.",
+    "delay": "Gecikme (ms)",
+    "delayError": "0 ile 60000 arasında bir tam sayı girin.",
+    "delayHint": "Yavaş ağı denemek için her yanıttan önce beklenir.",
+    "private": "Gizli",
+    "privateHint": "Çağıran, <code>x-api-key</code> header'ında bu workspace'in bir üyesine ait API anahtarını göndermeli. Kapalıysa adresi bilen herkes çağırabilir.",
+    "enabled": "Etkin",
+    "enabledHint": "Kapalı mock her isteğe 404 döner."
+  },
+  "panel": {
+    "title": "Mock'lar",
+    "new": "Yeni mock",
+    "empty": "Henüz yazılmamış bir API'nin yerine geçen sahte sunucu. Collection'daki örnek yanıtları bir adreste sunar; frontend ekibi beklemeden geliştirir.",
+    "enabled": "Etkin",
+    "off": "Kapalı",
+    "private": "Gizli"
+  }
+}

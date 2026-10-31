@@ -1,0 +1,12 @@
+{
+  "security.invalid_code": "The code is incorrect or has expired. Enter the current code from your app.",
+  "2fa.already_enabled": "Two-factor authentication is already on.",
+  "2fa.not_started": "Start the setup first.",
+  "2fa.required_by_organization": "{names} requires two-factor authentication, so it can't be turned off.",
+  "2fa.not_enabled": "Two-factor authentication is not on.",
+  "security.organization_personal": "This setting isn't available for a personal organization.",
+  "2fa.admin_not_enabled": "Turn on two-factor authentication for your own account before requiring it (otherwise you would lose access to the organization).",
+  "security.member_not_found": "Member not found.",
+  "security.use_own_settings": "For your own account, use Account settings > Security.",
+  "security.owner_only": "Only the owner can do this for an organization owner."
+}

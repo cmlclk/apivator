@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Apivator.Domain\Apivator.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Sorgular için DbSet/IQueryable; sağlayıcı (Npgsql) Infrastructure'da. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <!-- Monitör zamanlaması (cron ifadeleri, saat dilimi ve yaz saati geçişleri). -->
+    <PackageReference Include="Cronos" />
+    <!-- OpenAPI/Swagger belgeleri çoğunlukla YAML; adresten çekme ve zamanlı kontrol sunucuda yapılır. -->
+    <PackageReference Include="YamlDotNet" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Sunucu metinlerinin çevirileri (Faz 8.2); Türkçe kodda, diğer diller burada. Bkz. Common/Localization/L.cs. -->
+    <EmbeddedResource Include="Localization/locales/**/*.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Apivator.Infrastructure" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,45 @@
+{
+  "body": {
+    "loading": "Şema alınıyor…",
+    "refreshFailed": "Şema yenilenemedi (eski şema kullanılıyor)",
+    "typeCount": "Şema: {count} tip",
+    "none": "Şema yok",
+    "defineVariables": "Şema için adresteki değişkenleri tanımlayın",
+    "refreshTitle": "Şemayı introspection ile yeniden al",
+    "refresh": "Yenile",
+    "fetch": "Şemayı getir",
+    "formatTitle": "Sorguyu biçimlendir",
+    "format": "Biçimlendir",
+    "explorerTitle": "Şema gezgini",
+    "schema": "Şema",
+    "formatFailed": "Biçimlendirilemedi: {error}",
+    "query": "Sorgu",
+    "variables": "Değişkenler (JSON)",
+    "queryLabel": "GraphQL sorgusu",
+    "variablesLabel": "GraphQL değişkenleri"
+  },
+  "explorer": {
+    "openType": "{name} tipini aç",
+    "insertSample": "{name} için örnek sorgu ekle",
+    "createSample": "Örnek işlem oluştur",
+    "deprecated": "Kullanımdan kalkıyor: {reason}",
+    "scalar": "Skaler tip.",
+    "section": "Şema gezgini",
+    "back": "Geri",
+    "searchPlaceholder": "Tip ya da alan ara",
+    "searchLabel": "Şemada ara",
+    "matchingFields": "Eşleşen alanlar",
+    "matchingTypes": "Eşleşen tipler",
+    "noMatch": "Eşleşme yok.",
+    "operationKind": "İşlem türü",
+    "fields": "{kind} alanları"
+  },
+  "schema": {
+    "truncated": "Şema yanıtı boyut sınırını aştı ve kesildi.",
+    "notJson": "Yanıt JSON değil (durum {status}). Adres bir GraphQL uç noktası mı?",
+    "unknownError": "bilinmeyen hata",
+    "introspectionOff": "Sunucu introspection'ı kapatmış: {message}",
+    "noSchemaGiven": "Sunucu şemayı vermedi: {message}",
+    "missing": "Yanıtta şema yok (durum {status}). Adres bir GraphQL uç noktası mı?"
+  }
+}

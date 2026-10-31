@@ -1,0 +1,15 @@
+{{- /* Tek replica'da minAvailable: 1 node drain'ini sonsuza dek kilitler; bu yüzden yalnızca çoklu replica'da. */}}
+{{- if and .Values.api.podDisruptionBudget.enabled (or (include "apivator.multiReplica" .) (and .Values.api.autoscaling.enabled (gt (int .Values.api.autoscaling.minReplicas) 1))) }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "apivator.fullname" . }}-api
+  labels:
+    {{- include "apivator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+spec:
+  minAvailable: {{ .Values.api.podDisruptionBudget.minAvailable }}
+  selector:
+    matchLabels:
+      {{- include "apivator.selector" (dict "root" . "component" "api") | nindent 6 }}
+{{- end }}

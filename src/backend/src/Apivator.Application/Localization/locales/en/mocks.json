@@ -1,0 +1,12 @@
+{
+  "mock.runtime_not_found": "There is no active mock at this address.",
+  "mock.runtime_key_invalid": "The API key is missing or invalid.",
+  "mock.runtime_private": "This mock is private. Add a workspace member's API key in the {header} header of the request.",
+  "mock.runtime_no_match_log": "No matching example.",
+  "mock.runtime_no_match": "No example matches this request: {method} {path}. Make sure the collection has a saved example response (Example) for this method and path.",
+  "mock.not_found": "Mock not found.",
+  "mock.environment": "The environment isn't in this workspace.",
+  "mock.limit": "A workspace can have at most {max} mocks.",
+  "mock.name_length": "The mock name must be 1–{max} characters long.",
+  "mock.delay_range": "The delay must be between 0 and {max} ms."
+}

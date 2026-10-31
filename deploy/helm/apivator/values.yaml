@@ -1,0 +1,171 @@
+# Apivator Helm chart varsayılanları.
+# PostgreSQL ve Redis chart ile kurulmaz: yönetilen servis ya da kendi kurulumunuz kullanılır (externalDatabase, externalRedis).
+# Ayrıntılar: docs/kurulum.md ("Kubernetes ve Helm" bölümü)
+
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+
+# Kullanıcıların tarayıcıya yazdığı adres (e-posta bağlantıları, SSO dönüş adresi). ZORUNLU.
+publicUrl: ""
+
+api:
+  image:
+    repository: apivator-api
+    tag: ""            # boşsa Chart.appVersion
+    pullPolicy: IfNotPresent
+  replicaCount: 1      # 1'den büyükse externalRedis ZORUNLU (canlı kanal backplane'i)
+  # Ingress'ten API'ye kadar kaç ters proxy var. Ingress /api'yi doğrudan API'ye yolluyorsa 1; web (nginx) üzerinden geçiyorsa 2.
+  # ingress.apiRouting=web ise otomatik olarak en az 2 alınır.
+  forwardLimit: 1
+  # İç ağ adreslerine web'den istek (SSRF koruması varsayılan kapalı). Örn: ["10.0.0.0/8"]
+  proxyAllowedNetworks: []
+  monitorsSchedulerEnabled: true
+  auditRetentionDays: ""      # boşsa uygulama varsayılanı
+  # Ek ortam değişkenleri (Sso__*, RateLimiting__*, Cors__AllowedOrigins__0 ...): ConfigMap'e yazılır.
+  config: {}
+  # Gizli değerli ek değişkenler için: mevcut Secret/ConfigMap'lerden okunur.
+  extraEnvFrom: []
+  extraEnv: []
+  terminationGracePeriodSeconds: 70   # canlı kanal/WebSocket bağlantılarının kapanması için
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+    limits: { memory: 768Mi }
+  podAnnotations: {}
+  podLabels: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  topologySpreadConstraints: []
+  podSecurityContext:
+    runAsNonRoot: true
+    seccompProfile: { type: RuntimeDefault }
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true     # API diske yazmaz; /tmp için emptyDir bağlanır
+    capabilities: { drop: ["ALL"] }
+    runAsUser: 1654                  # mcr.microsoft.com/dotnet/aspnet imajındaki APP_UID
+    runAsGroup: 1654
+  autoscaling:
+    enabled: false
+    minReplicas: 2                   # externalRedis gerektirir
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 70
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1                  # replica sayısı 1 iken otomatik atlanır (node drain'i kilitlemesin)
+  probes:
+    startup: { failureThreshold: 30, periodSeconds: 5 }
+    readiness: { periodSeconds: 10, timeoutSeconds: 3, failureThreshold: 3 }
+    liveness: { periodSeconds: 20, timeoutSeconds: 3, failureThreshold: 3 }
+
+web:
+  image:
+    repository: apivator-web
+    tag: ""
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  resources:
+    requests: { cpu: 25m, memory: 32Mi }
+    limits: { memory: 128Mi }
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  podSecurityContext: {}
+  # nginx imajı root ile başlar (80. port + chown); ayrıcalık yükseltme kapatılır ama tamamen non-root değildir.
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    seccompProfile: { type: RuntimeDefault }
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+# Veritabanı (PostgreSQL 16+). Şifre secrets.dbPassword / existingSecret'taki "db-password" anahtarından okunur.
+externalDatabase:
+  host: ""            # ZORUNLU
+  port: 5432
+  database: apivator
+  username: apivator
+  sslMode: ""         # örn. Require
+  extraOptions: ""    # örn. "Trust Server Certificate=true"
+
+# Redis (canlı kanal backplane'i). api.replicaCount > 1 ya da autoscaling açıksa ZORUNLU.
+# Şifre secrets.redisPassword / existingSecret'taki "redis-password" anahtarından alınır (boş olabilir).
+externalRedis:
+  host: ""
+  port: 6379
+  ssl: false
+
+# E-posta. mode: Smtp | (uygulamanın desteklediği diğer kipler). smtp.enabled=false ise SMTP ayarları hiç verilmez.
+email:
+  mode: Smtp
+smtp:
+  enabled: true
+  host: ""
+  port: 587
+  enableSsl: true
+  userName: ""
+  fromAddress: ""
+  fromName: Apivator
+
+# Gizli değerler. existingSecret verilirse secrets bölümü kullanılmaz; Secret'ta şu anahtarlar olmalı:
+#   jwt-signing-key, db-password, smtp-password (isteğe bağlı), redis-password (isteğe bağlı)
+# Öneri: üretimde existingSecret kullanın. secrets.* değerleri Helm release kaydında da görünür; ayrıca migration.mode=job
+# iken chart'ın Secret'ı bir Helm hook'udur (helm uninstall ile silinmez, her upgrade'de yeniden oluşturulur).
+existingSecret: ""
+secrets:
+  jwtSigningKey: ""     # en az 32 karakter. ZORUNLU (existingSecret yoksa)
+  dbPassword: ""        # ZORUNLU (existingSecret yoksa)
+  smtpPassword: ""
+  redisPassword: ""
+
+# Veritabanı şema güncellemesi.
+#   job     : helm install/upgrade öncesi tek seferlik Job (önerilir; API'de `--migrate-only` kipi gerekir)
+#   startup : her API pod'u açılışta kendisi çalıştırır (tek replica için uygun)
+#   none    : migration'ı siz yönetirsiniz
+migration:
+  mode: job
+  backoffLimit: 1
+  activeDeadlineSeconds: 600
+  command: ["dotnet", "Apivator.Api.dll", "--migrate-only"]
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 512Mi }
+
+ingress:
+  enabled: true
+  className: ""         # örn. nginx
+  host: ""              # ZORUNLU (enabled iken). publicUrl'deki alan adı
+  annotations: {}
+  # nginx ingress için hazır ayarlar (diğer controller'larda kendi karşılıklarını annotations ile verin)
+  nginx:
+    enabled: true
+    bodySize: 50m
+    proxyReadTimeout: 900        # runner NDJSON akışı
+    proxyBuffering: "off"
+    websocketTimeout: 3600
+    # SignalR negotiate + WebSocket/SSE/LongPolling aynı pod'a gitmeli (istemci negotiate kullanıyor).
+    # Redis backplane olayları dağıtır ama bağlantı durumunu paylaşmaz. Birden fazla replica varken uygulanır.
+    stickySessions: true
+    stickyCookieName: apv-affinity
+    stickyCookieMaxAge: 3600
+    # TLS'i ingress'in önündeki load balancer sonlandırıyorsa true yapın (tls.enabled false olsa bile).
+    stickyCookieSecure: false
+  # "api": /api, /mock, /hubs doğrudan API Service'ine; "web": hepsi web'e (nginx API'ye iletir)
+  apiRouting: api
+  tls:
+    enabled: false
+    secretName: ""      # boşsa <fullname>-tls (cert-manager için annotations'a cluster-issuer ekleyin)
+
+# API'ye yalnızca web pod'ları ve ingress controller erişir (uygulama X-Forwarded-For'a güvendiği için önerilir).
+# CNI NetworkPolicy desteklemelidir. Ingress controller'ın namespace'i verilmezse yalnızca web pod'larına izin verilir
+# (apiRouting=api iken ingress controller de gerekir): örn. { matchLabels: { kubernetes.io/metadata.name: ingress-nginx } }
+networkPolicy:
+  enabled: false
+  ingressControllerNamespaceSelector: {}
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""

@@ -1,0 +1,102 @@
+{
+  "change": {
+    "added": "eklendi",
+    "modified": "değişti",
+    "removed": "silindi"
+  },
+  "kind": {
+    "collection": "Collection ayarları",
+    "folder": "Klasör",
+    "request": "İstek"
+  },
+  "status": {
+    "open": "Açık",
+    "merged": "Birleştirildi",
+    "declined": "Reddedildi",
+    "closed": "Kapatıldı",
+    "title": "Fork: {name}",
+    "sourceInaccessible": "erişiminiz olmayan bir collection",
+    "summary": "Kaynak: <b>{source}</b>{hasWorkspace, select, y { ({workspace})} other {}} · {creator} fork'ladı, {time}{hasPulled, select, y { · son güncelleme {pulledAt}} other {}}",
+    "incoming": "Kaynaktaki değişiklikler",
+    "pull": "Fork'a çek",
+    "unresolved": "{count, plural, other {# öğe}} iki tarafta da değişmiş. Her biri için hangisinin kalacağını seçin.",
+    "upToDate": "Fork kaynakla güncel.",
+    "outgoing": "Bu fork'taki değişiklikler",
+    "openMergeRequest": "Merge isteği aç",
+    "conflictsWarning": "Çakışmalar var: istek açılabilir ama birleştirilmeden önce kaynaktakileri çekip çakışmaları çözmeniz gerekir.",
+    "titleLabel": "Başlık",
+    "descriptionLabel": "Açıklama",
+    "descriptionPlaceholder": "Ne değişti, neden? (isteğe bağlı)",
+    "cancel": "Vazgeç",
+    "send": "Gönder",
+    "noChanges": "Bu fork'ta kaynağa göre değişiklik yok.",
+    "unlink": "Fork bağını kaldır",
+    "unlinkTitle": "Fork bağı kaldırılsın mı?",
+    "unlinkConfirm": "Bağı kaldır",
+    "unlinkMessage": "“{name}” bağımsız bir collection olarak kalır; kaynaktan değişiklik çekilemez ve açık merge istekleri kapanır."
+  },
+  "diff": {
+    "examples": "Örnek yanıtlar",
+    "location": "Konum",
+    "movedToFolder": "Başka bir klasöre taşındı",
+    "name": "Ad",
+    "description": "Açıklama",
+    "auth": "Yetkilendirme",
+    "variables": "Değişkenler",
+    "scripts": "Script'ler"
+  },
+  "changes": {
+    "conflict": "Çakışma",
+    "keepWhich": "{name} için hangisi kalsın",
+    "changedBothSides": "İki tarafta da değişti:",
+    "takeSource": "Kaynağınkini al",
+    "keepMine": "Benimkini koru",
+    "inSource": "Kaynakta",
+    "inFork": "Fork'ta",
+    "deleted": "Silindi.",
+    "itemDeleted": "Bu öğe silindi.",
+    "noVisibleDiff": "Görünür bir fark yok."
+  },
+  "fork": {
+    "defaultName": "{name} (fork)",
+    "title": "Fork'la: {name}",
+    "cancel": "Vazgeç",
+    "submit": "Fork'la",
+    "intro": "Fork, collection'ın size ait bir kopyasıdır. Değişikliklerinizi orada rahatça yapar, hazır olunca merge isteğiyle kaynağa önerirsiniz; kaynaktaki yenilikleri de istediğiniz zaman fork'unuza çekersiniz.",
+    "target": "Hedef workspace",
+    "name": "Fork adı"
+  },
+  "panel": {
+    "title": "Merge istekleri",
+    "statusLabel": "Durum",
+    "filters": {
+      "Open": "Açık",
+      "Merged": "Birleşen",
+      "all": "Tümü"
+    },
+    "emptyOpen": "Açık istek yok. Bir collection'ı fork'layıp değiştirdiğinizde, değişikliklerinizi buradan kaynağa önerebilirsiniz.",
+    "emptyFiltered": "Bu durumda istek yok.",
+    "deletedFork": "silinmiş fork",
+    "approval": "Onay"
+  },
+  "mr": {
+    "title": "Merge isteği",
+    "summary": "Özet",
+    "deletedFork": "silinmiş fork",
+    "proposal": "<b>{author}</b>, “{fork}”{hasWorkspace, select, y { ({workspace})} other {}} fork'undaki değişiklikleri “{source}” collection'ına almayı öneriyor · <time>{ago}</time>",
+    "approvedBy": "Onaylayanlar: {names}",
+    "conflicts": "{count, plural, other {# öğe}} kaynakta da değişmiş. İsteği açan kişi önce kaynaktaki değişiklikleri fork'una çekip çakışmaları çözmeli; sonra birleştirilebilir.",
+    "merge": "Birleştir",
+    "approve": "Onayla",
+    "unapprove": "Onayı geri al",
+    "decline": "Reddet",
+    "withdraw": "Geri çek",
+    "changes": "Değişiklikler",
+    "noChangesLeft": "Fork'ta kaynağa göre değişiklik kalmamış.",
+    "diffsHidden": "İstek kapandığı için farklar gösterilmiyor.",
+    "declineTitle": "İstek reddedilsin mi?",
+    "withdrawTitle": "İstek geri çekilsin mi?",
+    "declineMessage": "Değişiklikler kaynağa alınmaz. Fork ve içindeki değişiklikler olduğu gibi kalır.",
+    "withdrawMessage": "İstek kapanır; fork'unuzdaki değişiklikler yerinde kalır, istediğiniz zaman yeni bir istek açabilirsiniz."
+  }
+}

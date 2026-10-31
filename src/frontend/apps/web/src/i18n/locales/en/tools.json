@@ -1,0 +1,255 @@
+{
+  "page": {
+    "toolFailed": "Could not open the tool: {message}",
+    "clearAndRetry": "Clear this tool's inputs and retry",
+    "reload": "Reload page"
+  },
+  "nav": {
+    "title": "Tools",
+    "search": "Search tools",
+    "results": "Results",
+    "noMatch": "No matching tools.",
+    "favorites": "Favorites",
+    "localNote": "Tools run entirely on this device; inputs are never sent to the server."
+  },
+  "home": {
+    "title": "Developer tools",
+    "intro": "No need to visit another site for Base64, JWT or JSON conversion. No input is sent to the server, so tokens and customer data can be pasted safely.",
+    "remember": "Remember recent inputs on this device",
+    "clearAll": "Clear all inputs"
+  },
+  "view": {
+    "removeFavorite": "Remove from favorites",
+    "addFavorite": "Add to favorites",
+    "clearTool": "Clear this tool's inputs",
+    "clear": "Clear",
+    "notFound": "This tool was not found.",
+    "allTools": "All tools"
+  },
+  "pane": {
+    "loadFile": "Load from file",
+    "loadFileLabel": "{label}: load from file",
+    "fileTooLarge": "File too large: at most 20 MB can be loaded into a text field.",
+    "download": "Download as file",
+    "clear": "Clear",
+    "clearLabel": "{label}: clear",
+    "copyLabel": "{label}: copy",
+    "swap": "Swap"
+  },
+  "codec": {
+    "operation": "Operation",
+    "encode": "Encode",
+    "decode": "Decode",
+    "text": "Text",
+    "escapedText": "Escaped text",
+    "encodedText": "Encoded text",
+    "decodedText": "Decoded text",
+    "downloadAsFile": "Download as file"
+  },
+  "smartPaste": {
+    "title": "Smart paste",
+    "placeholder": "Paste something and we'll suggest a tool (JWT, Base64, timestamp, JSON, URL, UUID, cURL…)",
+    "noMatch": "No known format detected; pick a tool from the list.",
+    "openInRequest": "Open in a new request",
+    "suggestion": "{reason} · {tool}",
+    "suggestionRequest": "{reason} · Open in a new request"
+  },
+  "request": {
+    "curlName": "cURL request",
+    "fromTool": "Request from tool",
+    "curlSkipped": "Some options in the cURL command were skipped:"
+  },
+  "output": {
+    "use": "Use output",
+    "saveVariable": "Save as variable",
+    "useInRequest": "Use in a new request"
+  },
+  "saveVariable": {
+    "noPermission": "You do not have permission to add or share variables in this workspace.",
+    "saved": "{variable} saved ({target}).",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Variable name",
+    "target": "Target",
+    "activeEnvironment": "Active environment: {name}",
+    "globals": "Globals",
+    "shareInitial": "Also save as initial value (shared with the team)",
+    "localNote": "The value is stored as the current value on this device only. Do not share tokens or passwords."
+  },
+  "size": {
+    "bytes": "{count} bytes"
+  },
+  "diff": {
+    "truncated": "Showing the first {max} rows ({total} rows).",
+    "added": "Added",
+    "removed": "Removed",
+    "changed": "Changed"
+  },
+  "tree": {
+    "showMore": "{count, plural, one {Show # more item} other {Show # more items}}"
+  },
+  "convert": {
+    "rows": "Rows",
+    "rootArray": "Root array ({count})",
+    "rootSingle": "Root (single row)",
+    "delimiter": "Delimiter",
+    "delimiterSemicolon": "Semicolon ; (Turkish Excel)",
+    "delimiterComma": "Comma ,",
+    "delimiterTab": "Tab",
+    "decimal": "Decimal",
+    "decimalComma": "Comma (1,5)",
+    "decimalDot": "Dot (1.5)",
+    "arrays": "Arrays",
+    "plusSpaces": "Space as + (form-urlencoded)",
+    "excelFile": "Excel file",
+    "excelFileXlsx": "Excel file (.xlsx)",
+    "sheetSummary": "— {rows, plural, one {# row} other {# rows}}, {columns, plural, one {# column} other {# columns}}",
+    "excelNote": "The header row is bold and frozen; number, date and boolean columns are written with Excel types.",
+    "downloadExcel": "Download as Excel",
+    "fileTooLarge": "File too large (at most 50 MB).",
+    "pickExcel": "Choose Excel file",
+    "pickFile": "Choose file",
+    "sheet": "Sheet",
+    "sheetOption": "{name} ({rows, plural, one {# row} other {# rows}})",
+    "firstRowHeader": "First row is header",
+    "sheetEmpty": "This sheet is empty.",
+    "localRead": "The file is read on this device and is not sent anywhere.",
+    "columnName": "Column{n}",
+    "rootPath": "(root)"
+  },
+  "errors": {
+    "jsonAt": "JSON: line {line}, column {column}: {message}",
+    "yamlAt": "YAML: line {line}, column {column}: {message}",
+    "tomlAt": "TOML: line {line}, column {column}: {message}",
+    "invalidXml": "Not valid XML.",
+    "invalidXmlDetail": "Not valid XML. {detail}",
+    "csvUnclosedQuote": "CSV: unclosed quote.",
+    "csvEmpty": "CSV is empty.",
+    "tomlRootTable": "The root of a TOML document must be a table (object); an array or single value cannot be written. E.g. '{' \"list\": [...] '}'",
+    "tomlNull": "TOML has no null: remove the \"{path}\" field or give it a value.",
+    "tomlWrite": "Could not convert to TOML: {message}",
+    "xmlDoctype": "For security reasons, XML with a DOCTYPE / ENTITY declaration is not supported; remove that section.",
+    "xpathPrefix": "Invalid XPath expression. Undefined namespace prefix: {prefix}",
+    "xpathInvalid": "Invalid XPath expression.",
+    "xpathInvalidDetail": "Invalid XPath expression. {detail}"
+  },
+  "query": {
+    "values": "Values",
+    "paths": "Paths",
+    "text": "Text",
+    "matches": "{count, plural, one {# match} other {# matches}}",
+    "items": "{count, plural, one {# item} other {# items}}",
+    "resultNull": "Result: null",
+    "resultOf": "Result ({type})",
+    "typeNumber": "number",
+    "typeString": "string",
+    "typeBoolean": "boolean",
+    "nodes": "{count, plural, one {# node} other {# nodes}}",
+    "nodesShown": "{count, plural, one {# node} other {# nodes}} (showing the first {shown})"
+  },
+  "worker": {
+    "outOfMemory": "Out of memory or the data is too large ({detail}).",
+    "unreadable": "The file could not be read.",
+    "failed": "The operation failed."
+  },
+  "base32": {
+    "notUtf8": "The decoded data is not valid UTF-8 text; show the output as hex.",
+    "alphabet": "Alphabet",
+    "alphabetStandard": "Standard (A–Z, 2–7)",
+    "alphabetHex": "Base32hex (0–9, A–V)",
+    "output": "Output",
+    "outputText": "Text (UTF-8)",
+    "padding": "Padding (=)"
+  },
+  "hex": {
+    "invalidUtf8": "Invalid UTF-8",
+    "showError": "Show error",
+    "replace": "Replace with �",
+    "separator": "Separator",
+    "sepNone": "None (48656c)",
+    "sepSpace": "Space (48 65 6c)",
+    "sepColon": "Colon (48:65:6c)",
+    "uppercase": "Uppercase",
+    "encode": "Text → hex",
+    "decode": "Hex → text"
+  },
+  "htmlEntity": {
+    "nonAscii": "Also encode non-ASCII",
+    "named": "Named entity (&ccedil;)"
+  },
+  "unicode": {
+    "style": "Style",
+    "allChars": "All characters",
+    "uppercase": "Uppercase",
+    "strict": "Error on invalid sequences",
+    "encode": "Escape (ç → \\u00e7)",
+    "decode": "Decode (\\u00e7 → ç)"
+  },
+  "url": {
+    "scope": "Scope",
+    "component": "Component (query value, path segment)",
+    "full": "Full address (structure preserved)"
+  },
+  "stringEscape": {
+    "language": "Language",
+    "regexPattern": "Regex pattern",
+    "quotes": "With quotes",
+    "encode": "Escape",
+    "decode": "Unescape"
+  },
+  "base64": {
+    "fileTooLargeDecode": "File too large: at most {max} MB can be decoded.",
+    "fileTooLargeEncode": "File too large: at most {max} MB can be encoded.",
+    "source": "Source",
+    "sourceTextDecode": "Text",
+    "sourceTextEncode": "Text (UTF-8)",
+    "sourceFileDecode": "File (Base64 text)",
+    "sourceFileEncode": "File",
+    "urlSafe": "URL-safe (-_ , unpadded)",
+    "wrap": "Wrap lines at {length} characters",
+    "fileLabelDecode": "Base64 file to decode",
+    "fileLabelEncode": "File to encode",
+    "pickDecode": "Choose a file containing Base64 text (at most {max} MB). The file never leaves your device.",
+    "pickEncode": "Choose the file to convert to Base64 (at most {max} MB). The file never leaves your device.",
+    "pickFile": "Choose file",
+    "pickOtherFile": "Choose another file",
+    "decoding": "Decoding…",
+    "encoding": "Encoding…",
+    "cancel": "Cancel",
+    "cancelled": "The operation was cancelled.",
+    "retry": "Try again",
+    "largeOutput": "The Base64 output is {size}, too large to show in the editor (at most {max}). Download it as a file.",
+    "downloadTxt": "Download base64.txt",
+    "decodedImage": "Decoded image",
+    "imageInfo": "Image: {info}",
+    "binaryInfo": "Binary data: {info}",
+    "placeholderDecode": "SGVsbG8gZMO8bnlh or data:image/png;base64,...",
+    "placeholderEncode": "Text to encode"
+  },
+  "compress": {
+    "compress": "Compress",
+    "decompress": "Decompress",
+    "format": "Format",
+    "auto": "Automatic",
+    "input": "Input",
+    "output": "Output",
+    "stats": "Original: {plain} · Compressed: {packed} · Ratio: {ratio}",
+    "statsWithFormat": "Original: {plain} · Compressed: {packed} · Ratio: {ratio} · Format: {format}",
+    "file": "File: <b>{name}</b> <muted>({size})</muted>",
+    "removeFile": "Remove file",
+    "remove": "Remove",
+    "packedData": "Compressed data",
+    "usingFile": "Using the uploaded file.",
+    "placeholderDecompress": "H4sIAAAAAAAAA... (Base64) or 1f 8b 08 ... (hex); or upload the binary file.",
+    "placeholderCompress": "Text to compress; or upload a file.",
+    "binaryData": "Binary data: {size}",
+    "unpackedText": "Decompressed text",
+    "packedHex": "Compressed (hex)",
+    "packedBase64": "Compressed (Base64)",
+    "limit": "Decompressed data can be at most {max} MB; the data never leaves your device.",
+    "fileTooLarge": "File too large: at most {max} MB can be loaded.",
+    "downloadRaw": "Download the raw data as a file",
+    "downloadBinary": "Download binary"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "audit.export_filename": "audit-log",
+  "audit.csv_time": "Time (UTC)",
+  "audit.csv_event": "Event",
+  "audit.csv_actor": "Actor",
+  "audit.csv_actor_email": "Actor email",
+  "audit.csv_api_key": "API key",
+  "audit.csv_ip": "IP",
+  "audit.csv_device": "Device",
+  "audit.csv_target_type": "Target type",
+  "audit.csv_target": "Target",
+  "audit.csv_target_id": "Target Id",
+  "audit.csv_workspace": "Workspace",
+  "audit.csv_details": "Details",
+  "audit.csv_yes": "yes",
+  "audit.cursor": "The page information is invalid.",
+  "audit.export_too_large": "The number of matching records exceeds the limit of {max:N0}. Narrow the date range and export in parts.",
+  "audit.organization_personal": "A personal organization doesn't keep an audit log.",
+  "audit.range": "The start date cannot be after the end date.",
+  "audit.search": "The search text can be at most 200 characters.",
+  "audit.unknown_user": "Unknown user"
+}

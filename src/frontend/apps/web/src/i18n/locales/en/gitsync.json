@@ -1,0 +1,88 @@
+{
+  "pull": {
+    "sides": {
+      "mine": "Mine",
+      "theirs": "In the repository",
+      "none": "(none)"
+    },
+    "kinds": {
+      "Collection": "Collection settings",
+      "Folder": "Folder",
+      "Request": "Request"
+    },
+    "changes": {
+      "Added": "Added",
+      "Modified": "Modified",
+      "Removed": "Removed"
+    },
+    "applied": "{applied, plural, one {# change} other {# changes}} pulled{skipped, plural, =0 {} one {, # item held back} other {, # items held back}}.",
+    "title": "Pull from repository",
+    "showDiff": "Show differences",
+    "applySelected": "Pull selected",
+    "unresolved": "{count, plural, one {# item has} other {# items have}} changed on both sides. Choose which one to keep for each.",
+    "nothing": "There are no changes to pull from the repository.",
+    "choiceFor": "Choice for {name}",
+    "choose": "Conflict: choose",
+    "takeTheirs": "Take the repository version",
+    "keepMine": "Keep mine",
+    "skip": "Leave for now",
+    "take": "Pull"
+  },
+  "connect": {
+    "url": "Repository URL (https)",
+    "branch": "Branch",
+    "folder": "Folder in the repository",
+    "folderHint": "The collection is written to this folder file by file.",
+    "username": "Username (optional)",
+    "token": "Access token",
+    "tokenSaved": "A token is saved; enter a new one to replace it.",
+    "tokenHint": "Stored encrypted and never shown again.",
+    "saveSettings": "Save settings",
+    "connect": "Connect"
+  },
+  "push": {
+    "upToDate": "The repository is already up to date; there is nothing to push.",
+    "pushed": "{count, plural, one {# item was} other {# items were}} pushed to the repository.",
+    "title": "Push to repository",
+    "intro": "The access token of this connection is used when pushing; that is, every push you make is written to the repository with the permissions of the person who set up the connection.",
+    "force": "Push anyway",
+    "message": "Commit message",
+    "messagePlaceholder": "Apivator: {name} updated",
+    "submit": "Push",
+    "noPermission": "You need permission to edit the collection to push and pull."
+  },
+  "dialog": {
+    "title": "Git sync: {name}",
+    "intro": "Store the collection as files in a Git repository (GitHub, GitLab, Azure DevOps, Gitea, Bitbucket): each request is a separate file and folders become directories. Secret values are not written to the files.",
+    "adminOnly": "Only a workspace admin can set up the connection."
+  },
+  "status": {
+    "repo": "Repository",
+    "token": "Token",
+    "tokenSaved": "Saved",
+    "tokenNone": "None",
+    "lastSync": "Last sync",
+    "lastSyncValue": "{time}{hasBy, select, y { · {by}} other {}} · {commit}",
+    "never": "Not yet",
+    "state": "Status",
+    "stateValue": "{ahead} to push · {behind} to pull{hasChecked, select, y { (last checked {checked})} other {}}",
+    "autoCheck": "Automatic check",
+    "intervals": {
+      "off": "Off",
+      "hourly": "Every hour",
+      "every6h": "Every 6 hours",
+      "daily": "Once a day"
+    },
+    "lastError": "Last error: {error}"
+  },
+  "connection": {
+    "settings": "Connection settings",
+    "title": "Connection",
+    "hide": "Hide",
+    "edit": "Edit",
+    "disconnect": "Disconnect",
+    "disconnectTitle": "Disconnect Git",
+    "disconnectConfirm": "Disconnect",
+    "disconnectMessage": "The collection and the files in the repository stay as they are; only syncing stops."
+  }
+}

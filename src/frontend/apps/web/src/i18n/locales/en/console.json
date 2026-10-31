@@ -1,0 +1,14 @@
+{
+  "title": "Console",
+  "close": "Close console",
+  "clear": "Clear",
+  "errorCount": "{count, plural, one {# error} other {# errors}}",
+  "empty": "Requests you send and <code>console.log</code> output from your scripts appear here.",
+  "requestHeaders": "Request headers",
+  "requestBody": "Request body",
+  "error": "Error",
+  "responseHeaders": "Response headers · {size}",
+  "responseBody": "Response body",
+  "tests": "Tests",
+  "binaryBody": "[binary content, {size} bytes]"
+}

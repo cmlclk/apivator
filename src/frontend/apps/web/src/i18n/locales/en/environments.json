@@ -1,0 +1,69 @@
+{
+  "panel": {
+    "title": "Environments",
+    "import": "Import",
+    "importTitle": "Import (Postman environment)",
+    "new": "New Environment",
+    "emptyHint": "Define separate variable sets for your development, test and production environments and switch between them with one click."
+  },
+  "globals": {
+    "title": "Globals",
+    "description": "Variables that apply to all requests in the workspace. They have the lowest priority; Environment and collection variables override them."
+  },
+  "item": {
+    "active": "Active",
+    "actions": "{name} actions",
+    "deactivate": "Deactivate",
+    "activate": "Activate",
+    "edit": "Edit",
+    "versions": "Versions",
+    "exportPostman": "Export (Postman)",
+    "delete": "Delete"
+  },
+  "dialog": {
+    "title": "Environment: {name}",
+    "description": "Variables that apply in this environment. They override collection and global variables with the same name.",
+    "defaultName": "New Environment"
+  },
+  "delete": {
+    "title": "Delete Environment",
+    "message": "The <b>{name}</b> Environment and its {count, plural, one {# variable} other {# variables}} will be permanently deleted. It is deleted for everyone using this workspace."
+  },
+  "switcher": {
+    "active": "Active Environment",
+    "none": "No Environment",
+    "list": "Environments",
+    "manage": "Manage Environments"
+  },
+  "variables": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Name",
+    "hideSecrets": "Hide secret values",
+    "showSecrets": "Show secret values",
+    "tableLabel": "Variables",
+    "colName": "Variable",
+    "colInitial": "Initial value",
+    "colInitialHint": "· shared with the team",
+    "colCurrent": "Current value",
+    "colCurrentHint": "· only on your device",
+    "rowEnabled": "{name} enabled",
+    "fallbackName": "Variable",
+    "newPlaceholder": "New variable",
+    "keyLabel": "Variable name {n}",
+    "initialLabel": "Initial value {n}",
+    "currentLabel": "Current value {n}",
+    "unmarkSecret": "Make {name} not secret",
+    "markSecret": "Make {name} secret",
+    "secretTitle": "Secret (value is masked)",
+    "makeSecret": "Make secret",
+    "rowDelete": "Delete {name}",
+    "fallbackDelete": "Variable",
+    "exampleName": "variableName",
+    "footnote": "Use <code>{token}</code> in requests. If you leave the current value empty, the initial value is used. Put tokens and passwords in the current value, not the initial value; that way they are not sent to the server and not shared with the team.",
+    "errors": {
+      "duplicate": "The variable \"{name}\" is defined more than once."
+    }
+  }
+}

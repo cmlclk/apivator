@@ -1,0 +1,14 @@
+{
+  "title": "Konsol",
+  "close": "Konsolu kapat",
+  "clear": "Temizle",
+  "errorCount": "{count} hata",
+  "empty": "Gönderdiğin istekler ve script'lerdeki <code>console.log</code> çıktıları burada görünür.",
+  "requestHeaders": "İstek header'ları",
+  "requestBody": "İstek body",
+  "error": "Hata",
+  "responseHeaders": "Yanıt header'ları · {size}",
+  "responseBody": "Yanıt body",
+  "tests": "Testler",
+  "binaryBody": "[ikili içerik, {size} bayt]"
+}

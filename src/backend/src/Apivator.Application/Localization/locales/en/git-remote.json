@@ -1,0 +1,13 @@
+{
+  "git.address_scheme": "The repository address must start with https:// (GitHub, GitLab, Azure DevOps, Gitea, Bitbucket). SSH addresses are not supported.",
+  "git.host_unresolved": "Couldn't resolve '{host}'.",
+  "git.host_blocked": "Connecting to '{host}' isn't allowed (private/internal network address).",
+  "git.response_too_large": "The repository response is too large; the operation was stopped.",
+  "git.changed_meanwhile": "The repository changed in the meantime. Update with \"Pull from repository\" first.",
+  "git.push_rejected": "The repository rejected the push: {reason}",
+  "git.entry_too_large": "'{path}' is too large or the folder has too many files.",
+  "git.auth_failed": "Could not access the repository: authentication failed. Check the access token and its permissions.",
+  "git.not_found": "The repository wasn't found or you don't have access. Check the address and the token permissions.",
+  "git.unreachable": "Couldn't connect to the repository or it didn't respond.",
+  "git.failed": "The Git operation failed."
+}

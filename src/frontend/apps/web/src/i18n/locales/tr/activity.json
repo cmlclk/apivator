@@ -1,0 +1,61 @@
+{
+  "time": {
+    "justNow": "az önce",
+    "today": "Bugün",
+    "yesterday": "Dün"
+  },
+  "targets": {
+    "Collection": "collection",
+    "Folder": "klasör",
+    "Request": "istek",
+    "Environment": "environment",
+    "Example": "örnek yanıt"
+  },
+  "actions": {
+    "Created": "Oluşturuldu",
+    "Updated": "Kaydedildi",
+    "Renamed": "Yeniden adlandırıldı",
+    "Moved": "Taşındı",
+    "Deleted": "Silindi",
+    "Restored": "Geri yüklendi"
+  },
+  "sentence": {
+    "Created": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>oluşturdu</m>",
+    "Updated": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>güncelledi</m>",
+    "Renamed": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>yeniden adlandırdı</m>",
+    "RenamedFrom": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>yeniden adlandırdı (eski adı: {detail})</m>",
+    "Moved": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>taşıdı</m>",
+    "MovedDetail": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>{detail} taşıdı</m>",
+    "Deleted": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>sildi</m>",
+    "Restored": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>geri yükledi</m>",
+    "RestoredVersion": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>{detail} sürümüne döndürdü</m>"
+  },
+  "panel": {
+    "title": "Aktivite",
+    "empty": "Bu workspace'teki collection, istek ve environment değişiklikleri kimin yaptığıyla birlikte burada görünür.",
+    "restore": "Geri getir",
+    "older": "Daha eski"
+  },
+  "versions": {
+    "title": "Sürümler: {name}",
+    "list": "Sürümler",
+    "restoreVersion": "v{version} sürümüne dön",
+    "restoreVersionConfirm": "Evet, v{version} sürümüne dön",
+    "isLatest": "Bu, kayıtlı son sürüm.",
+    "confirmDiscard": "Sekmedeki kaydedilmemiş değişiklikleriniz kaybolacak. Onaylamak için tekrar tıklayın.",
+    "restoreNote": "Geri yükleme yeni bir sürüm olarak kaydedilir; geçmiş silinmez.",
+    "olderNotKept": "Daha eski sürümler saklanmaz.",
+    "compare": "Karşılaştırma",
+    "comparePrevious": "Bu kayıtta değişenler",
+    "compareDraft": "Sekmedeki hâlinizle farkı",
+    "emptyNoChange": "İçerik değişmemiş (yalnızca yer ya da sıra değişmiş olabilir).",
+    "emptyFirst": "İsteğin ilk kaydı.",
+    "emptyDraftSame": "Sekmedeki hâliniz bu sürümle aynı.",
+    "envName": "Ad",
+    "envVariables": "Değişkenler",
+    "envNote": "Seçili kayıtta değişenler. Mevcut (current) değerler her kişinin kendi cihazındadır; geçmişte yalnızca paylaşılan başlangıç değerleri vardır.",
+    "secretValue": "•••••• ({count} karakter, gizli)",
+    "envNoChange": "Değişken değişmemiş.",
+    "envFirst": "Environment'ın ilk kaydı."
+  }
+}

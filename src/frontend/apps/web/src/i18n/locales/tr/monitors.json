@@ -1,0 +1,93 @@
+{
+  "state": {
+    "stopped": "Durduruldu",
+    "off": "Kapalı",
+    "failing": "Başarısız",
+    "healthy": "Başarılı",
+    "never": "Henüz çalışmadı"
+  },
+  "detail": {
+    "title": "Monitör: {name}",
+    "status": "Durum",
+    "next": "Sonraki: {time}",
+    "runsAs": "{name} adına çalışır",
+    "runNow": "Şimdi çalıştır",
+    "settings": "Ayarlar",
+    "delete": "Sil",
+    "period": "Dönem",
+    "periodDay": "24 saat",
+    "periodWeek": "7 gün",
+    "periodMonth": "30 gün",
+    "emptyWithNext": "Bu dönemde çalıştırma yok. İlk çalıştırma {time}. Hemen denemek için “Şimdi çalıştır”.",
+    "empty": "Bu dönemde çalıştırma yok. Hemen denemek için “Şimdi çalıştır”.",
+    "successRate": "Başarı oranı",
+    "runs": "Çalıştırma",
+    "avgResponse": "Ort. yanıt süresi",
+    "consecutiveFailures": "Art arda hata",
+    "deleteTitle": "Monitör silinsin mi?",
+    "deleteConfirm": "Sil",
+    "deleteBody": "“{name}” artık çalışmaz. Geçmiş raporlar runner geçmişinde kalır."
+  },
+  "runs": {
+    "title": "Son çalıştırmalar",
+    "success": "Başarılı",
+    "failure": "Başarısız",
+    "scheduled": "zamanlanmış",
+    "manual": "elle",
+    "incomplete": "tamamlanamadı",
+    "requestErrors": "{count, plural, other {# istek yanıt alamadı}}",
+    "summary": "{requests, plural, other {# istek}} · {ms} ms",
+    "noResponse": "yanıt yok"
+  },
+  "settings": {
+    "titleEdit": "Monitör ayarları: {name}",
+    "titleNew": "Yeni monitör",
+    "cancel": "Vazgeç",
+    "save": "Kaydet",
+    "create": "Oluştur",
+    "intro": "Monitör, collection'ı zamanlanmış olarak sunucuda çalıştırır; bir test kalırsa ya da istek yanıt alamazsa haber verir. Environment ve globals'ın paylaşılan başlangıç değerleri kullanılır.",
+    "collection": "Collection",
+    "noCollections": "Bu workspace'te collection yok",
+    "environment": "Environment",
+    "none": "Yok",
+    "name": "Ad",
+    "frequency": "Ne sıklıkla",
+    "customCron": "Özel (cron)",
+    "timeZone": "Saat dilimi",
+    "cronExpression": "Cron ifadesi",
+    "cronHint": "dakika saat gün ay haftanın-günü · {description} · en sık 5 dakikada bir",
+    "notifications": "Bildirimler",
+    "email": "E-posta",
+    "emailPlaceholder": "Boş bırakılırsa size gönderilir · virgülle ayırın",
+    "webhook": "Webhook (isteğe bağlı)",
+    "format": "Biçim",
+    "when": "Ne zaman",
+    "whenChanges": "Durum değişince (ilk başarısızlıkta ve düzelince)",
+    "whenEvery": "Her başarısız çalıştırmada (ve düzelince)",
+    "enabled": "Etkin",
+    "enabledAfterError": "Yeniden açarsanız monitör bundan sonra sizin yetkinizle çalışır.",
+    "enabledHint": "Kapalı monitör zamanında çalışmaz; elle çalıştırılabilir."
+  },
+  "panel": {
+    "title": "Monitörler",
+    "new": "Yeni monitör",
+    "empty": "Collection'larını düzenli aralıklarla çalıştır; bir test kalınca e-posta, Slack ya da Teams ile haber al."
+  },
+  "chart": {
+    "seconds": "{value} sn",
+    "title": "Yanıt süresi (istek başına ortalama)",
+    "ok": "Başarılı",
+    "failed": "Başarısız",
+    "chartView": "Grafik",
+    "tableView": "Tablo",
+    "time": "Zaman",
+    "result": "Sonuç",
+    "perRequest": "İstek başına",
+    "pointOk": "{time}: başarılı, {value}",
+    "pointFailed": "{time}: başarısız, {value}",
+    "hover": "{value} / istek · {requests, plural, other {# istek}} · {passed} geçti · {failed} kaldı"
+  },
+  "schedule": {
+    "invalid": "cron: {cron}"
+  }
+}

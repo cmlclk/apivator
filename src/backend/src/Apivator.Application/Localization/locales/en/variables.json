@@ -1,0 +1,6 @@
+{
+  "variable.key_length": "Variable name can be at most {max} characters.",
+  "variable.key_braces": "'{key}': variable name can't contain curly braces.",
+  "variable.value_length": "'{key}': value can be at most {max} KB.",
+  "variable.too_many": "You can define at most {max} variables."
+}

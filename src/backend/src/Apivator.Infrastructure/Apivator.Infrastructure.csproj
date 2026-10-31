@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Apivator.Application\Apivator.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" />
+    <PackageReference Include="Jint" />
+    <PackageReference Include="protobuf-net" />
+    <PackageReference Include="protobuf-net.Reflection" />
+    <!-- SSO alan adı doğrulaması: DNS TXT kaydı (.NET'te yerleşik TXT sorgusu yok). -->
+    <PackageReference Include="DnsClient" />
+    <!-- Git senkronu: uzak depoyla clone/fetch/push (yerel libgit2; git yüklü olması gerekmez). -->
+    <PackageReference Include="LibGit2Sharp" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripting\Sandbox\*.js" LogicalName="Apivator.Scripting.Sandbox.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="Scripting\Libraries\*.js" LogicalName="Apivator.Scripting.Libraries.%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Apivator.Api.IntegrationTests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,177 @@
+{
+  "appShell": {
+    "home": "Home",
+    "homeAria": "Apivator home",
+    "network": "Network settings",
+    "networkTitle": "Network settings (proxy, SSL, client certificates)"
+  },
+  "sidebar": {
+    "sections": "Sections",
+    "collections": "Collections",
+    "environments": "Environments",
+    "mocks": "Mocks",
+    "monitors": "Monitors",
+    "merges": "Merges",
+    "history": "History",
+    "activity": "Activity",
+    "tools": "Tools"
+  },
+  "theme": {
+    "light": "Light theme",
+    "dark": "Dark theme",
+    "system": "System theme",
+    "toggleTitle": "{label} (click to change)"
+  },
+  "userMenu": {
+    "account": "Account menu",
+    "settings": "Account settings",
+    "team": "Team and organizations",
+    "logout": "Sign out"
+  },
+  "boot": { "loading": "Loading" },
+  "routeError": {
+    "title": "Something went wrong",
+    "hint": "Try reloading the page. If the problem persists, reset the open tabs; your saved requests are not affected, only unsaved drafts are discarded.",
+    "resetTabs": "Reset open tabs",
+    "reload": "Reload page"
+  },
+  "server": {
+    "unreachable": "Could not reach the server. Check the address and that the server's CORS settings allow the desktop app.",
+    "current": "Server:",
+    "change": "Change",
+    "address": "Server address",
+    "connect": "Connect"
+  },
+  "banners": {
+    "email": {
+      "unverified": "<b>{email}</b> has not been verified yet. Click the link in your inbox.",
+      "sent": "A new link has been sent.",
+      "resend": "Resend"
+    },
+    "invitation": {
+      "toOrganization": "<b>{inviter}</b> invited you to the <b>{organization}</b> organization.",
+      "toOrganizationAndWorkspace": "<b>{inviter}</b> invited you to the <b>{organization}</b> organization and the “{workspace}” workspace.",
+      "more": "(+{count} more {count, plural, one {invitation} other {invitations}})",
+      "join": "Join"
+    },
+    "twoFactor": {
+      "required": "<b>{organizations}</b> requires two-step verification. Until you set it up, workspaces of {count, plural, =1 {this organization} other {these organizations}} are hidden.",
+      "setUp": "Set up now"
+    },
+    "update": {
+      "ready": "Apivator {version} is ready.",
+      "failed": "Installation failed: {error}",
+      "restartHint": "The app restarts after installing.",
+      "install": "Update now",
+      "later": "Later"
+    },
+    "offline": {
+      "unreachable": "The server is unreachable.",
+      "noInternet": "No internet connection.",
+      "cached": "Showing the collections and environments downloaded to this device.",
+      "cachedSince": "Showing the collections and environments downloaded to this device (last synced {ago}).",
+      "sendDesktop": "Requests can be sent from this computer.",
+      "sendServer": "A server connection is required to send requests.",
+      "pending": "{count, plural, one {# request has changes waiting on this device; they will be saved once you are back online.} other {# requests have changes waiting on this device; they will be saved once you are back online.}}",
+      "noPending": "Changes you make are sent once you are back online.",
+      "retry": "Retry"
+    }
+  },
+  "presence": {
+    "pausedTitle": "Live updates paused; the screen refreshes on its own once the connection returns.",
+    "reconnecting": "Reconnecting…",
+    "offline": "Offline",
+    "onlineAria": "Online: {names}",
+    "onlineTitle": "Online in this workspace: {names}"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "titleUnread": "Notifications ({count} unread)",
+    "markAllRead": "Mark all as read",
+    "empty": "You will see it here when someone mentions you in a comment, replies to your comment, or a merge request is opened.",
+    "unread": "unread",
+    "verbs": {
+      "mention": "mentioned you",
+      "reply": "replied",
+      "mergeRequestOpened": "opened a merge request",
+      "mergeRequestMerged": "merged your request",
+      "mergeRequestDeclined": "declined your request",
+      "sourceChanged": "changed"
+    }
+  },
+  "workspaceSwitcher": {
+    "list": "Workspaces",
+    "personal": "Personal",
+    "settings": "“{name}” settings and members",
+    "create": "New team workspace",
+    "team": "Team and organizations"
+  },
+  "createWorkspace": {
+    "title": "New team workspace",
+    "submit": "Create",
+    "orgIntro": "Team workspaces belong to an organization. Create an organization for your team; you will be its owner and can invite people afterwards.",
+    "orgName": "Organization name",
+    "orgNamePlaceholder": "Your company or team name",
+    "organization": "Organization",
+    "name": "Workspace name",
+    "namePlaceholder": "Payments API, Mobile, QA…"
+  },
+  "workspaceSettings": {
+    "title": "Workspace settings: {name}",
+    "personalInfo": "A personal workspace is yours alone and cannot be shared. To work with your team, <link>create an organization</link> and move your collections to a team workspace.",
+    "save": "Save",
+    "people": "People",
+    "you": "(you)",
+    "roleOf": "Role of {name}",
+    "remove": "Remove {name}",
+    "orgAdmin": "organization admin",
+    "adminRole": "Admin",
+    "addPerson": "Person to add",
+    "pickPerson": "Pick a person from the organization…",
+    "newPersonRole": "Role of the person to add",
+    "add": "Add",
+    "everyoneAdded": "Everyone in the organization is already in this workspace. To add someone new, <link>invite them to the organization</link>.",
+    "teams": "Teams",
+    "teamsHint": "When a team is added, all its members get this role; anyone who joins the team gets access automatically.",
+    "memberCount": "{count, plural, one {# person} other {# people}}",
+    "teamRole": "Role of team {name}",
+    "removeTeam": "Remove team {name}",
+    "addTeam": "Team to add",
+    "pickTeam": "Pick a team…",
+    "newTeamRole": "Role of the team to add",
+    "leave": "Leave workspace",
+    "delete": "Delete workspace",
+    "confirmLeave": "Leave",
+    "confirmDelete": "Delete",
+    "deleteWarning": "All collections, environments, history and run reports in “{name}” will be permanently deleted.",
+    "leaveWarning": "If you have access through a team or as an organization admin, that access remains."
+  },
+  "network": {
+    "title": "Network settings",
+    "save": "Save",
+    "intro": "These settings only apply to requests sent from this computer. Passwords are stored in the operating system's keychain.",
+    "startupFailed": "Saved settings could not be applied; using defaults. {error}",
+    "proxyMode": {
+      "System": "Use system proxy settings",
+      "None": "Do not use a proxy",
+      "Custom": "Custom proxy"
+    },
+    "address": "Address",
+    "username": "Username",
+    "password": "Password",
+    "bypass": "Addresses that bypass the proxy (separate with commas or new lines; * is a wildcard)",
+    "verifySsl": "Verify server certificates",
+    "verifyOffWarning": "With verification off, someone in the middle can read the traffic. Use this only for development servers; if possible, add your company's CA certificate below instead.",
+    "caCertificates": "Trusted CA certificates (file path, one per line; PEM, CRT or DER)",
+    "clientCertificates": "Client certificates",
+    "clientCertificatesHint": "Presented to servers that require mTLS. Enter a password for PFX/P12, or a key file for PEM (if separate).",
+    "certificate": "Client certificate {index}",
+    "certificateFile": "Certificate file {index}",
+    "certificateRemove": "Delete certificate {index}",
+    "certificatePassword": "Certificate password {index}",
+    "certificatePasswordPlaceholder": "Password (if any)",
+    "keyFile": "Key file {index}",
+    "keyFilePlaceholder": "Key file (PEM, if separate)",
+    "addCertificate": "Add certificate"
+  }
+}

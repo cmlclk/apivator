@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "url": "URL",
+    "body": "Body",
+    "graphqlVariables": "GraphQL variables",
+    "preRequest": "Pre-request script",
+    "postResponse": "Post-response script",
+    "description": "Description",
+    "message": "Message"
+  },
+  "bar": {
+    "editorsLabel": "Editing together: {names}",
+    "editorsTitle": "People editing this request together: {names}",
+    "peerWithField": "{name} ({field})",
+    "peerTitleWithField": "{name} · {field}",
+    "conflict": "This request is currently being edited together with others and you have unsaved changes. If you join the shared draft, your local changes are discarded.",
+    "join": "Join shared draft",
+    "solo": "Edit on my own",
+    "waiting": "Preparing the shared draft…"
+  }
+}

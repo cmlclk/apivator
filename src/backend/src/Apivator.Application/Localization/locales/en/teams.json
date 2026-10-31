@@ -1,0 +1,12 @@
+{
+  "team_validation.name_required": "{what} name cannot be empty.",
+  "team_validation.name_length": "{what} name can be at most {max} characters.",
+  "team_validation.email": "Enter a valid email address.",
+  "team_validation.noun_team": "Team",
+  "team_validation.noun_organization": "Organization",
+  "team_validation.noun_workspace": "Workspace",
+  "organization.personal": "You can't add members, teams or team workspaces to a personal organization. Create a new organization.",
+  "team.not_found": "Team not found.",
+  "team.duplicate": "A team with this name already exists.",
+  "team.not_org_member": "Only organization members can be added to a team."
+}

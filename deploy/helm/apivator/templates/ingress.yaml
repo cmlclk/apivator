@@ -1,0 +1,60 @@
+{{- if .Values.ingress.enabled }}
+{{- $fullname := include "apivator.fullname" . }}
+{{- $nginx := .Values.ingress.nginx }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullname }}
+  labels:
+    {{- include "apivator.labels" . | nindent 4 }}
+  annotations:
+    {{- if $nginx.enabled }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ $nginx.bodySize | quote }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: {{ $nginx.proxyReadTimeout | quote }}
+    nginx.ingress.kubernetes.io/proxy-send-timeout: {{ $nginx.websocketTimeout | quote }}
+    nginx.ingress.kubernetes.io/proxy-buffering: {{ $nginx.proxyBuffering | quote }}
+    {{- if and $nginx.stickySessions (include "apivator.multiReplica" .) }}
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/session-cookie-name: {{ $nginx.stickyCookieName | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-max-age: {{ $nginx.stickyCookieMaxAge | quote }}
+    nginx.ingress.kubernetes.io/session-cookie-samesite: Lax
+    nginx.ingress.kubernetes.io/session-cookie-secure: {{ or .Values.ingress.tls.enabled $nginx.stickyCookieSecure | quote }}
+    {{- end }}
+    {{- end }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  {{- with .Values.ingress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ default (printf "%s-tls" $fullname) .Values.ingress.tls.secretName }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          {{- if eq .Values.ingress.apiRouting "api" }}
+          {{- range $p := list "/api" "/hubs" "/mock" }}
+          - path: {{ $p }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullname }}-api
+                port:
+                  name: http
+          {{- end }}
+          {{- end }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullname }}-web
+                port:
+                  name: http
+{{- end }}

@@ -1,0 +1,39 @@
+{
+  "field": {
+    "minute": "minute",
+    "hour": "hour",
+    "dayOfMonth": "day of month",
+    "month": "month",
+    "dayOfWeek": "day of week"
+  },
+  "error": {
+    "field": "Error in the {field} field (character {position}): {detail}",
+    "empty": "The cron expression is empty.",
+    "unknownMacro": "Unknown macro: {macro} (supported: {supported}).",
+    "fieldCount": "A cron expression must have 5 fields (minute hour day month day-of-week); found {count}.",
+    "unexpectedChar": "unexpected character {char}.",
+    "standalone": "{char} cannot be used in a list; write it on its own.",
+    "outOfRange": "{value} must be in the range {range}.",
+    "rangeOrNames": "{range} or {names}",
+    "invalidValue": "{value} is not a valid value ({allowed}).",
+    "missingValue": "missing value ({allowed}).",
+    "stepRange": "the step must be in the range 1–{max}.",
+    "lastOffset": "the value after 'L-' must be in the range 0–30.",
+    "dayRange": "{value} must be in the range 1–31.",
+    "lastWeekdayUsage": "'L' and 'W' can only be used on their own, as L, L-n, LW, L-nW or nW (e.g. 15W).",
+    "nthRange": "the value after '#' must be in the range 1–5.",
+    "lastDowUsage": "'L' and '#' can only be used on their own, as nL (e.g. 5L) or n#k (e.g. 1#2).",
+    "timeZone": "Invalid time zone: {timeZone}",
+    "startDate": "Invalid start date."
+  },
+  "summary": {
+    "lastOffset": "{offset, plural, one {# day} other {# days}} before the last day",
+    "last": "last day of the month",
+    "lastWeekdayOffset": "the weekday nearest to {offset, plural, one {# day} other {# days}} before the last day",
+    "lastWeekday": "last weekday of the month",
+    "nearestWeekday": "the weekday nearest to day {day}",
+    "lastDow": "last {day} of the month",
+    "nthDow": "{nth, plural, =1 {1st} =2 {2nd} =3 {3rd} other {#th}} {day} of the month",
+    "everyValue": "every value ({span})"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "monitor.not_found": "Monitor not found.",
+  "monitor.suspended_collection_deleted": "The monitor was stopped because its collection was deleted.",
+  "monitor.suspended_no_access": "The monitor was stopped because its creator no longer has access to this workspace. If a member turns it back on, it runs on their behalf.",
+  "monitor.run_incomplete": "The run did not complete (timed out or was stopped).",
+  "monitor.schedule_empty": "The schedule can't be empty.",
+  "monitor.cron_invalid": "'{cron}' is not a valid cron expression (minute hour day month weekday, e.g. \"*/15 * * * *\").",
+  "monitor.timezone_unknown": "'{zone}' is not a known time zone (e.g. Europe/Istanbul).",
+  "monitor.schedule_never": "This schedule never runs.",
+  "monitor.min_interval": "There must be at least {minutes:0} minutes between two runs.",
+  "monitor.collection_not_found": "Collection not found.",
+  "monitor.limit": "A workspace can have at most {max} monitors.",
+  "monitor.name_length": "Monitor name must be 1–{max} characters.",
+  "monitor.schedule_too_long": "The schedule is too long.",
+  "monitor.emails_limit": "You can add at most {max} email addresses.",
+  "monitor.email_invalid": "'{email}' is not a valid email address.",
+  "monitor.webhook_invalid": "The webhook URL must be a valid address starting with http:// or https://.",
+  "monitor.environment_not_in_workspace": "The environment is not in this workspace."
+}

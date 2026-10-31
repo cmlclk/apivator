@@ -1,0 +1,167 @@
+[
+  {
+    "name": "Header ekleme ve imza",
+    "source": "HMAC imzalı API'ler (ödeme sağlayıcıları)",
+    "request": { "url": "/echo", "method": "POST", "body": "{\"tutar\":100}" },
+    "variables": { "environment": { "apiSecret": "gizli-anahtar" } },
+    "prerequest": [
+      "const zaman = Math.floor(Date.now() / 1000).toString();",
+      "const govde = pm.request.body.raw;",
+      "const imza = CryptoJS.HmacSHA256(zaman + govde, pm.environment.get('apiSecret')).toString(CryptoJS.enc.Hex);",
+      "pm.request.headers.add({ key: 'X-Zaman', value: zaman });",
+      "pm.request.headers.upsert({ key: 'X-Imza', value: imza });",
+      "pm.environment.set('sonImza', imza);"
+    ],
+    "test": [
+      "const echo = pm.response.json();",
+      "pm.test('İmza gönderildi', () => {",
+      "    pm.expect(echo.headers['x-imza']).to.equal(pm.environment.get('sonImza'));",
+      "    const beklenen = CryptoJS.HmacSHA256(echo.headers['x-zaman'] + echo.body, 'gizli-anahtar').toString();",
+      "    pm.expect(echo.headers['x-imza']).to.equal(beklenen);",
+      "});"
+    ],
+    "expect": { "environment": { "sonImza": "~/^[0-9a-f]{64}$/" } }
+  },
+  {
+    "name": "Basic auth header'ı btoa ile",
+    "source": "Eski collection'larda elle kurulan Authorization",
+    "request": { "url": "/echo" },
+    "variables": { "environment": { "kullanici": "api", "parola": "s3cr3t" } },
+    "prerequest": [
+      "const kimlik = btoa(pm.environment.get('kullanici') + ':' + pm.environment.get('parola'));",
+      "pm.request.headers.add({ key: 'Authorization', value: 'Basic ' + kimlik });"
+    ],
+    "test": [
+      "pm.test('Authorization', () => {",
+      "    pm.expect(pm.response.json().headers.authorization).to.equal('Basic YXBpOnMzY3IzdA==');",
+      "    pm.expect(atob('YXBpOnMzY3IzdA==')).to.equal('api:s3cr3t');",
+      "});"
+    ]
+  },
+  {
+    "name": "Query parametresi ve gövde değiştirme",
+    "source": "pm.request.url.query ve pm.request.body.update",
+    "request": { "url": "/echo?sayfa=1", "method": "POST", "body": "{}" },
+    "prerequest": [
+      "pm.request.url.query.add({ key: 'boyut', value: '50' });",
+      "pm.request.url.query.upsert({ key: 'sayfa', value: '2' });",
+      "pm.request.body.update(JSON.stringify({ istekNo: 'r-' + 1 }));"
+    ],
+    "test": [
+      "const echo = pm.response.json();",
+      "pm.test('Query', () => {",
+      "    pm.expect(echo.query).to.include('boyut=50');",
+      "    pm.expect(echo.query).to.include('sayfa=2');",
+      "    pm.expect(echo.query).to.not.include('sayfa=1');",
+      "});",
+      "pm.test('Gövde', () => pm.expect(JSON.parse(echo.body)).to.eql({ istekNo: 'r-1' }));",
+      "pm.test('pm.request testte okunur', () => {",
+      "    pm.expect(pm.request.method).to.equal('POST');",
+      "    pm.expect(pm.request.url.toString()).to.include('/echo');",
+      "});"
+    ]
+  },
+  {
+    "name": "Zaman damgası: moment",
+    "source": "require('moment') ile tarih üretme (çok yaygın)",
+    "request": { "url": "/echo" },
+    "prerequest": [
+      "const moment = require('moment');",
+      "pm.environment.set('bugun', moment().format('YYYY-MM-DD'));",
+      "pm.environment.set('yarin', moment().add(1, 'days').format('YYYY-MM-DD'));",
+      "pm.environment.set('iso', moment.utc('2026-01-02T03:04:05Z').toISOString());"
+    ],
+    "test": [
+      "const moment = require('moment');",
+      "pm.test('Tarihler', () => {",
+      "    pm.expect(pm.environment.get('bugun')).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);",
+      "    pm.expect(moment(pm.environment.get('yarin')).diff(moment(pm.environment.get('bugun')), 'days')).to.equal(1);",
+      "});"
+    ],
+    "expect": { "environment": { "iso": "2026-01-02T03:04:05.000Z" } }
+  },
+  {
+    "name": "Rastgele veri: uuid ve dinamik değişkenler",
+    "source": "Benzersiz kayıt oluşturan testler",
+    "request": { "url": "/echo", "method": "POST", "headers": { "X-Islem": "{{$guid}}" } },
+    "prerequest": [
+      "const uuid = require('uuid');",
+      "pm.environment.set('islemNo', uuid.v4());",
+      "pm.environment.set('eposta', pm.variables.replaceIn('{{$randomEmail}}'));",
+      "pm.environment.set('ad', pm.variables.replaceIn('{{$randomFirstName}}'));",
+      "pm.environment.set('sayi', pm.variables.replaceIn('{{$randomInt}}'));",
+      "pm.environment.set('dogru', pm.variables.replaceIn('{{$randomBoolean}}'));",
+      "pm.environment.set('kod', pm.variables.replaceIn('{{$randomAlphaNumeric}}'));",
+      "pm.environment.set('ts', pm.variables.replaceIn('{{$isoTimestamp}}'));"
+    ],
+    "test": [
+      "pm.test('Header çözüldü', () => pm.expect(pm.response.json().headers['x-islem']).to.match(/^[0-9a-f-]{36}$/));"
+    ],
+    "expect": {
+      "environment": {
+        "islemNo": "~/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/",
+        "eposta": "~/^[^@\\s]+@[^@\\s]+\\.[a-z]+$/",
+        "ad": "~/^\\S+$/",
+        "sayi": "~/^\\d+$/",
+        "dogru": "~/^(true|false)$/",
+        "kod": "~/^[a-z0-9]$/",
+        "ts": "~/^\\d{4}-\\d{2}-\\d{2}T/"
+      }
+    }
+  },
+  {
+    "name": "Token yoksa ya da süresi dolduysa pm.sendRequest ile al",
+    "source": "Pre-request'te otomatik token yenileme",
+    "request": { "url": "/echo" },
+    "variables": { "environment": { "tokenUrl": "{{__base}}/echo", "token": "", "tokenBitis": "0" } },
+    "prerequest": [
+      "const bitis = Number(pm.environment.get('tokenBitis') || 0);",
+      "if (!pm.environment.get('token') || bitis < Date.now()) {",
+      "    pm.sendRequest({",
+      "        url: pm.environment.get('tokenUrl'),",
+      "        method: 'POST',",
+      "        header: { 'Content-Type': 'application/json' },",
+      "        body: { mode: 'raw', raw: JSON.stringify({ grant_type: 'client_credentials' }) }",
+      "    }, function (err, res) {",
+      "        if (err) { console.error(err); return; }",
+      "        const gelen = JSON.parse(res.json().body);",
+      "        pm.environment.set('token', 'tok-' + gelen.grant_type);",
+      "        pm.environment.set('tokenBitis', Date.now() + 60000);",
+      "        pm.request.headers.upsert({ key: 'Authorization', value: 'Bearer ' + pm.environment.get('token') });",
+      "    });",
+      "}"
+    ],
+    "test": [
+      "pm.test('Yeni token gönderildi', () => pm.expect(pm.response.json().headers.authorization).to.equal('Bearer tok-client_credentials'));"
+    ],
+    "expect": { "environment": { "token": "tok-client_credentials" } }
+  },
+  {
+    "name": "pm.sendRequest: promise ve async/await",
+    "source": "Yeni tarz zincirleme istekler",
+    "request": { "url": "/echo" },
+    "test": [
+      "pm.sendRequest(pm.variables.replaceIn('{{__base}}/echo?a=1')).then(res => {",
+      "    pm.test('promise', () => pm.expect(res.json().query).to.equal('?a=1'));",
+      "});",
+      "(async () => {",
+      "    const res = await pm.sendRequest({ url: pm.variables.replaceIn('{{__base}}/echo?b=2'), method: 'GET' });",
+      "    pm.test('await', () => pm.expect(res.code).to.equal(200));",
+      "})();"
+    ],
+    "expect": { "tests": { "promise": "passed", "await": "passed" } }
+  },
+  {
+    "name": "İsteği atlama",
+    "source": "Koşula bağlı istek (pm.execution.skipRequest)",
+    "request": { "url": "/echo" },
+    "variables": { "environment": { "ozellikAcik": "false" } },
+    "prerequest": [
+      "if (pm.environment.get('ozellikAcik') !== 'true') {",
+      "    console.log('özellik kapalı, atlanıyor');",
+      "    pm.execution.skipRequest();",
+      "}"
+    ],
+    "expect": { "tests": {}, "console": ["özellik kapalı, atlanıyor"] }
+  }
+]

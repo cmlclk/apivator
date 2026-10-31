@@ -1,0 +1,102 @@
+{
+  "change": {
+    "added": "added",
+    "modified": "modified",
+    "removed": "removed"
+  },
+  "kind": {
+    "collection": "Collection settings",
+    "folder": "Folder",
+    "request": "Request"
+  },
+  "status": {
+    "open": "Open",
+    "merged": "Merged",
+    "declined": "Declined",
+    "closed": "Closed",
+    "title": "Fork: {name}",
+    "sourceInaccessible": "a collection you do not have access to",
+    "summary": "Source: <b>{source}</b>{hasWorkspace, select, y { ({workspace})} other {}} · forked by {creator}, {time}{hasPulled, select, y { · last updated {pulledAt}} other {}}",
+    "incoming": "Changes in the source",
+    "pull": "Pull into fork",
+    "unresolved": "{count, plural, one {# item has} other {# items have}} changed on both sides. Choose which one to keep for each.",
+    "upToDate": "The fork is up to date with the source.",
+    "outgoing": "Changes in this fork",
+    "openMergeRequest": "Open merge request",
+    "conflictsWarning": "There are conflicts: the request can be opened, but before it can be merged you need to pull the source changes and resolve the conflicts.",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "What changed, and why? (optional)",
+    "cancel": "Cancel",
+    "send": "Submit",
+    "noChanges": "This fork has no changes compared to the source.",
+    "unlink": "Unlink fork",
+    "unlinkTitle": "Unlink this fork?",
+    "unlinkConfirm": "Unlink",
+    "unlinkMessage": "“{name}” remains as an independent collection; changes can no longer be pulled from the source and open merge requests are closed."
+  },
+  "diff": {
+    "examples": "Example responses",
+    "location": "Location",
+    "movedToFolder": "Moved to another folder",
+    "name": "Name",
+    "description": "Description",
+    "auth": "Authorization",
+    "variables": "Variables",
+    "scripts": "Scripts"
+  },
+  "changes": {
+    "conflict": "Conflict",
+    "keepWhich": "Which one to keep for {name}",
+    "changedBothSides": "Changed on both sides:",
+    "takeSource": "Take the source's version",
+    "keepMine": "Keep mine",
+    "inSource": "In the source",
+    "inFork": "In the fork",
+    "deleted": "Deleted.",
+    "itemDeleted": "This item was deleted.",
+    "noVisibleDiff": "There is no visible difference."
+  },
+  "fork": {
+    "defaultName": "{name} (fork)",
+    "title": "Fork: {name}",
+    "cancel": "Cancel",
+    "submit": "Fork",
+    "intro": "A fork is your own copy of the collection. You make your changes there freely and propose them to the source with a merge request when ready; you can also pull new changes from the source into your fork at any time.",
+    "target": "Target workspace",
+    "name": "Fork name"
+  },
+  "panel": {
+    "title": "Merge requests",
+    "statusLabel": "Status",
+    "filters": {
+      "Open": "Open",
+      "Merged": "Merged",
+      "all": "All"
+    },
+    "emptyOpen": "No open requests. After you fork a collection and change it, you can propose your changes to the source from here.",
+    "emptyFiltered": "There are no requests with this status.",
+    "deletedFork": "deleted fork",
+    "approval": "Approval"
+  },
+  "mr": {
+    "title": "Merge request",
+    "summary": "Summary",
+    "deletedFork": "deleted fork",
+    "proposal": "<b>{author}</b> proposes merging the changes from the “{fork}”{hasWorkspace, select, y { ({workspace})} other {}} fork into the “{source}” collection · <time>{ago}</time>",
+    "approvedBy": "Approved by: {names}",
+    "conflicts": "{count, plural, one {# item has} other {# items have}} also changed in the source. The person who opened the request must first pull the source changes into their fork and resolve the conflicts; then it can be merged.",
+    "merge": "Merge",
+    "approve": "Approve",
+    "unapprove": "Withdraw approval",
+    "decline": "Decline",
+    "withdraw": "Withdraw",
+    "changes": "Changes",
+    "noChangesLeft": "No changes are left in the fork compared to the source.",
+    "diffsHidden": "Differences are not shown because the request is closed.",
+    "declineTitle": "Decline this request?",
+    "withdrawTitle": "Withdraw this request?",
+    "declineMessage": "The changes are not merged into the source. The fork and the changes in it stay as they are.",
+    "withdrawMessage": "The request is closed; the changes in your fork stay in place, and you can open a new request at any time."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "curl": {
+    "unterminatedSingleQuote": "Unterminated single quote.",
+    "unterminatedDoubleQuote": "Unterminated double quote.",
+    "unterminatedDollarQuote": "Unterminated $'...' expression.",
+    "mustStartWithCurl": "The command must start with \"curl\".",
+    "optionNeedsValue": "The {option} option expects a value.",
+    "bodyFile": "The body file ({file}) must be selected on the Body tab before sending.",
+    "fieldFile": "The file for field '{key}' ({file}) must be selected before sending.",
+    "fieldFromFile": "Field '{key}' is read from a file ({value}); skipped.",
+    "cookieFile": "Cookie file ({file}) cannot be read; skipped.",
+    "proxySkipped": "Proxy setting skipped.",
+    "unknownOption": "Unknown option skipped: {option}",
+    "extraArgument": "Extra argument skipped: {argument}",
+    "noUrl": "No URL found in the command."
+  },
+  "reports": {
+    "iteration": "Iteration",
+    "request": "Request",
+    "method": "Method",
+    "status": "Status",
+    "timeMs": "Time (ms)",
+    "sizeBytes": "Size (bytes)",
+    "passedTests": "Passed tests",
+    "failedCount": "Failed tests",
+    "skippedTests": "Skipped tests",
+    "failedTests": "Failing tests",
+    "error": "Error",
+    "test": "Test",
+    "result": "Result",
+    "time": "Time",
+    "sheetResults": "Results",
+    "sheetTests": "Tests",
+    "sheetHistory": "History",
+    "passed": "Passed",
+    "failed": "Failed",
+    "skipped": "Skipped"
+  },
+  "tabular": {
+    "parentRowColumn": "#row",
+    "valueColumn": "value",
+    "noValueAtPath": "No value at path \"{path}\"."
+  },
+  "xlsx": {
+    "tableRequired": "At least one table is required.",
+    "tooManyRows": "\"{name}\" has {rows} rows; Excel allows at most {max} data rows per sheet. Save as CSV instead."
+  },
+  "bridge": {
+    "rejected": "The bridge rejected the connection.",
+    "unreachable": "Could not connect to the bridge, or the connection was lost. Make sure your session is open."
+  },
+  "grpc": {
+    "cancelled": "The call was cancelled."
+  },
+  "errors": {
+    "unknownEndpoint": "The server does not recognize this request (404). If the API is out of date, restart it.",
+    "tooMany": "Too many requests were sent. Please wait a moment.",
+    "server": "A server error occurred. Please try again.",
+    "default": "The request could not be completed.",
+    "network": "Could not reach the server. Check your connection."
+  },
+  "dataFile": {
+    "csvUnterminatedQuote": "CSV: unterminated quote.",
+    "csvEmpty": "The CSV file is empty.",
+    "csvEmptyHeader": "The CSV header row has an empty column name.",
+    "jsonUnreadable": "Could not read JSON: {reason}",
+    "jsonNotArray": "A JSON data file must be an array of objects: {example}",
+    "jsonArrayExample": "['{' \"name\": \"Ann\" '}', ...]"
+  },
+  "client": {
+    "agentNotRunning": "The local execution agent is not running: {reason}",
+    "agentUnreachable": "Could not reach the local execution agent. Try restarting the app.",
+    "agentClosed": "The local agent closed the connection before the run finished.",
+    "sourceNotDocument": "The source URL no longer returns a document; it returns a version list. Remove the link and import the document again."
+  },
+  "codegen": {
+    "digestNote": "Digest authentication is not included in this code; use your library's Digest support.",
+    "sigV4Note": "AWS Signature v4 signing is not included in this code; use the AWS SDK or a SigV4 signer."
+  },
+  "tableExport": {
+    "invalidJson": "The response is not valid JSON (it may have been truncated)."
+  },
+  "models": {
+    "header": "Generated with Apivator.",
+    "rootType": "Root type: {type}",
+    "jsonValueDoc": "JSON value of a previously unknown type.",
+    "schemaNotObject": "The schema must be a JSON object.",
+    "unresolvedRef": "Unresolved reference: {ref}",
+    "noOpenApiSchemas": "The OpenAPI document has no schemas (components.schemas)."
+  }
+}

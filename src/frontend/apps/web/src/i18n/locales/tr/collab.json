@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "url": "URL",
+    "body": "Body",
+    "graphqlVariables": "GraphQL değişkenleri",
+    "preRequest": "Pre-request script",
+    "postResponse": "Post-response script",
+    "description": "Açıklama",
+    "message": "Mesaj"
+  },
+  "bar": {
+    "editorsLabel": "Birlikte düzenleyenler: {names}",
+    "editorsTitle": "Bu isteği birlikte düzenleyenler: {names}",
+    "peerWithField": "{name} ({field})",
+    "peerTitleWithField": "{name} · {field}",
+    "conflict": "Bu istek şu an başkalarıyla birlikte düzenleniyor ve sizde kaydedilmemiş değişiklikler var. Ortak taslağa katılırsanız yerel değişiklikleriniz atılır.",
+    "join": "Ortak taslağa katıl",
+    "solo": "Tek başıma düzenle",
+    "waiting": "Ortak taslak hazırlanıyor…"
+  }
+}

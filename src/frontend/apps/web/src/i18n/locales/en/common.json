@@ -1,0 +1,47 @@
+{
+  "language": "Language",
+  "unexpectedError": "An unexpected error occurred.",
+  "actions": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "fields": {
+    "name": "Name"
+  },
+  "roles": {
+    "organization": {
+      "owner": "Owner",
+      "admin": "Admin",
+      "member": "Member"
+    },
+    "workspace": {
+      "admin": "Admin",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "workspaceHints": {
+      "admin": "Manages members and workspace settings",
+      "editor": "Edits collections and environments",
+      "viewer": "Can view and send requests, but not change anything"
+    }
+  },
+  "errors": {
+    "requestNotCached": "You are offline and this request has not been downloaded to this device yet. It can be opened once you are back online.",
+    "serverUrlInvalid": "Enter a valid address (e.g. https://apivator.example.com).",
+    "serverUrlScheme": "The address must start with http:// or https://."
+  },
+  "desktop": {
+    "agentStartFailed": "Couldn't start the local agent: {detail}",
+    "agentExited": "The local agent stopped (exit code {code}). {detail}",
+    "agentTimeout": "The local agent wasn't ready within {seconds} seconds.",
+    "fileBodyInvalid": "The file content must be sent as a raw body.",
+    "fileWriteFailed": "Couldn't write the file: {detail}",
+    "invalidUrl": "Invalid address.",
+    "urlScheme": "Only http and https addresses can be opened.",
+    "secretKeyNotAllowed": "Key not allowed: {key}",
+    "noUpdate": "There is no update to install.",
+    "updatesDisabled": "Automatic updates are turned off in this version."
+  }
+}

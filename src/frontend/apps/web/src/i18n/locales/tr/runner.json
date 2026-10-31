@@ -1,0 +1,70 @@
+{
+  "dialog": {
+    "title": "Runner: {name}",
+    "titleFolder": "Runner: {name} / {folder}",
+    "tabsLabel": "Runner bölümleri",
+    "tabRun": "Çalıştır",
+    "tabHistory": "Geçmiş çalıştırmalar"
+  },
+  "data": {
+    "empty": "Dosyada veri satırı yok.",
+    "summary": "{rows} satır · sütunlar: {columns}",
+    "remove": "kaldır",
+    "fileLabel": "Veri dosyası (CSV ya da JSON)",
+    "pickFile": "Dosya seç",
+    "fileAria": "Veri dosyası",
+    "rowLimit": "Veri dosyasında {rows} satır var; en fazla o kadar iterasyon çalışır."
+  },
+  "select": {
+    "section": "Çalıştırılacak istekler",
+    "count": "{chosen}/{total} istek seçili",
+    "all": "Tümünü seç",
+    "none": "Hiçbiri",
+    "empty": "Burada çalıştırılacak istek yok."
+  },
+  "settings": {
+    "section": "Çalıştırma ayarları",
+    "iterations": "İterasyon",
+    "delay": "İstekler arası gecikme (ms)",
+    "keepVariables": "Script'lerin değiştirdiği değişkenleri sakla",
+    "keepVariablesHint": "Güncel değer olarak yalnızca bu tarayıcıya yazılır.",
+    "environment": "Environment: {name}",
+    "environmentNone": "yok",
+    "local": "İstekler bu bilgisayardan gönderilir (localhost ve iç ağ dahil); rapor ekiple paylaşılır.",
+    "start": "{requests, plural, other {# istek}} × {iterations, plural, other {# iterasyon}} çalıştır"
+  },
+  "status": {
+    "running": "Çalışıyor…",
+    "stopped": "Durduruldu",
+    "failed": "Yarıda kaldı",
+    "completed": "Tamamlandı"
+  },
+  "stoppedMessage": "Çalıştırma durduruldu; rapor \"Durduruldu\" olarak kaydedildi.",
+  "results": {
+    "testsPassed": "{count, plural, other {# test geçti}}",
+    "testsFailed": "{count, plural, other {# test kaldı}}",
+    "failedRequests": "{count, plural, other {# hatalı istek}}",
+    "summary": "{requests, plural, other {# istek}} · {duration}",
+    "stop": "Durdur",
+    "settings": "Ayarlar",
+    "rerun": "Yeniden çalıştır",
+    "onlyFailures": "Yalnızca başarısızlar",
+    "list": "Çalıştırma sonuçları",
+    "waiting": "İlk sonuç bekleniyor…",
+    "none": "Gösterilecek sonuç yok.",
+    "iteration": "İterasyon {number}",
+    "noTests": "Bu istekte test yok."
+  },
+  "history": {
+    "list": "Geçmiş çalıştırmalar",
+    "empty": "Bu collection henüz çalıştırılmadı.",
+    "success": "Başarılı",
+    "failure": "Başarısız",
+    "deleteReport": "Raporu sil",
+    "iterations": "{count, plural, other {# iterasyon}}",
+    "requests": "{requests, plural, other {# istek}} · {duration}",
+    "fromDesktop": "masaüstünden",
+    "fromCli": "CLI'dan",
+    "fromMonitor": "monitörden"
+  }
+}

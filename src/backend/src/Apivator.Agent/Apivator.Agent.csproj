@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!--
+    Masaüstü uygulamasıyla birlikte gelen yerel yürütme ajanı. Yalnızca 127.0.0.1'i dinler; masaüstü kabuğu
+    onu başlatır ve her oturumda üretilen bir token ile konuşur. Veritabanı kullanmaz.
+  -->
+  <PropertyGroup>
+    <AssemblyName>apivator-agent</AssemblyName>
+    <RootNamespace>Apivator.Agent</RootNamespace>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- dotnet publish -r <rid> ile tek dosya, kendi içinde çalışan çıktı -->
+    <SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
+    <PublishSingleFile Condition="'$(RuntimeIdentifier)' != ''">true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
+    <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+    <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apivator.Infrastructure\Apivator.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Apivator.Api.IntegrationTests" />
+  </ItemGroup>
+</Project>

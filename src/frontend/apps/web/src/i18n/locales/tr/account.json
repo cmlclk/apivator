@@ -1,0 +1,237 @@
+{
+  "preferences": {
+    "intro": "Tercihleriniz hesabınızda saklanır; web'de ve masaüstü uygulamasında, her cihazda aynıdır.",
+    "saved": "Kaydedildi.",
+    "appearance": "Görünüm",
+    "theme": "Tema",
+    "themes": {
+      "system": "Sistem",
+      "light": "Açık",
+      "dark": "Koyu"
+    },
+    "language": "Dil",
+    "languageHint": "Arayüz, e-postalar ve sunucu mesajları bu dilde gösterilir.",
+    "startup": "Açılış",
+    "defaultWorkspace": "Varsayılan workspace",
+    "lastUsedWorkspace": "Son kullandığım workspace",
+    "personal": "Kişisel",
+    "defaultWorkspaceHint": "Uygulama açıldığında bu workspace seçilir.",
+    "emailNotifications": "E-posta bildirimleri",
+    "emailNotificationsHint": "Uygulama içi bildirimler her zaman gelir. Hesap güvenliği e-postaları (şifre ve e-posta değişikliği) kapatılamaz.",
+    "history": "Geçmiş",
+    "saveHistoryResponses": "Yanıt gövdelerini geçmişte sakla",
+    "saveHistoryResponsesHint": "Gönderdiğiniz isteklerin metin yanıtları (en çok 256 KB) 30 gün saklanır; fark aracında önceki oturumların yanıtlarını da seçebilirsiniz. Yanıtlarda token gibi gizli bilgiler olabilir. Kapatınca saklanan yanıtlar silinir.",
+    "emails": {
+      "emailMentions": {
+        "label": "Bahsetmeler",
+        "hint": "Bir yorumda sizden bahsedildiğinde."
+      },
+      "emailMergeRequests": {
+        "label": "Merge istekleri",
+        "hint": "Düzenleyebildiğiniz bir collection için istek açıldığında; isteğiniz birleştirildiğinde ya da reddedildiğinde."
+      },
+      "emailMonitorAlerts": {
+        "label": "Monitör uyarıları",
+        "hint": "Adresiniz bir monitörün bildirim listesindeyse. Webhook bildirimleri etkilenmez."
+      }
+    }
+  },
+  "page": {
+    "back": "İsteklere dön",
+    "title": "Hesap ayarları",
+    "sections": "Hesap bölümleri",
+    "tabs": {
+      "profile": "Profil",
+      "security": "Güvenlik",
+      "api-keys": "API anahtarları",
+      "preferences": "Tercihler",
+      "data": "Veriler ve hesap"
+    }
+  },
+  "apiKeys": {
+    "intro": "Anahtarlar <code>apivator</code> komut satırı aracının ve CI işlerinin sizin adınıza collection'ları okuyup çalıştırmasını sağlar. Anahtarla yalnızca okuma ve çalıştırma raporu gönderme yapılabilir; hiçbir şey değiştirilemez. Her iş için ayrı anahtar oluşturun ki gerektiğinde tek başına iptal edebilesiniz.",
+    "expiry": {
+      "d30": "30 gün",
+      "d90": "90 gün",
+      "y1": "1 yıl",
+      "never": "Süresiz"
+    },
+    "newKey": "Yeni anahtar",
+    "created": "“{name}” oluşturuldu. Anahtarı şimdi kopyalayın; bir daha gösterilmeyecek.",
+    "copyKey": "Anahtarı kopyala",
+    "ci": "CI'da gizli değişken olarak saklayın (GitHub: Settings › Secrets, Azure DevOps: Pipeline variables).",
+    "namePlaceholder": "Ne için? (ör. GitHub Actions, Jenkins, kendi bilgisayarım)",
+    "validity": "Geçerlilik",
+    "create": "Oluştur",
+    "yourKeys": "Anahtarlarınız",
+    "lastUsed": "son kullanım {time}",
+    "neverUsed": "hiç kullanılmadı",
+    "expired": "süresi doldu",
+    "until": "{date} tarihine kadar",
+    "noExpiry": "süresiz",
+    "revoke": "İptal et",
+    "none": "Henüz anahtarınız yok.",
+    "usage": "Kullanım",
+    "install": "Aracı kurun (.NET 10 SDK gerekir): <code>dotnet tool install -g Apivator.Cli</code>",
+    "example": "export APIVATOR_SERVER={server}\nexport APIVATOR_API_KEY={key}\napivator run \"Collection adı\" -e \"Environment adı\" -r cli,junit",
+    "keyPlaceholder": "<anahtar>",
+    "copyCommand": "Komutu kopyala",
+    "exitCode": "Çıkış kodu testler kalırsa 1 olur, böylece CI adımı başarısız sayılır. Raporlar Apivator'da runner geçmişinde “CLI'dan” etiketiyle görünür."
+  },
+  "data": {
+    "export": {
+      "title": "Verilerimi indir",
+      "body": "Profiliniz, tercihleriniz, oturumlarınız, API anahtarlarınızın adları ve kişisel workspace'inizdeki tüm collection ve environment'lar (Postman formatında) tek bir ZIP arşivi olarak iner. Takım workspace'lerindeki veriler organizasyona aittir; onları workspace içinden dışa aktarabilirsiniz.",
+      "button": "Arşivi indir (.zip)"
+    },
+    "delete": {
+      "title": "Hesabı sil",
+      "body": "Kişisel workspace'iniz ve içindekiler, oturumlarınız, API anahtarlarınız, istek geçmişiniz ve bildirimleriniz kalıcı olarak silinir; tüm organizasyon ve workspace'lerden çıkarılırsınız. Takım workspace'lerinde oluşturduğunuz collection'lar ve yorumlar ekipte kalır, yazar “Silinmiş kullanıcı” olarak görünür. Silmeden önce verilerinizi indirmeniz önerilir.",
+      "mustTransfer": "Şu organizasyonların sahibisiniz ve başka üyeleri var. Silmeden önce sahipliği bir üyeye devredin: <orgs/>.",
+      "willDelete": "Başka üyesi olmayan şu organizasyonlar da workspace'leriyle birlikte silinir: {organizations}.",
+      "sent": "Onay bağlantısı e-posta adresinize gönderildi. Hesabınız ancak bağlantıdaki onaydan sonra silinir; bağlantı 24 saat geçerlidir.",
+      "password": "Şifreniz",
+      "confirmLabel": "Onaylamak için {word} yazın",
+      "confirmWord": "SİL",
+      "submit": "Silme bağlantısını gönder"
+    }
+  },
+  "recovery": {
+    "header": "Apivator yedek kodları",
+    "headerEmail": "Apivator yedek kodları ({email})",
+    "note": "Her kod bir kez kullanılabilir. Güvenli bir yerde saklayın.",
+    "list": "Yedek kodlar",
+    "copy": "Kodları kopyala",
+    "download": "İndir (.txt)",
+    "fileName": "apivator-yedek-kodlar.txt"
+  },
+  "history": {
+    "intro": "Hesabınızdaki giriş ve güvenlik olayları. Tanımadığınız bir giriş görürseniz şifrenizi değiştirin ve oturumları kapatın; yeni bir cihazdan girişte ayrıca e-posta gelir.",
+    "list": "Güvenlik geçmişi",
+    "empty": "Henüz kayıt yok.",
+    "kinds": {
+      "LoginSucceeded": "Giriş yapıldı",
+      "LoginFailed": "Başarısız giriş",
+      "LockedOut": "Hesap geçici olarak kilitlendi",
+      "PasswordChanged": "Şifre değiştirildi",
+      "PasswordReset": "Şifre sıfırlandı",
+      "EmailChanged": "E-posta değiştirildi",
+      "TwoFactorEnabled": "İki adımlı doğrulama açıldı",
+      "TwoFactorDisabled": "İki adımlı doğrulama kapatıldı",
+      "RecoveryCodesRegenerated": "Yedek kodlar yenilendi",
+      "RecoveryCodeUsed": "Yedek kodla giriş yapıldı",
+      "SessionsRevokedByAdmin": "Yönetici oturumları kapattı",
+      "PasswordResetSentByAdmin": "Yönetici şifre sıfırlama bağlantısı gönderdi"
+    }
+  },
+  "avatar": {
+    "notImage": "Bir görsel dosyası seçin (PNG, JPEG, WebP).",
+    "tooLarge": "Görsel en fazla 10 MB olabilir.",
+    "unreadable": "Görsel okunamadı.",
+    "failed": "Görsel işlenemedi."
+  },
+  "cancel": "Vazgeç",
+  "people": "{count, plural, other {# kişi}}",
+  "profile": {
+    "title": "Profil",
+    "emailTitle": "E-posta",
+    "membershipsTitle": "Organizasyonlar ve workspace'ler",
+    "avatar": {
+      "change": "Görseli değiştir",
+      "upload": "Görsel yükle",
+      "remove": "Kaldır",
+      "hint": "PNG, JPEG ya da WebP. Kare olarak kırpılır; görsel yoksa baş harfleriniz gösterilir.",
+      "choose": "Profil görseli seç"
+    },
+    "name": "Ad soyad",
+    "saved": "Kaydedildi.",
+    "save": "Kaydet",
+    "memberSince": "Üyelik tarihi: {date}",
+    "email": {
+      "confirmed": "doğrulandı",
+      "unconfirmed": "doğrulanmadı",
+      "change": "E-postayı değiştir",
+      "pending": "<b>{email}</b> adresine doğrulama bağlantısı gönderildi. Bağlantıya tıklayana kadar mevcut adresiniz geçerli.",
+      "cancelChange": "Değişikliği iptal et",
+      "formLabel": "E-posta değiştir",
+      "newEmail": "Yeni e-posta",
+      "password": "Şifreniz",
+      "passwordHint": "Güvenliğiniz için mevcut şifrenizi girin.",
+      "submit": "Doğrulama bağlantısı gönder"
+    },
+    "personal": "Kişisel",
+    "noWorkspaces": "Erişiminiz olan workspace yok."
+  },
+  "security": {
+    "passwordHint": "En az 8 karakter, bir küçük harf ve bir rakam.",
+    "password": {
+      "title": "Şifre",
+      "formLabel": "Şifre değiştir",
+      "done": "Şifreniz değişti. Diğer cihazlardaki oturumlar kapatıldı; bu cihazda açık kalırsınız.",
+      "current": "Mevcut şifre",
+      "new": "Yeni şifre",
+      "repeat": "Yeni şifre (tekrar)",
+      "mismatch": "Şifreler aynı değil.",
+      "submit": "Şifreyi değiştir"
+    },
+    "twoFactorTitle": "İki adımlı doğrulama",
+    "sessions": {
+      "title": "Oturumlar",
+      "thisDevice": "Bu cihaz",
+      "active": "şu anda etkin",
+      "lastUsed": "son kullanım {time}",
+      "signedIn": "giriş {time}",
+      "revoke": "Oturumu kapat",
+      "intro": "Hesabınıza giriş yapılmış tarayıcılar ve uygulamalar. Tanımadığınız bir oturum görürseniz kapatın ve şifrenizi değiştirin. Kapatılan oturum en geç birkaç saniye içinde çıkış yapar.",
+      "list": "Açık oturumlar",
+      "revokedOthers": "Diğer tüm oturumlar kapatıldı.",
+      "revokeOthers": "Diğer tüm oturumlardan çık ({count})"
+    },
+    "historyTitle": "Güvenlik geçmişi"
+  },
+  "twoFactor": {
+    "disable": {
+      "title": "İki adımlı doğrulamayı kapat",
+      "body": "Kapatınca hesabınıza yalnızca şifreyle girilebilir. Onaylamak için şifrenizi ve authenticator kodunu (ya da bir yedek kodu) girin.",
+      "password": "Şifre",
+      "code": "Kod",
+      "placeholder": "123456 ya da abcde-fghjk",
+      "submit": "Doğrulamayı kapat"
+    },
+    "regenerate": {
+      "title": "Yedek kodları yenile",
+      "done": "Yeni kodlar oluşturuldu; eskileri artık geçersiz.",
+      "ok": "Tamam",
+      "body": "Yeni 10 kod oluşturulur, kullanılmamış eski kodlar geçersiz olur. Onaylamak için authenticator kodunu girin.",
+      "submit": "Yenile"
+    },
+    "codeLabel": "Doğrulama kodu",
+    "on": "Açık",
+    "since": "{date} tarihinden beri",
+    "codesLeft": "{count, plural, other {# yedek kod kaldı}}",
+    "off": "Kapat",
+    "requiredBy": "{names} zorunlu kılıyor",
+    "offBody": "Girişte şifrenin yanında telefonunuzdaki authenticator uygulamasının ürettiği kod da istenir; şifreniz ele geçse bile hesabınıza girilemez.",
+    "setup": "Kur",
+    "lowCodes": "Az yedek kodunuz kaldı. Yeni kodlar oluşturun.",
+    "requiredEnabled": "{names} organizasyonu iki adımlı doğrulamayı zorunlu kılıyor; kapatılamaz.",
+    "requiredDisabled": "{names} organizasyonu iki adımlı doğrulamayı zorunlu kılıyor; kurana kadar organizasyonun workspace’lerine erişemezsiniz.",
+    "setupDialog": {
+      "qr": "Authenticator QR kodu",
+      "codesTitle": "Yedek kodlar",
+      "ok": "Tamam",
+      "enabled": "İki adımlı doğrulama açıldı.",
+      "codesBody": "Telefonunuza erişemezseniz bu kodlarla giriş yapabilirsiniz. Her kod bir kez kullanılır. <b>Kodlar yalnızca şimdi gösterilir.</b>",
+      "savedCheck": "Kodları güvenli bir yere kaydettim",
+      "title": "İki adımlı doğrulamayı aç",
+      "step1": "Telefonunuzda bir authenticator uygulaması açın (Google Authenticator, Microsoft Authenticator, 1Password…).",
+      "step2": "QR kodu okutun ya da anahtarı elle girin.",
+      "step3": "Uygulamanın ürettiği 6 haneli kodu aşağıya yazın.",
+      "keyHint": "Anahtar (elle giriş için)",
+      "key": "Anahtar",
+      "copyKey": "Anahtarı kopyala",
+      "meta": "Hesap: {email} · Tür: zamana bağlı (TOTP)",
+      "submit": "Doğrula ve aç"
+    }
+  }
+}

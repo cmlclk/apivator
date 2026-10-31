@@ -1,0 +1,177 @@
+{
+  "appShell": {
+    "home": "Ana sayfa",
+    "homeAria": "Apivator ana sayfa",
+    "network": "Ağ ayarları",
+    "networkTitle": "Ağ ayarları (proxy, SSL, istemci sertifikaları)"
+  },
+  "sidebar": {
+    "sections": "Bölümler",
+    "collections": "Collections",
+    "environments": "Environments",
+    "mocks": "Mock'lar",
+    "monitors": "Monitörler",
+    "merges": "Merge'ler",
+    "history": "Geçmiş",
+    "activity": "Aktivite",
+    "tools": "Araçlar"
+  },
+  "theme": {
+    "light": "Açık tema",
+    "dark": "Koyu tema",
+    "system": "Sistem teması",
+    "toggleTitle": "{label} (değiştirmek için tıkla)"
+  },
+  "userMenu": {
+    "account": "Hesap menüsü",
+    "settings": "Hesap ayarları",
+    "team": "Ekip ve organizasyonlar",
+    "logout": "Çıkış yap"
+  },
+  "boot": { "loading": "Yükleniyor" },
+  "routeError": {
+    "title": "Bir şeyler ters gitti",
+    "hint": "Sayfayı yenilemeyi deneyin. Sorun sürerse açık sekmeleri sıfırlayın; kaydedilmiş istekleriniz etkilenmez, yalnızca kaydedilmemiş taslaklar silinir.",
+    "resetTabs": "Açık sekmeleri sıfırla",
+    "reload": "Sayfayı yenile"
+  },
+  "server": {
+    "unreachable": "Sunucuya ulaşılamadı. Adresi ve sunucunun CORS ayarında masaüstü uygulamasına izin verildiğini kontrol edin.",
+    "current": "Sunucu:",
+    "change": "Değiştir",
+    "address": "Sunucu adresi",
+    "connect": "Bağlan"
+  },
+  "banners": {
+    "email": {
+      "unverified": "<b>{email}</b> adresi henüz doğrulanmadı. Gelen kutundaki bağlantıya tıkla.",
+      "sent": "Yeni bağlantı gönderildi.",
+      "resend": "Tekrar gönder"
+    },
+    "invitation": {
+      "toOrganization": "<b>{inviter}</b> sizi <b>{organization}</b> organizasyonuna davet etti.",
+      "toOrganizationAndWorkspace": "<b>{inviter}</b> sizi <b>{organization}</b> organizasyonuna ve “{workspace}” workspace'ine davet etti.",
+      "more": "(+{count} davet daha)",
+      "join": "Katıl"
+    },
+    "twoFactor": {
+      "required": "<b>{organizations}</b> iki adımlı doğrulamayı zorunlu kılıyor. Kurana kadar {count, plural, =1 {organizasyonun} other {bu organizasyonların}} workspace’leri görünmez.",
+      "setUp": "Şimdi kur"
+    },
+    "update": {
+      "ready": "Apivator {version} hazır.",
+      "failed": "Kurulamadı: {error}",
+      "restartHint": "Kurulunca uygulama yeniden başlar.",
+      "install": "Şimdi güncelle",
+      "later": "Daha sonra"
+    },
+    "offline": {
+      "unreachable": "Sunucuya ulaşılamıyor.",
+      "noInternet": "İnternet bağlantısı yok.",
+      "cached": "Bu cihaza indirilen collection'lar ve environment'lar gösteriliyor.",
+      "cachedSince": "Bu cihaza indirilen collection'lar ve environment'lar gösteriliyor (son eşitleme {ago}).",
+      "sendDesktop": "İstekler bu bilgisayardan gönderilebilir.",
+      "sendServer": "İstek göndermek için sunucu gerekiyor.",
+      "pending": "{count, plural, other {# isteğin değişikliği bu cihazda bekliyor; bağlantı gelince kaydedilecek.}}",
+      "noPending": "Kaydettiğiniz değişiklikler bağlantı gelince gönderilir.",
+      "retry": "Yeniden dene"
+    }
+  },
+  "presence": {
+    "pausedTitle": "Canlı güncellemeler duraksadı; bağlantı gelince ekran kendiliğinden tazelenir.",
+    "reconnecting": "Yeniden bağlanıyor…",
+    "offline": "Çevrimdışı",
+    "onlineAria": "Çevrimiçi: {names}",
+    "onlineTitle": "Bu workspace'te çevrimiçi: {names}"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "titleUnread": "Bildirimler ({count} okunmamış)",
+    "markAllRead": "Tümünü okundu say",
+    "empty": "Bir yorumda sizden bahsedildiğinde, yorumunuza yanıt geldiğinde ya da bir merge isteği açıldığında burada görünür.",
+    "unread": "okunmadı",
+    "verbs": {
+      "mention": "sizden bahsetti",
+      "reply": "yanıtladı",
+      "mergeRequestOpened": "merge isteği açtı",
+      "mergeRequestMerged": "isteğinizi birleştirdi",
+      "mergeRequestDeclined": "isteğinizi reddetti",
+      "sourceChanged": "değişti"
+    }
+  },
+  "workspaceSwitcher": {
+    "list": "Workspace'ler",
+    "personal": "Kişisel",
+    "settings": "“{name}” ayarları ve üyeleri",
+    "create": "Yeni takım workspace'i",
+    "team": "Ekip ve organizasyonlar"
+  },
+  "createWorkspace": {
+    "title": "Yeni takım workspace'i",
+    "submit": "Oluştur",
+    "orgIntro": "Takım workspace'leri bir organizasyona aittir. Ekibiniz için bir organizasyon oluşturun; sahibi siz olursunuz ve sonra kişileri davet edebilirsiniz.",
+    "orgName": "Organizasyon adı",
+    "orgNamePlaceholder": "Şirketinizin ya da ekibinizin adı",
+    "organization": "Organizasyon",
+    "name": "Workspace adı",
+    "namePlaceholder": "Ödeme API, Mobil, QA…"
+  },
+  "workspaceSettings": {
+    "title": "Workspace ayarları: {name}",
+    "personalInfo": "Kişisel workspace yalnızca sizindir ve paylaşılamaz. Ekibinizle çalışmak için <link>bir organizasyon oluşturun</link> ve collection'larınızı takım workspace'ine taşıyın.",
+    "save": "Kaydet",
+    "people": "Kişiler",
+    "you": "(siz)",
+    "roleOf": "{name} rolü",
+    "remove": "{name} çıkar",
+    "orgAdmin": "organizasyon yöneticisi",
+    "adminRole": "Yönetici",
+    "addPerson": "Eklenecek kişi",
+    "pickPerson": "Organizasyondan kişi seçin…",
+    "newPersonRole": "Eklenecek kişinin rolü",
+    "add": "Ekle",
+    "everyoneAdded": "Organizasyondaki herkes bu workspace'te. Yeni birini eklemek için <link>organizasyona davet edin</link>.",
+    "teams": "Takımlar",
+    "teamsHint": "Takım eklenince takımın tüm üyeleri bu rolü alır; takıma katılan biri otomatik erişir.",
+    "memberCount": "{count, plural, other {# kişi}}",
+    "teamRole": "{name} takımının rolü",
+    "removeTeam": "{name} takımını çıkar",
+    "addTeam": "Eklenecek takım",
+    "pickTeam": "Takım seçin…",
+    "newTeamRole": "Eklenecek takımın rolü",
+    "leave": "Workspace'ten ayrıl",
+    "delete": "Workspace'i sil",
+    "confirmLeave": "Ayrıl",
+    "confirmDelete": "Sil",
+    "deleteWarning": "“{name}” içindeki tüm collection'lar, environment'lar, geçmiş ve çalıştırma raporları kalıcı olarak silinir.",
+    "leaveWarning": "Bir takım ya da organizasyon yöneticiliği üzerinden erişiminiz varsa o devam eder."
+  },
+  "network": {
+    "title": "Ağ ayarları",
+    "save": "Kaydet",
+    "intro": "Bu ayarlar yalnızca bu bilgisayardan gönderilen istekler için geçerlidir. Parolalar işletim sisteminin anahtar zincirinde saklanır.",
+    "startupFailed": "Kayıtlı ayarlar uygulanamadı; varsayılanlar kullanılıyor. {error}",
+    "proxyMode": {
+      "System": "Sistem proxy ayarını kullan",
+      "None": "Proxy kullanma",
+      "Custom": "Özel proxy"
+    },
+    "address": "Adres",
+    "username": "Kullanıcı adı",
+    "password": "Şifre",
+    "bypass": "Proxy'ye uğramayacak adresler (virgül ya da satırla ayırın; * joker karakter)",
+    "verifySsl": "Sunucu sertifikalarını doğrula",
+    "verifyOffWarning": "Doğrulama kapalıyken araya giren biri trafiği okuyabilir. Yalnızca geliştirme sunucuları için kullanın; mümkünse aşağıya şirketinizin CA sertifikasını ekleyin.",
+    "caCertificates": "Güvenilecek CA sertifikaları (dosya yolu, her satıra bir tane; PEM, CRT ya da DER)",
+    "clientCertificates": "İstemci sertifikaları",
+    "clientCertificatesHint": "mTLS isteyen sunuculara sunulur. PFX/P12 için şifre, PEM için (ayrıysa) anahtar dosyası girin.",
+    "certificate": "İstemci sertifikası {index}",
+    "certificateFile": "Sertifika dosyası {index}",
+    "certificateRemove": "Sertifika {index} sil",
+    "certificatePassword": "Sertifika şifresi {index}",
+    "certificatePasswordPlaceholder": "Şifre (varsa)",
+    "keyFile": "Anahtar dosyası {index}",
+    "keyFilePlaceholder": "Anahtar dosyası (PEM, ayrıysa)",
+    "addCertificate": "Sertifika ekle"
+  }
+}

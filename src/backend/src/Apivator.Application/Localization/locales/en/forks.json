@@ -1,0 +1,15 @@
+{
+  "fork.not_found": "Fork not found.",
+  "fork.conflicts": "{count} items were changed differently on both sides. Choose which one to keep for each.",
+  "merge_request.not_found": "Merge request not found.",
+  "merge_request.closed": "This request is no longer open.",
+  "merge_request.title_required": "Title can't be empty.",
+  "merge_request.exists": "There is already an open merge request for this fork; new changes are added to it.",
+  "merge_request.no_changes": "The fork has no changes compared to the source.",
+  "merge_request.own": "You can't approve your own request.",
+  "merge_request.no_fork": "The fork link has been removed; the request can't be merged.",
+  "merge_request.conflicts": "{count} items have also changed in the source. The fork's owner must first pull the source changes into the fork and resolve the conflicts.",
+  "merge_request.nothing_to_merge": "There are no changes left to merge.",
+  "merge_request.merged_summary": "{count} changes merged",
+  "merge_request.declined_summary": "Request declined"
+}

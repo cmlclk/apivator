@@ -1,0 +1,152 @@
+{
+  "intro": "Organizasyonda kimin ne zaman neyi değiştirdiği: üyelikler, roller, takımlar, workspace'ler, collection erişimi, yayınlanan dokümanlar ve mock'lar, API anahtarları ve yönetici işlemleri. İstek ve environment içeriğindeki değişiklikler workspace'in aktivite akışındadır.",
+  "retention": "Kayıtlar {days} gün saklanır.",
+  "eventType": "Olay türü",
+  "all": "Tümü",
+  "from": "Başlangıç",
+  "to": "Bitiş",
+  "searchLabel": "Kişi ya da hedef ara",
+  "searchPlaceholder": "Kişi, e-posta ya da hedef ara",
+  "searchButton": "Ara",
+  "list": "Denetim kaydı",
+  "empty": "Bu filtreye uyan kayıt yok.",
+  "older": "Daha eski kayıtlar",
+  "viaApiKey": "API anahtarıyla",
+  "details": {
+    "actor": "Yapan",
+    "method": "Yöntem",
+    "apiKey": "API anahtarı",
+    "ip": "IP",
+    "device": "Cihaz",
+    "code": "Olay kodu",
+    "time": "Zaman"
+  },
+  "categories": {
+    "organization": "Organizasyon",
+    "member": "Üyeler",
+    "invitation": "Davetler",
+    "team": "Takımlar",
+    "workspace": "Workspace'ler",
+    "collection": "Collection erişimi",
+    "docs": "Dokümantasyon",
+    "git": "Git senkronu",
+    "mock": "Mock'lar",
+    "monitor": "Monitörler",
+    "api_key": "API anahtarları",
+    "sso": "SSO",
+    "audit": "Denetim kaydı"
+  },
+  "actions": {
+    "organization": {
+      "created": "Organizasyonu oluşturdu",
+      "renamed": "Organizasyonun adını değiştirdi",
+      "ownership_transferred": "Sahipliği devretti",
+      "two_factor_required": "İki adımlı doğrulamayı zorunlu kıldı",
+      "two_factor_optional": "İki adımlı doğrulama zorunluluğunu kaldırdı"
+    },
+    "member": {
+      "added": "Üye ekledi",
+      "role_changed": "Üyenin rolünü değiştirdi",
+      "removed": "Üyeyi çıkardı",
+      "left": "Organizasyondan ayrıldı",
+      "account_deleted": "Hesabını sildi",
+      "sessions_revoked": "Üyenin oturumlarını kapattı",
+      "password_reset_sent": "Üyeye şifre sıfırlama bağlantısı gönderdi"
+    },
+    "invitation": {
+      "sent": "Davet gönderdi",
+      "revoked": "Daveti geri aldı",
+      "accepted": "Daveti kabul etti"
+    },
+    "team": {
+      "created": "Takım oluşturdu",
+      "renamed": "Takımın adını değiştirdi",
+      "deleted": "Takımı sildi",
+      "member_added": "Takıma kişi ekledi",
+      "member_removed": "Takımdan kişi çıkardı"
+    },
+    "workspace": {
+      "created": "Workspace oluşturdu",
+      "renamed": "Workspace'in adını değiştirdi",
+      "deleted": "Workspace'i sildi",
+      "member_added": "Workspace'e kişi ekledi",
+      "member_role_changed": "Workspace rolünü değiştirdi",
+      "member_removed": "Workspace'ten kişi çıkardı",
+      "team_added": "Workspace'e takım ekledi",
+      "team_role_changed": "Takımın workspace rolünü değiştirdi",
+      "team_removed": "Workspace'ten takımı çıkardı"
+    },
+    "collection": {
+      "deleted": "Collection'ı sildi",
+      "moved_in": "Collection'ı bu workspace'e taşıdı",
+      "moved_out": "Collection'ı başka organizasyona taşıdı",
+      "editing_restricted": "Düzenlemeyi kısıtladı",
+      "editing_unrestricted": "Düzenleme kısıtlamasını kaldırdı",
+      "access_granted": "Collection rolü verdi",
+      "access_changed": "Collection rolünü değiştirdi",
+      "access_removed": "Collection rolünü kaldırdı"
+    },
+    "docs": {
+      "published": "Dokümantasyonu yayınladı",
+      "visibility_changed": "Dokümantasyonun görünürlüğünü değiştirdi",
+      "link_regenerated": "Doküman bağlantısını yeniledi",
+      "unpublished": "Dokümantasyonu yayından kaldırdı"
+    },
+    "git": {
+      "connected": "Collection'ı Git deposuna bağladı",
+      "disconnected": "Git bağlantısını kaldırdı",
+      "pushed": "Collection'ı Git deposuna gönderdi",
+      "pulled": "Git deposundan değişiklik aldı"
+    },
+    "mock": {
+      "created": "Mock oluşturdu",
+      "deleted": "Mock'u sildi",
+      "visibility_changed": "Mock'un görünürlüğünü değiştirdi",
+      "key_regenerated": "Mock adresini yeniledi"
+    },
+    "monitor": {
+      "created": "Monitör oluşturdu",
+      "deleted": "Monitörü sildi"
+    },
+    "api_key": {
+      "created": "API anahtarı oluşturdu",
+      "revoked": "API anahtarını iptal etti"
+    },
+    "audit": {
+      "exported": "Denetim kaydını dışa aktardı"
+    }
+  },
+  "dataLabels": {
+    "email": "E-posta",
+    "role": "Rol",
+    "from": "Önce",
+    "to": "Sonra",
+    "via": "Yol",
+    "team": "Takım",
+    "workspace": "Workspace",
+    "workspace_role": "Workspace rolü",
+    "type": "Tür",
+    "subject": "Kime",
+    "subject_type": "Tür",
+    "visibility": "Görünürlük",
+    "schedule": "Zamanlama",
+    "owner": "Sahibi",
+    "owner_email": "Sahibin e-postası",
+    "prefix": "Önek",
+    "expires_at": "Bitiş",
+    "sessions": "Oturum sayısı",
+    "format": "Biçim",
+    "action": "Olay filtresi",
+    "search": "Arama",
+    "from_workspace": "Kaynak workspace",
+    "to_workspace": "Hedef workspace",
+    "remote": "Depo",
+    "branch": "Dal",
+    "path": "Klasör",
+    "token": "Belirteç",
+    "commit": "Commit",
+    "changed": "Gönderilen öğe",
+    "applied": "Alınan öğe",
+    "kept_local": "Yerelde korunan"
+  }
+}

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "apivator.fullname" . }}-api
+  labels:
+    {{- include "apivator.labels" . | nindent 4 }}
+data:
+  ASPNETCORE_ENVIRONMENT: Production
+  App__PublicUrl: {{ .Values.publicUrl | quote }}
+  # "job" ve "none" kiplerinde pod'lar şemayı kendileri güncellemez.
+  Database__MigrateOnStartup: {{ eq .Values.migration.mode "startup" | quote }}
+  ForwardedHeaders__ForwardLimit: {{ include "apivator.forwardLimit" . | quote }}
+  Monitors__SchedulerEnabled: {{ .Values.api.monitorsSchedulerEnabled | quote }}
+  Email__Mode: {{ .Values.email.mode | quote }}
+  {{- if .Values.smtp.enabled }}
+  Smtp__Host: {{ .Values.smtp.host | quote }}
+  Smtp__Port: {{ .Values.smtp.port | quote }}
+  Smtp__EnableSsl: {{ .Values.smtp.enableSsl | quote }}
+  Smtp__UserName: {{ .Values.smtp.userName | quote }}
+  Smtp__FromAddress: {{ .Values.smtp.fromAddress | quote }}
+  Smtp__FromName: {{ .Values.smtp.fromName | quote }}
+  {{- end }}
+  {{- if ne (toString .Values.api.auditRetentionDays) "" }}
+  Audit__RetentionDays: {{ .Values.api.auditRetentionDays | quote }}
+  {{- end }}
+  {{- range $i, $net := .Values.api.proxyAllowedNetworks }}
+  Proxy__AllowedNetworks__{{ $i }}: {{ $net | quote }}
+  {{- end }}
+  {{- range $k, $v := .Values.api.config }}
+  {{ $k }}: {{ $v | quote }}
+  {{- end }}

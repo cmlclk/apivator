@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Komut satırı runner'ı: "dotnet tool install -g Apivator.Cli" ile kurulur, "apivator run" olarak çalışır.
+    Collection'ı sunucudan (API anahtarıyla) ya da Postman/Apivator dışa aktarma dosyasından okur ve web ile aynı
+    motorla (RunEngine) bu makinede çalıştırır. Veritabanı kullanmaz.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>apivator</AssemblyName>
+    <RootNamespace>Apivator.Cli</RootNamespace>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>apivator</ToolCommandName>
+    <PackageId>Apivator.Cli</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Apivator</Authors>
+    <Description>Apivator collection'larını komut satırında ve CI'da çalıştırır (JUnit, JSON, HTML raporları).</Description>
+    <PackageTags>api;testing;postman;newman;ci</PackageTags>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apivator.Infrastructure\Apivator.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Apivator.Api.IntegrationTests" />
+  </ItemGroup>
+</Project>

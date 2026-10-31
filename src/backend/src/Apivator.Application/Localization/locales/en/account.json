@@ -1,0 +1,11 @@
+{
+  "auth_validation.email": "Enter a valid email address.",
+  "auth_validation.display_name_required": "Full name is required.",
+  "auth_validation.display_name_length": "Full name can be at most {max} characters.",
+  "auth_validation.password_required": "Password is required.",
+  "auth_validation.invalid_input": "The submitted information is invalid.",
+  "auth_validation.email_password_required": "Email and password are required.",
+  "device.desktop": "Apivator Desktop",
+  "device.unknown": "Unknown device",
+  "account.avatar_too_large": "The image can be at most {kb} KB."
+}

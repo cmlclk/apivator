@@ -1,0 +1,45 @@
+{
+  "body": {
+    "loading": "Fetching schema…",
+    "refreshFailed": "Could not refresh the schema (using the old schema)",
+    "typeCount": "Schema: {count, plural, one {# type} other {# types}}",
+    "none": "No schema",
+    "defineVariables": "Define the variables in the URL to get a schema",
+    "refreshTitle": "Fetch the schema again via introspection",
+    "refresh": "Refresh",
+    "fetch": "Fetch schema",
+    "formatTitle": "Format query",
+    "format": "Format",
+    "explorerTitle": "Schema explorer",
+    "schema": "Schema",
+    "formatFailed": "Could not format: {error}",
+    "query": "Query",
+    "variables": "Variables (JSON)",
+    "queryLabel": "GraphQL query",
+    "variablesLabel": "GraphQL variables"
+  },
+  "explorer": {
+    "openType": "Open type {name}",
+    "insertSample": "Insert sample query for {name}",
+    "createSample": "Create sample operation",
+    "deprecated": "Deprecated: {reason}",
+    "scalar": "Scalar type.",
+    "section": "Schema explorer",
+    "back": "Back",
+    "searchPlaceholder": "Search types or fields",
+    "searchLabel": "Search schema",
+    "matchingFields": "Matching fields",
+    "matchingTypes": "Matching types",
+    "noMatch": "No matches.",
+    "operationKind": "Operation type",
+    "fields": "{kind} fields"
+  },
+  "schema": {
+    "truncated": "The schema response exceeded the size limit and was truncated.",
+    "notJson": "The response is not JSON (status {status}). Is the URL a GraphQL endpoint?",
+    "unknownError": "unknown error",
+    "introspectionOff": "The server has disabled introspection: {message}",
+    "noSchemaGiven": "The server did not return the schema: {message}",
+    "missing": "There is no schema in the response (status {status}). Is the URL a GraphQL endpoint?"
+  }
+}

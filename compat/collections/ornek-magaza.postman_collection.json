@@ -1,0 +1,81 @@
+{
+  "info": {
+    "name": "Örnek Mağaza (uyumluluk taraması)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const moment = require('moment');",
+          "pm.request.headers.upsert({ key: 'X-Istek-Zamani', value: moment().toISOString() });"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Giriş",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "var jsonData = pm.response.json();",
+              "pm.environment.set('token', jsonData.access_token);"
+            ]
+          }
+        }
+      ],
+      "request": { "method": "POST", "url": "{{baseUrl}}/auth/login" }
+    },
+    {
+      "name": "Siparişler",
+      "item": [
+        {
+          "name": "Listele",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const schema = { type: 'object', properties: { data: { type: 'array' } } };",
+                  "pm.test('Şema', () => pm.response.to.have.jsonSchema(schema));",
+                  "tests['Eski stil'] = responseCode.code === 200;",
+                  "const data = pm.response.json().data || [];",
+                  "pm.test('Toplam', () => pm.expect(_.sumBy(data, 'tutar')).to.be.at.least(0));"
+                ]
+              }
+            }
+          ],
+          "request": { "method": "GET", "url": "{{baseUrl}}/siparisler" }
+        },
+        {
+          "name": "SOAP kur servisi",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.headers.get('Content-Type').indexOf('xml') >= 0) {",
+                  "  var kur = xml2Json(responseBody);",
+                  "  pm.environment.set('kur', JSON.stringify(kur));",
+                  "}",
+                  "const uuid = require('uuid');",
+                  "pm.collectionVariables.set('islem', uuid.v4());"
+                ]
+              }
+            }
+          ],
+          "request": { "method": "POST", "url": "{{soapUrl}}" }
+        }
+      ]
+    }
+  ]
+}

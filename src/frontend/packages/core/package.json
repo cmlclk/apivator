@@ -1,0 +1,22 @@
+{
+  "name": "@apivator/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tableExport": "./src/tableExport.ts",
+    "./models": "./src/models/index.ts",
+    "./tools": "./src/tools/index.ts",
+    "./tools/cron": "./src/tools/cron.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.7"
+  }
+}

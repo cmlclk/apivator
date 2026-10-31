@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Token'ı environment'a yazma",
+    "source": "Login isteğinin test script'i (en yaygın kalıp)",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": { "access_token": "eyJhbGciOi.abc.def", "expires_in": 3600, "kullanici": { "id": "u-17" } }
+    },
+    "test": [
+      "var jsonData = pm.response.json();",
+      "pm.environment.set('token', jsonData.access_token);",
+      "pm.environment.set('tokenBitis', Date.now() + jsonData.expires_in * 1000);",
+      "pm.collectionVariables.set('kullaniciId', jsonData.kullanici.id);",
+      "pm.globals.set('sonGiris', 'evet');",
+      "pm.test('Token alındı', () => pm.expect(jsonData.access_token).to.be.a('string').and.not.empty);"
+    ],
+    "expect": {
+      "environment": { "token": "eyJhbGciOi.abc.def", "tokenBitis": "~/^\\d{13}$/" },
+      "collection": { "kullaniciId": "u-17" },
+      "globals": { "sonGiris": "evet" }
+    }
+  },
+  {
+    "name": "Okuma, öncelik, silme",
+    "source": "pm.variables / scope API'leri",
+    "variables": {
+      "environment": { "baseUrl": "https://test.ornek.com", "ortak": "env", "silinecek": "1" },
+      "collection": { "ortak": "collection", "sadeceCol": "c" },
+      "globals": { "ortak": "global", "sadeceGlob": "g" }
+    },
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": [
+      "pm.test('Öncelik: environment > collection > globals', () => {",
+      "    pm.expect(pm.variables.get('ortak')).to.equal('env');",
+      "    pm.expect(pm.variables.get('sadeceCol')).to.equal('c');",
+      "    pm.expect(pm.variables.get('sadeceGlob')).to.equal('g');",
+      "    pm.expect(pm.variables.has('yok')).to.be.false;",
+      "});",
+      "pm.test('Yerel değişken hepsini ezer', () => {",
+      "    pm.variables.set('ortak', 'yerel');",
+      "    pm.expect(pm.variables.get('ortak')).to.equal('yerel');",
+      "    pm.expect(pm.environment.get('ortak')).to.equal('env');",
+      "});",
+      "pm.test('replaceIn', () => {",
+      "    pm.expect(pm.variables.replaceIn('{{baseUrl}}/v1/{{sadeceCol}}')).to.equal('https://test.ornek.com/v1/c');",
+      "    pm.expect(pm.variables.replaceIn('{{$guid}}')).to.match(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);",
+      "    pm.expect(Number(pm.variables.replaceIn('{{$timestamp}}'))).to.be.above(1700000000);",
+      "});",
+      "pm.test('Environment adı ve toObject', () => {",
+      "    pm.expect(pm.environment.name).to.equal('Uyumluluk');",
+      "    pm.expect(pm.environment.toObject()).to.include({ baseUrl: 'https://test.ornek.com' });",
+      "    pm.expect(pm.collectionVariables.toObject()).to.have.property('sadeceCol');",
+      "});",
+      "pm.environment.unset('silinecek');",
+      "pm.collectionVariables.clear();"
+    ],
+    "expect": {
+      "environment": { "silinecek": "<yok>", "baseUrl": "https://test.ornek.com" },
+      "collection": { "sadeceCol": "<yok>", "ortak": "<yok>" }
+    }
+  },
+  {
+    "name": "Nesneyi JSON olarak saklama",
+    "source": "Karmaşık değerleri JSON.stringify ile tutma",
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": [
+      "pm.environment.set('sepet', JSON.stringify({ urunler: [1, 2], toplam: 42.5 }));",
+      "const sepet = JSON.parse(pm.environment.get('sepet'));",
+      "pm.test('Geri okunur', () => pm.expect(sepet.toplam).to.equal(42.5));",
+      "pm.environment.set('sayi', 7);",
+      "pm.test('Sayılar metin olarak saklanır', () => pm.expect(pm.environment.get('sayi')).to.equal(7));"
+    ],
+    "expect": { "environment": { "sepet": "{\"urunler\":[1,2],\"toplam\":42.5}", "sayi": "7" } }
+  },
+  {
+    "name": "İterasyon verisi ve bilgi",
+    "source": "Runner'da veri dosyasıyla çalışan testler",
+    "variables": { "data": { "beklenenDurum": "200", "kullanici": "deniz" } },
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": [
+      "pm.test('Veri dosyasından', () => {",
+      "    pm.expect(pm.response.code).to.equal(Number(pm.iterationData.get('beklenenDurum')));",
+      "    pm.expect(pm.variables.get('kullanici')).to.equal('deniz');",
+      "    pm.expect(pm.iterationData.toObject()).to.have.property('kullanici');",
+      "});",
+      "pm.test('pm.info', () => {",
+      "    pm.expect(pm.info.requestName).to.equal('Uyumluluk');",
+      "    pm.expect(pm.info.eventName).to.equal('test');",
+      "    pm.expect(pm.info.iteration).to.equal(0);",
+      "});"
+    ]
+  },
+  {
+    "name": "Akış kontrolü: setNextRequest",
+    "source": "Runner'da döngü kurma",
+    "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "body": { "sonraki": true } },
+    "test": [
+      "if (pm.response.json().sonraki) {",
+      "    pm.execution.setNextRequest('Sayfa getir');",
+      "} else {",
+      "    postman.setNextRequest(null);",
+      "}",
+      "pm.test('ok', () => {});"
+    ],
+    "expect": { "nextRequest": "Sayfa getir" }
+  }
+]

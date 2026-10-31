@@ -1,0 +1,48 @@
+# Apivator collection'ını çalıştırır; sonuçlar "Tests" sekmesinde görünür.
+# Kurulum: Pipelines › Library'de bir değişken grubu (ör. "apivator") oluşturun:
+#   APIVATOR_SERVER   ör. https://apivator.sirket.com
+#   APIVATOR_API_KEY  gizli (kilit simgesi) — Apivator › Hesap menüsü › API anahtarları
+trigger:
+  branches:
+    include: [main]
+
+schedules:
+  - cron: "0 3 * * *"
+    displayName: Gece testleri
+    branches:
+      include: [main]
+    always: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: apivator
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: sdk
+      version: 10.0.x
+
+  - script: dotnet tool install -g Apivator.Cli
+    displayName: Apivator CLI'ı kur
+
+  - script: >
+      apivator run "Ödeme API"
+      --environment "Test"
+      --reporters cli,junit
+      --reporter-junit-export $(Build.ArtifactStagingDirectory)/apivator.xml
+      --no-color
+    displayName: Collection'ı çalıştır
+    env:
+      APIVATOR_SERVER: $(APIVATOR_SERVER)
+      # Gizli değişkenler ortama kendiliğinden geçmez; açıkça verilmeli.
+      APIVATOR_API_KEY: $(APIVATOR_API_KEY)
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testResultsFormat: JUnit
+      testResultsFiles: $(Build.ArtifactStagingDirectory)/apivator.xml
+      testRunTitle: Apivator

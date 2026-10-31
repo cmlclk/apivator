@@ -1,0 +1,7 @@
+apiVersion: v2
+name: apivator
+description: Apivator (API istemcisi) için Kubernetes kurulumu - API, web arayüzü, ingress, otomatik ölçekleme
+type: application
+version: 0.1.0
+appVersion: "latest"
+kubeVersion: ">=1.25.0-0"

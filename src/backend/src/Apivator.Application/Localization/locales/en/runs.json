@@ -1,0 +1,15 @@
+{
+  "run.iterations_range": "The iteration count must be between 1 and {max}.",
+  "run.delay_range": "The delay must be between 0 and {max} ms.",
+  "run.data_rows_max": "The data file can have at most {max} rows.",
+  "run.stopped": "Run stopped.",
+  "run.max_steps": "A run can send at most {max} requests (setNextRequest loop?).",
+  "run.next_request_missing": "setNextRequest: no request named \"{name}\" in this run; the iteration ended.",
+  "run.not_found": "Run report not found.",
+  "run.report_invalid": "The run report is invalid.",
+  "run.csv_unclosed_quote": "CSV: unclosed quote.",
+  "run.csv_empty": "The CSV file is empty.",
+  "run.csv_empty_column": "The CSV header row has an empty column name.",
+  "run.json_unreadable": "Couldn't read JSON: {error}",
+  "run.json_not_array": "A JSON data file must be an array of objects: [{ \"name\": \"Alice\" }, ...]"
+}

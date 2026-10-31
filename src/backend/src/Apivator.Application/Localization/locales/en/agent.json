@@ -1,0 +1,8 @@
+{
+  "agent.oauth_state": "state must be 16–256 characters.",
+  "agent.oauth_unknown_title": "Sign-in request not recognized",
+  "agent.oauth_unknown": "This link has expired or has already been used. Try again from Apivator.",
+  "agent.oauth_failed_title": "Sign-in could not be completed",
+  "agent.oauth_done_title": "Signed in",
+  "agent.oauth_done": "You can return to Apivator; you can close this tab."
+}

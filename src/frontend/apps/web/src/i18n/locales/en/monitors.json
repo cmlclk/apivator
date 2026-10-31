@@ -1,0 +1,93 @@
+{
+  "state": {
+    "stopped": "Stopped",
+    "off": "Off",
+    "failing": "Failing",
+    "healthy": "Healthy",
+    "never": "Not run yet"
+  },
+  "detail": {
+    "title": "Monitor: {name}",
+    "status": "Status",
+    "next": "Next: {time}",
+    "runsAs": "Runs as {name}",
+    "runNow": "Run now",
+    "settings": "Settings",
+    "delete": "Delete",
+    "period": "Period",
+    "periodDay": "24 hours",
+    "periodWeek": "7 days",
+    "periodMonth": "30 days",
+    "emptyWithNext": "No runs in this period. First run {time}. To try it right away, use “Run now”.",
+    "empty": "No runs in this period. To try it right away, use “Run now”.",
+    "successRate": "Success rate",
+    "runs": "Runs",
+    "avgResponse": "Avg. response time",
+    "consecutiveFailures": "Consecutive failures",
+    "deleteTitle": "Delete this monitor?",
+    "deleteConfirm": "Delete",
+    "deleteBody": "“{name}” will stop running. Past reports remain in the runner history."
+  },
+  "runs": {
+    "title": "Recent runs",
+    "success": "Healthy",
+    "failure": "Failing",
+    "scheduled": "scheduled",
+    "manual": "manual",
+    "incomplete": "did not complete",
+    "requestErrors": "{count, plural, one {# request got no response} other {# requests got no response}}",
+    "summary": "{requests, plural, one {# request} other {# requests}} · {ms} ms",
+    "noResponse": "no response"
+  },
+  "settings": {
+    "titleEdit": "Monitor settings: {name}",
+    "titleNew": "New monitor",
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "intro": "A monitor runs the collection on the server on a schedule and notifies you when a test fails or a request gets no response. The shared initial values of the environment and globals are used.",
+    "collection": "Collection",
+    "noCollections": "No collections in this workspace",
+    "environment": "Environment",
+    "none": "None",
+    "name": "Name",
+    "frequency": "How often",
+    "customCron": "Custom (cron)",
+    "timeZone": "Time zone",
+    "cronExpression": "Cron expression",
+    "cronHint": "minute hour day month weekday · {description} · at most every 5 minutes",
+    "notifications": "Notifications",
+    "email": "Email",
+    "emailPlaceholder": "Sent to you if left empty · separate with commas",
+    "webhook": "Webhook (optional)",
+    "format": "Format",
+    "when": "When",
+    "whenChanges": "When the status changes (on first failure and on recovery)",
+    "whenEvery": "On every failed run (and on recovery)",
+    "enabled": "Enabled",
+    "enabledAfterError": "If you turn it back on, the monitor will run with your permissions from now on.",
+    "enabledHint": "A disabled monitor does not run on schedule; it can still be run manually."
+  },
+  "panel": {
+    "title": "Monitors",
+    "new": "New monitor",
+    "empty": "Run your collections at regular intervals and get notified by email, Slack or Teams when a test fails."
+  },
+  "chart": {
+    "seconds": "{value} s",
+    "title": "Response time (average per request)",
+    "ok": "Healthy",
+    "failed": "Failing",
+    "chartView": "Chart",
+    "tableView": "Table",
+    "time": "Time",
+    "result": "Result",
+    "perRequest": "Per request",
+    "pointOk": "{time}: healthy, {value}",
+    "pointFailed": "{time}: failing, {value}",
+    "hover": "{value} / request · {requests, plural, one {# request} other {# requests}} · {passed} passed · {failed} failed"
+  },
+  "schedule": {
+    "invalid": "cron: {cron}"
+  }
+}

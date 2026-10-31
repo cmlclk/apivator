@@ -1,0 +1,283 @@
+{
+  "categories": {
+    "encoding": "Kodlama / çözme",
+    "convert": "Veri dönüştürme",
+    "format": "Biçimlendirme ve sorgu",
+    "security": "Güvenlik ve kimlik",
+    "generate": "Üreteçler",
+    "time": "Zaman ve sayı",
+    "web": "Web ve ağ",
+    "text": "Metin"
+  },
+  "tools": {
+    "base64": {
+      "name": "Base64",
+      "description": "Metin ve dosyayı Base64 olarak kodla ya da çöz; URL-safe, görsel önizleme.",
+      "keywords": "base64|encode|decode|kodla|çöz|görsel|dosya"
+    },
+    "url": {
+      "name": "URL kodlama",
+      "description": "URL encode / decode (bileşen ya da tam adres).",
+      "keywords": "url|percent|encode|decode|query|uri"
+    },
+    "html-entity": {
+      "name": "HTML varlıkları",
+      "description": "HTML entity kodla / çöz: &lt; &ccedil; &#231; &#xE7;.",
+      "keywords": "html|entity|entities|varlık|escape|kaçış|encode|decode|amp|xml"
+    },
+    "unicode": {
+      "name": "Unicode kaçış",
+      "description": "Metin ↔ \\u00e7, \\u'{'1F600'}', \\U0001F600, U+00E7 kaçış dizileri.",
+      "keywords": "unicode|escape|unescape|kaçış|\\u|utf-16|surrogate|kod noktası|codepoint"
+    },
+    "hex": {
+      "name": "Hex ↔ metin",
+      "description": "Metni UTF-8 baytlarının hex gösterimine çevir ya da hex dökümünü metne çöz.",
+      "keywords": "hex|hexadecimal|onaltılık|bayt|byte|utf-8|0x|encode|decode"
+    },
+    "base32": {
+      "name": "Base32",
+      "description": "RFC 4648 Base32 ve Base32hex kodla / çöz; dolgulu ya da dolgusuz.",
+      "keywords": "base32|base32hex|rfc4648|totp|otp|encode|decode|kodla|çöz"
+    },
+    "string-escape": {
+      "name": "String kaçışı",
+      "description": "JSON, JavaScript, Java, C#, SQL ve regex için dize kaçışla / kaçışı çöz.",
+      "keywords": "string|dize|escape|unescape|kaçış|json|javascript|java|c#|csharp|verbatim|sql|regex|tırnak|quote"
+    },
+    "compress": {
+      "name": "Sıkıştırma",
+      "description": "gzip / deflate sıkıştır ya da aç; Base64 veya hex, dosya yükle ve indir.",
+      "keywords": "gzip|gunzip|deflate|zlib|inflate|compress|decompress|sıkıştır|aç|gz"
+    },
+    "json-format": {
+      "name": "JSON biçimlendirici",
+      "description": "Biçimlendir, küçült, doğrula, anahtarları sırala; ağaç görünümü.",
+      "keywords": "json|format|pretty|minify|validate|doğrula|küçült|beautify|ağaç"
+    },
+    "json-convert": {
+      "name": "JSON dönüştürücü",
+      "description": "JSON ↔ CSV, Excel, YAML, TOML, XML ve query string; CSV ↔ Excel.",
+      "keywords": "json|csv|excel|xlsx|yaml|yml|toml|xml|query string|querystring|form-urlencoded|x-www-form-urlencoded|url parametre|tsv|convert|dönüştür|çevir|tablo"
+    },
+    "json-schema": {
+      "name": "JSON Schema",
+      "description": "JSON örneğinden JSON Schema (2020-12 / draft-07) çıkarır; şemadan ya da OpenAPI şemasından örnek veri üretir; veriyi şemaya göre doğrular.",
+      "keywords": "json schema|schema|şema|çıkar|infer|örnek veri|sample|mock|sahte veri|openapi|swagger|$ref|draft-07|2020-12|doğrula|doğrulama|validate|validator|validation"
+    },
+    "curl-code": {
+      "name": "cURL → kod",
+      "description": "cURL komutundan JavaScript, Python, C#, Go, PowerShell kodu üret; isteği yeni sekmede aç.",
+      "keywords": "curl|kod|code|snippet|codegen|dönüştür|convert|javascript|fetch|python|requests|c#|csharp|go|powershell|istek|request"
+    },
+    "har": {
+      "name": "HAR görüntüleyici",
+      "description": "HAR dosyasındaki istekleri süz, sırala, incele; cURL olarak kopyala.",
+      "keywords": "har|http archive|network|ağ|devtools|geliştirici araçları|kayıt|istek|yanıt|request|response|timing|zamanlama|waterfall"
+    },
+    "json-model": {
+      "name": "JSON → model",
+      "description": "JSON'dan ya da şemadan C#, Java, Kotlin, TypeScript, Python, Go, Swift, Dart sınıfı.",
+      "keywords": "model|sınıf|class|dto|pojo|kod|code|c#|csharp|java|kotlin|typescript|python|go|swift|dart|schema|openapi"
+    },
+    "xml-format": {
+      "name": "XML biçimlendirici",
+      "description": "XML biçimlendir ve küçült; yorum, CDATA ve karışık içerik korunur, hatada satır/sütun.",
+      "keywords": "xml|format|pretty|beautify|minify|biçimlendir|küçült|soap"
+    },
+    "yaml-format": {
+      "name": "YAML biçimlendirici",
+      "description": "YAML girinti, satır genişliği ve anahtar sıralama; çok belgeli dosyalar.",
+      "keywords": "yaml|yml|format|pretty|biçimlendir|girinti|openapi|kubernetes"
+    },
+    "sql-format": {
+      "name": "SQL biçimlendirici",
+      "description": "PostgreSQL, MySQL, T-SQL, SQLite, PL/SQL; anahtar kelime büyük/küçük harf, küçültme.",
+      "keywords": "sql|format|pretty|beautify|minify|biçimlendir|küçült|sorgu|postgresql|mysql|t-sql|sql server|sqlite|pl/sql"
+    },
+    "graphql-format": {
+      "name": "GraphQL biçimlendirici",
+      "description": "GraphQL sorgu ve şema (SDL) biçimlendir ve küçült.",
+      "keywords": "graphql|gql|sdl|query|format|pretty|minify|biçimlendir|küçült|şema"
+    },
+    "html-format": {
+      "name": "HTML biçimlendirici",
+      "description": "HTML biçimlendir ve küçült; pre, script ve style içeriği olduğu gibi kalır.",
+      "keywords": "html|htm|format|pretty|beautify|minify|biçimlendir|küçült"
+    },
+    "jsonpath": {
+      "name": "Sorgu (JSONPath / JMESPath / XPath)",
+      "description": "Script'lerde kullanacağınız JSONPath ve JMESPath ifadelerini ya da XML için XPath'i canlı deneyin.",
+      "keywords": "jsonpath|jmespath|xpath|xml|query|sorgu|filter|filtre|$.."
+    },
+    "diff": {
+      "name": "Metin / JSON farkı",
+      "description": "İki metni satır satır ya da iki JSON belgesini yapısal olarak karşılaştır; geçmişteki yanıtlardan seç.",
+      "keywords": "diff|fark|compare|karşılaştır|json|metin|geçmiş|history|yanıt|response"
+    },
+    "python-indent": {
+      "name": "Python girinti düzenleyici",
+      "description": "Sekme ↔ boşluk, girinti genişliği, karışık ve tutarsız girintiyi satır numarasıyla gösterme; satır sonu boşlukları ve LF/CRLF.",
+      "keywords": "python|py|girinti|indent|indentation|reindent|sekme|tab|boşluk|spaces|taberror|indentationerror|pep8|satır sonu|trailing whitespace|crlf|lf"
+    },
+    "regex": {
+      "name": "Regex kodlama",
+      "description": "Düzenli ifade eşleşmeleri, gruplar ve değiştirme önizlemesi.",
+      "keywords": "regex|regexp|düzenli ifade|match|replace|eşleşme"
+    },
+    "jwt": {
+      "name": "JWT çözücü",
+      "description": "Header, payload ve süreler; imza doğrulama ve test için imzalama.",
+      "keywords": "jwt|token|bearer|jws|imza|signature|exp|claims"
+    },
+    "hash": {
+      "name": "Hash ve HMAC",
+      "description": "MD5, SHA-1, SHA-256/384/512; metin ve dosya; HMAC.",
+      "keywords": "hash|md5|sha|sha256|sha1|sha512|hmac|checksum|özet"
+    },
+    "bcrypt": {
+      "name": "bcrypt",
+      "description": "bcrypt parola özeti üretme ve doğrulama; $2a$/$2b$/$2y$, maliyet 4–15.",
+      "keywords": "bcrypt|parola|şifre|password|hash|özet|doğrula|verify|salt|tuz|blowfish|2b|2y"
+    },
+    "aes": {
+      "name": "AES şifrele / çöz",
+      "description": "AES-GCM ve AES-CBC; ham anahtar ya da paroladan (PBKDF2) türetme, IV, AAD; Base64 / hex.",
+      "keywords": "aes|gcm|cbc|encrypt|decrypt|şifrele|çöz|şifreleme|pbkdf2|iv|aad|cipher|symmetric|simetrik"
+    },
+    "key-pair": {
+      "name": "Anahtar çifti üretici",
+      "description": "RSA (2048–4096), ECDSA (P-256/384/521) ve Ed25519; PEM / JWK, parmak izi, RSA-OAEP deneme.",
+      "keywords": "rsa|ecdsa|ed25519|key pair|keypair|anahtar çifti|pem|jwk|pkcs8|spki|public key|private key|açık anahtar|özel anahtar|fingerprint|parmak izi|oaep|generate|üret"
+    },
+    "certificate": {
+      "name": "Sertifika çözücü (X.509 / PEM)",
+      "description": "PEM/DER sertifika, zincir, CSR ve anahtarlar: konu, SAN, geçerlilik, parmak izi, zincir denetimi.",
+      "keywords": "x509|x.509|pem|der|crt|cer|certificate|sertifika|ssl|tls|csr|zincir|chain|san|fingerprint|parmak izi|public key|private key"
+    },
+    "basic-auth": {
+      "name": "Basic auth",
+      "description": "Kullanıcı ve şifreden Authorization: Basic header üret ya da mevcut header’ı çöz.",
+      "keywords": "basic|basic auth|authorization|header|kimlik|kullanıcı|şifre|base64|http auth"
+    },
+    "pkce": {
+      "name": "OAuth 2.0 PKCE",
+      "description": "code_verifier ve code_challenge (S256 / plain) üret.",
+      "keywords": "pkce|oauth|oauth2|code_verifier|code_challenge|s256|rfc 7636|authorization code"
+    },
+    "password": {
+      "name": "Şifre ve token üretici",
+      "description": "Güçlü şifre, parola cümlesi ve rastgele token (hex / Base64 / Base64url); entropi gösterimi.",
+      "keywords": "şifre|parola|password|passphrase|token|random|rastgele|secret|api key|entropi|entropy|üret|generate"
+    },
+    "uuid": {
+      "name": "ID üretici",
+      "description": "UUID v4/v7, ULID ve nanoid; toplu üretim (satır, JSON, CSV), UUID/ULID inceleme.",
+      "keywords": "uuid|guid|ulid|nanoid|v4|v7|id|kimlik|toplu|bulk|üret|generate"
+    },
+    "lorem": {
+      "name": "Lorem ipsum",
+      "description": "Yer tutucu metin: kelime, cümle, paragraf; Türkçe metin, HTML <p>, tohumla tekrarlanabilir.",
+      "keywords": "lorem|ipsum|yer tutucu|placeholder|dummy text|metin|paragraf|üret"
+    },
+    "random": {
+      "name": "Rastgele sayı ve tarih",
+      "description": "Aralıkta tamsayı, ondalık ve tarih; tekrarsız, sıralı, saat dilimli.",
+      "keywords": "random|rastgele|sayı|number|integer|tamsayı|ondalık|decimal|tarih|date|aralık|range"
+    },
+    "qr": {
+      "name": "QR kod",
+      "description": "Metin ya da URL için QR kod; hata düzeltme düzeyi, boyut, renk; SVG ve PNG indir.",
+      "keywords": "qr|qr code|karekod|kare kod|barcode|url|svg|png"
+    },
+    "fake-data": {
+      "name": "Sahte veri",
+      "description": "Türkçe ya da İngilizce test verisi: ad, adres, e-posta, telefon, şirket, algoritmaya uygun TCKN, IBAN ve kart numarası; JSON, CSV, SQL.",
+      "keywords": "sahte veri|fake|faker|mock|test verisi|tckn|kimlik no|iban|luhn|kart|credit card|ad|soyad|adres|e-posta|telefon|şirket|sql insert|csv"
+    },
+    "timestamp": {
+      "name": "Zaman damgası",
+      "description": "Unix zaman damgası ↔ tarih; saat dilimi, ISO 8601, RFC 1123, iki tarih arası süre.",
+      "keywords": "unix|timestamp|epoch|tarih|date|iso|zaman|saat dilimi"
+    },
+    "cron": {
+      "name": "Cron açıklayıcı",
+      "description": "Cron ifadesini Türkçe açıklar, seçilen saat diliminde sonraki çalışma zamanlarını gösterir (monitörlerle aynı kurallar).",
+      "keywords": "cron|crontab|zamanlama|schedule|monitör|monitor|sonraki çalışma|next run|quartz|cronos"
+    },
+    "number-base": {
+      "name": "Sayı tabanı",
+      "description": "İkili, sekizli, onlu, onaltılı ve 2–36 tabanları arasında dönüşüm; ikiye tümleyen, bit görünümü.",
+      "keywords": "binary|ikili|hex|onaltılı|octal|sekizli|decimal|onlu|radix|taban|base|twos complement|ikiye tümleyen|bit|signed|işaretli"
+    },
+    "byte-units": {
+      "name": "Bayt birimleri",
+      "description": "KB, MB, GiB ve bit dönüşümleri (SI / IEC), okunur boyut ve aktarım süresi.",
+      "keywords": "byte|bayt|bit|kb|mb|gb|kib|mib|gib|size|boyut|birim|unit|bandwidth|bant genişliği|mbps|transfer|aktarım"
+    },
+    "color": {
+      "name": "Renk",
+      "description": "HEX, RGB, HSL, HWB, OKLCH ve CSS renk adları arasında dönüşüm; WCAG kontrast, ton paleti.",
+      "keywords": "color|colour|renk|hex|rgb|rgba|hsl|hwb|oklch|css|contrast|kontrast|wcag|palet|palette"
+    },
+    "url-parser": {
+      "name": "URL ayrıştırıcı",
+      "description": "Adresi şema, host, port, yol, query ve fragment olarak ayır, düzenle ve yeniden birleştir; punycode.",
+      "keywords": "url|uri|adres|parse|ayrıştır|query|parametre|host|port|path|fragment|punycode|idn|xn--"
+    },
+    "http-reference": {
+      "name": "HTTP başvuru",
+      "description": "Durum kodları, header’lar ve MIME tipleri; Türkçe açıklama ve örneklerle, çevrimdışı.",
+      "keywords": "http|status|durum kodu|status code|404|500|header|başlık|mime|content-type|media type|rfc|başvuru|reference"
+    },
+    "cookie": {
+      "name": "Cookie ayrıştırıcı",
+      "description": "Cookie ve Set-Cookie başlıklarını çöz: son kullanma, SameSite, önek ve boyut denetimleri; alanlardan Set-Cookie oluştur.",
+      "keywords": "cookie|çerez|set-cookie|samesite|httponly|secure|expires|max-age|__host-|partitioned|chips|oturum|session|header"
+    },
+    "user-agent": {
+      "name": "User-Agent çözümleyici",
+      "description": "User-Agent metninden tarayıcı, motor, işletim sistemi, cihaz türü ve botları tanı.",
+      "keywords": "user agent|ua|tarayıcı|browser|işletim sistemi|os|cihaz|device|bot|crawler|googlebot|client hints|sec-ch-ua|mobil"
+    },
+    "cidr": {
+      "name": "IP / CIDR hesaplayıcı",
+      "description": "IPv4 ve IPv6 ağ adresi, maske, kullanılabilir aralık, adres türü; alt ağlara bölme ve aralık denetimi.",
+      "keywords": "ip|cidr|subnet|alt ağ|netmask|maske|ipv4|ipv6|network|ağ|wildcard|rfc1918|reverse dns|ptr"
+    },
+    "case-convert": {
+      "name": "Ad dönüşümü",
+      "description": "camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case ve diğer biçimler; Türkçe büyük/küçük harf kuralları, ASCII'ye çevirme.",
+      "keywords": "case|büyük küçük harf|camelcase|pascalcase|snake case|kebab case|constant case|title case|sentence case|ad dönüşümü|değişken adı|identifier|naming|upper|lower"
+    },
+    "slug": {
+      "name": "Slug üretici",
+      "description": "Başlıklardan URL dostu slug; Türkçe harf çevirisi, ayırıcı, en fazla uzunluk, her satıra bir slug.",
+      "keywords": "slug|url|seo|permalink|başlık|türkçe karakter|transliterate|ascii"
+    },
+    "line-ops": {
+      "name": "Satır işlemleri",
+      "description": "Satırları sırala (Türkçe/doğal), tekilleştir, boşları sil, kırp, ters çevir, karıştır, önek/sonek ekle, numarala, birleştir/böl, filtrele; adımlar zincirlenir.",
+      "keywords": "satır|line|lines|sırala|sort|tekilleştir|unique|dedupe|yinelenen|duplicate|boş satır|trim|kırp|ters çevir|reverse|karıştır|shuffle|önek|prefix|sonek|suffix|numarala|birleştir|join|böl|split|filtrele|filter|wrap"
+    },
+    "text-stats": {
+      "name": "Metin sayacı",
+      "description": "Karakter (grapheme, kod noktası, UTF-16), sözcük, satır, paragraf, cümle, UTF-8/UTF-16 bayt, okuma süresi ve en sık sözcükler.",
+      "keywords": "sayaç|counter|karakter|character count|kelime|sözcük|word count|satır sayısı|bayt|byte|okuma süresi|reading time|istatistik|stats"
+    },
+    "byte-view": {
+      "name": "Bayt görünümü",
+      "description": "Metni hexdump ve ikili olarak gör (UTF-8, UTF-16, Latin-1); BOM, sıfır genişlikli ve bölünmez boşluk gibi görünmeyen karakterleri bul; geri çevir.",
+      "keywords": "hexdump|hex|binary|ikili|bayt|byte|utf-8|utf-16|latin-1|bom|zwsp|nbsp|görünmeyen karakter|invisible|kod noktası|code point"
+    },
+    "sql-insert": {
+      "name": "CSV / Excel → SQL INSERT",
+      "description": "CSV ya da Excel tablosundan INSERT (isteğe bağlı CREATE TABLE) üretir; PostgreSQL, MySQL, SQL Server, SQLite, Oracle.",
+      "keywords": "sql|insert|csv|excel|xlsx|tablo|veritabanı|veritabani|import|içe aktar|postgres|postgresql|mysql|mariadb|mssql|sql server|sqlite|oracle|create table|toplu ekle"
+    }
+  },
+  "openIn": {
+    "label": "Araçlarda aç",
+    "hint": "Gövdeyi ya da seçili metni bir araçta aç"
+  }
+}

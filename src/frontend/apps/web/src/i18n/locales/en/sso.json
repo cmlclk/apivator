@@ -1,0 +1,65 @@
+{
+  "errors": {
+    "expired": "The sign-in request has expired. Please try again.",
+    "denied": "Sign-in was denied or cancelled at the identity provider.",
+    "providerError": "The identity provider returned an error. Try again in a moment.",
+    "notAvailable": "SSO is not available for this email address.",
+    "invalidResponse": "An invalid response was received from the identity provider.",
+    "noEmail": "The identity provider did not share your email address.",
+    "emailUnverified": "Your email address at the identity provider is not verified.",
+    "domainMismatch": "Your email address's domain does not match this organization's SSO domains.",
+    "loginFailed": "SSO sign-in could not be completed. Please try again.",
+    "notMember": "You are not a member of this organization and automatic membership is off. Contact your admin."
+  },
+  "linkSent": "An Apivator account already exists for this email address. Open the link we sent to your email to link your account to SSO.",
+  "login": {
+    "invalidAuthority": "The identity provider address is invalid.",
+    "timeout": "Sign-in was not completed within 5 minutes.",
+    "storageBlocked": "The browser does not allow session storage; SSO sign-in is not possible."
+  },
+  "provider": {
+    "title": "Register an application at the identity provider",
+    "body": "Create a new application at your identity provider (OIDC, authorization code + PKCE) and register the redirect address (Redirect URI) below.",
+    "copy": "Copy Redirect URI",
+    "redirectUri": "Redirect URI",
+    "issuerExample": "Issuer address (e.g. https://company.okta.com or https://sso.company.com/realms/company)"
+  },
+  "connection": {
+    "title": "Connection details",
+    "authority": "Issuer (Authority)",
+    "clientId": "Client ID",
+    "clientSecret": "Client secret",
+    "stored": "••• saved",
+    "secretHint": "If left empty, the saved secret is kept.",
+    "removeSecret": "Delete the saved secret (public client / PKCE)",
+    "autoProvision": "Create members automatically",
+    "autoProvisionHint": "People in a verified domain get an account and membership on first sign-in.",
+    "defaultRole": "Default role",
+    "saved": "Connection details saved.",
+    "save": "Save"
+  },
+  "domains": {
+    "title": "Email domains",
+    "body": "SSO only works for email addresses in verified domains. Add the domain, enter the TXT record below in your DNS and press \"Verify\".",
+    "list": "Domains",
+    "verified": "Verified",
+    "pending": "Awaiting verification",
+    "verify": "Verify",
+    "remove": "Remove domain {domain}",
+    "recordName": "TXT record name",
+    "copyName": "Copy record name",
+    "recordValue": "TXT record value",
+    "copyValue": "Copy record value",
+    "name": "Domain",
+    "add": "Add"
+  },
+  "state": {
+    "title": "Activation",
+    "notReady": "To turn SSO on, save the connection details and verify at least one domain.",
+    "enable": "Turn on SSO",
+    "enableHint": "People in verified domains can use \"Sign in with SSO\" on the sign-in screen.",
+    "enforce": "Require SSO",
+    "enforceHint": "Accounts in these domains cannot sign in with a password. The organization owner is exempt. Two-step verification is left to the identity provider."
+  },
+  "ownerOnly": "Only the organization owner can change single sign-on settings."
+}

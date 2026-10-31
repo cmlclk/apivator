@@ -1,0 +1,16 @@
+Apivator kuruldu: {{ .Values.publicUrl }}
+{{- if eq .Values.migration.mode "job" }}
+
+Veritabanı şeması her kurulum/güncellemede "{{ include "apivator.fullname" . }}-migrate" Job'u ile güncellenir.
+{{- else if eq .Values.migration.mode "startup" }}
+
+Şema güncellemesini API pod'ları açılışta yapar (migration.mode=startup).
+{{- end }}
+{{- if include "apivator.multiReplica" . }}
+
+Birden fazla API replica'sı etkin. Canlı kanal için ingress'te cookie affinity gerekir
+(ingress.nginx.stickySessions; nginx dışı controller'larda kendi affinity ayarınızı annotations ile verin).
+Not: "kim çevrimiçi" bilgisi ve hız sınırları pod başınadır (bkz. docs/kurulum.md).
+{{- end }}
+
+Durum: kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}

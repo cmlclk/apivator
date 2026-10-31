@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package magaza.v1;
+
+option csharp_namespace = "Apivator.Api.IntegrationTests.Grpc.Magaza";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
+
+// gRPC köprüsü testleri için örnek servis: dört çağrı türünün hepsi.
+service Katalog {
+  rpc UrunGetir(UrunIstegi) returns (Urun);
+  rpc UrunleriListele(ListeIstegi) returns (stream Urun);
+  rpc TopluEkle(stream Urun) returns (Ozet);
+  rpc Sohbet(stream Mesaj) returns (stream Mesaj);
+}
+
+enum Durum {
+  DURUM_BELIRSIZ = 0;
+  STOKTA = 1;
+  TUKENDI = 2;
+}
+
+message UrunIstegi {
+  string id = 1;
+}
+
+message ListeIstegi {
+  int32 adet = 1;
+  int32 bekleme_ms = 2;
+}
+
+message Urun {
+  message Boyut {
+    float en = 1;
+    float boy = 2;
+  }
+
+  string id = 1;
+  string ad = 2;
+  double fiyat = 3;
+  int64 stok = 4;
+  Durum durum = 5;
+  repeated string etiketler = 6;
+  map<string, int32> depolar = 7;
+  google.protobuf.Timestamp eklenme = 8;
+  google.protobuf.StringValue not = 9;
+  google.protobuf.Struct ozellikler = 10;
+  sint32 indirim = 11;
+  bytes resim = 12;
+  oneof kaynak {
+    string tedarikci = 13;
+    int32 fabrika = 14;
+  }
+  repeated int32 puanlar = 15;
+  Boyut boyut = 16;
+}
+
+message Ozet {
+  int32 adet = 1;
+  double toplam = 2;
+}
+
+message Mesaj {
+  string metin = 1;
+}

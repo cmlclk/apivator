@@ -1,0 +1,65 @@
+{
+  "errors": {
+    "expired": "Giriş isteğinin süresi doldu. Lütfen yeniden deneyin.",
+    "denied": "Kimlik sağlayıcıda giriş reddedildi ya da iptal edildi.",
+    "providerError": "Kimlik sağlayıcı bir hata döndürdü. Biraz sonra yeniden deneyin.",
+    "notAvailable": "Bu e-posta adresi için SSO kullanılamıyor.",
+    "invalidResponse": "Kimlik sağlayıcıdan geçersiz bir yanıt alındı.",
+    "noEmail": "Kimlik sağlayıcı e-posta adresinizi paylaşmadı.",
+    "emailUnverified": "Kimlik sağlayıcıdaki e-posta adresiniz doğrulanmamış.",
+    "domainMismatch": "E-posta adresinizin alan adı bu organizasyonun SSO alan adlarıyla eşleşmiyor.",
+    "loginFailed": "SSO ile giriş tamamlanamadı. Lütfen yeniden deneyin.",
+    "notMember": "Bu organizasyonun üyesi değilsiniz ve otomatik üyelik kapalı. Yöneticinizle görüşün."
+  },
+  "linkSent": "Bu e-posta adresiyle zaten bir Apivator hesabı var. Hesabınızı SSO'ya bağlamak için e-postanıza gönderdiğimiz bağlantıyı açın.",
+  "login": {
+    "invalidAuthority": "Kimlik sağlayıcı adresi geçersiz.",
+    "timeout": "Giriş 5 dakika içinde tamamlanmadı.",
+    "storageBlocked": "Tarayıcı oturum depolamasına izin vermiyor; SSO ile giriş yapılamıyor."
+  },
+  "provider": {
+    "title": "Kimlik sağlayıcıda uygulama kaydedin",
+    "body": "Kimlik sağlayıcınızda (OIDC, authorization code + PKCE) yeni bir uygulama oluşturun ve aşağıdaki yönlendirme adresini (Redirect URI) kaydedin.",
+    "copy": "Redirect URI'yi kopyala",
+    "redirectUri": "Redirect URI",
+    "issuerExample": "Issuer adresi (ör. https://firma.okta.com veya https://sso.firma.com/realms/firma)"
+  },
+  "connection": {
+    "title": "Bağlantı bilgileri",
+    "authority": "Issuer (Authority)",
+    "clientId": "Client ID",
+    "clientSecret": "Client secret",
+    "stored": "••• kayıtlı",
+    "secretHint": "Boş bırakırsanız kayıtlı secret korunur.",
+    "removeSecret": "Kayıtlı secret'ı sil (public client / PKCE)",
+    "autoProvision": "Üyeleri otomatik oluştur",
+    "autoProvisionHint": "Doğrulanmış alan adındaki kişiler ilk girişte hesap ve üyelik alır.",
+    "defaultRole": "Varsayılan rol",
+    "saved": "Bağlantı bilgileri kaydedildi.",
+    "save": "Kaydet"
+  },
+  "domains": {
+    "title": "E-posta alan adları",
+    "body": "SSO yalnızca doğrulanmış alan adlarındaki e-posta adresleri için çalışır. Alan adını ekleyin, DNS'e aşağıdaki TXT kaydını girin ve \"Doğrula\"ya basın.",
+    "list": "Alan adları",
+    "verified": "Doğrulandı",
+    "pending": "Doğrulama bekliyor",
+    "verify": "Doğrula",
+    "remove": "{domain} alan adını kaldır",
+    "recordName": "TXT kayıt adı",
+    "copyName": "Kayıt adını kopyala",
+    "recordValue": "TXT kayıt değeri",
+    "copyValue": "Kayıt değerini kopyala",
+    "name": "Alan adı",
+    "add": "Ekle"
+  },
+  "state": {
+    "title": "Etkinleştirme",
+    "notReady": "SSO'yu açmak için bağlantı bilgilerini kaydedin ve en az bir alan adını doğrulayın.",
+    "enable": "SSO'yu aç",
+    "enableHint": "Doğrulanmış alan adlarındaki kişiler giriş ekranında \"SSO ile giriş yap\"ı kullanabilir.",
+    "enforce": "SSO zorunlu",
+    "enforceHint": "Bu alan adlarındaki hesaplar şifreyle giriş yapamaz. Organizasyon sahibi muaftır. İki adımlı doğrulama kimlik sağlayıcıya bırakılır."
+  },
+  "ownerOnly": "Tek oturum açma ayarlarını yalnızca organizasyon sahibi değiştirebilir."
+}

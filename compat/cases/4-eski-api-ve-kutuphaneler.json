@@ -1,0 +1,132 @@
+[
+  {
+    "name": "tests[] ve responseCode",
+    "source": "Postman v1 (eski sandbox) test script'leri",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json", "X-Toplam": "3" },
+      "body": { "token": "eski-token", "liste": [1, 2, 3] }
+    },
+    "test": [
+      "tests['Status code is 200'] = responseCode.code === 200;",
+      "tests['Body has token'] = responseBody.has('token');",
+      "var data = JSON.parse(responseBody);",
+      "tests['Liste 3 eleman'] = data.liste.length === 3;",
+      "tests['Header'] = responseHeaders['X-Toplam'] === '3';",
+      "tests['Süre'] = responseTime < 5000;",
+      "tests['Bilerek kalan'] = data.liste.length === 4;",
+      "postman.setEnvironmentVariable('eskiToken', data.token);",
+      "postman.setGlobalVariable('eskiGlobal', 'g');",
+      "tests['Okuma'] = postman.getEnvironmentVariable('eskiToken') === 'eski-token';"
+    ],
+    "expect": {
+      "tests": {
+        "Status code is 200": "passed",
+        "Body has token": "passed",
+        "Liste 3 eleman": "passed",
+        "Header": "passed",
+        "Süre": "passed",
+        "Bilerek kalan": "failed",
+        "Okuma": "passed"
+      },
+      "environment": { "eskiToken": "eski-token" },
+      "globals": { "eskiGlobal": "g" }
+    }
+  },
+  {
+    "name": "environment ve globals nesneleri, iteration, data",
+    "source": "Eski sandbox global'leri",
+    "variables": { "environment": { "ortam": "test" }, "globals": { "surum": "2" }, "data": { "satir": "a" } },
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": [
+      "tests['environment'] = environment.ortam === 'test';",
+      "tests['globals'] = globals.surum === '2';",
+      "tests['data'] = data.satir === 'a';",
+      "tests['iteration'] = iteration === 0;",
+      "tests['request'] = request.method === 'GET' && request.url.indexOf('/respond') > 0;"
+    ],
+    "expect": { "tests": { "environment": "passed", "globals": "passed", "data": "passed", "iteration": "passed", "request": "passed" } }
+  },
+  {
+    "name": "SOAP: xml2Json",
+    "source": "SOAP servislerinin test script'leri",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "text/xml; charset=utf-8" },
+      "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><GetKurResponse xmlns=\"http://tcmb.example/\"><Kur para=\"USD\">34.25</Kur><Kur para=\"EUR\">37.10</Kur><Tarih>2026-10-22</Tarih><Bos/></GetKurResponse></soap:Body></soap:Envelope>"
+    },
+    "test": [
+      "var json = xml2Json(responseBody);",
+      "var yanit = json['soap:Envelope']['soap:Body'].GetKurResponse;",
+      "pm.test('Tarih', () => pm.expect(yanit.Tarih).to.equal('2026-10-22'));",
+      "pm.test('Tekrarlayan öğeler dizi', () => {",
+      "    pm.expect(yanit.Kur).to.be.an('array').with.lengthOf(2);",
+      "    pm.expect(yanit.Kur[0]._).to.equal('34.25');",
+      "    pm.expect(yanit.Kur[1].$.para).to.equal('EUR');",
+      "});",
+      "pm.test('Namespace özniteliği', () => pm.expect(yanit.$.xmlns).to.equal('http://tcmb.example/'));",
+      "pm.test('Boş öğe', () => pm.expect(yanit.Bos).to.equal(''));"
+    ]
+  },
+  {
+    "name": "tv4 ile şema doğrulama",
+    "source": "Eski collection'lardaki tv4.validate",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": { "id": 1, "ad": "Ayşe" }
+    },
+    "test": [
+      "var schema = { type: 'object', required: ['id', 'ad'], properties: { id: { type: 'number' }, ad: { type: 'string', minLength: 2 } } };",
+      "var data = JSON.parse(responseBody);",
+      "tests['Şema geçerli'] = tv4.validate(data, schema);",
+      "pm.test('pm.expect ile', () => pm.expect(tv4.validate({ id: 'x' }, schema)).to.be.false);",
+      "pm.test('Hata ayrıntısı', () => { tv4.validate({ id: 1 }, schema); pm.expect(tv4.error.message).to.include('ad'); });"
+    ]
+  },
+  {
+    "name": "lodash ve CryptoJS",
+    "source": "Gömülü kütüphaneler (_ global ve require)",
+    "response": {
+      "status": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": { "urunler": [ { "kategori": "ofis", "fiyat": 10 }, { "kategori": "ofis", "fiyat": 5 }, { "kategori": "ev", "fiyat": 20 } ] }
+    },
+    "test": [
+      "const lodash = require('lodash');",
+      "const urunler = pm.response.json().urunler;",
+      "pm.test('lodash', () => {",
+      "    pm.expect(_.sumBy(urunler, 'fiyat')).to.equal(35);",
+      "    pm.expect(lodash.map(_.filter(urunler, { kategori: 'ev' }), 'fiyat')).to.eql([20]);",
+      "    pm.expect(_.get(urunler, '[0].kategori')).to.equal('ofis');",
+      "    pm.expect(Object.keys(_.groupBy(urunler, 'kategori'))).to.eql(['ofis', 'ev']);",
+      "});",
+      "pm.test('CryptoJS', () => {",
+      "    const CryptoJS = require('crypto-js');",
+      "    pm.expect(CryptoJS.MD5('apivator').toString()).to.have.lengthOf(32);",
+      "    pm.expect(CryptoJS.SHA256('abc').toString()).to.equal('ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');",
+      "    pm.expect(CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse('şifre'))).to.equal('xZ9pZnJl');",
+      "});"
+    ]
+  },
+  {
+    "name": "Konsol ve setTimeout",
+    "source": "Hata ayıklama çıktıları",
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": [
+      "console.log('istek tamam', { kod: pm.response.code });",
+      "console.warn('uyarı');",
+      "setTimeout(() => {",
+      "    pm.test('zamanlayıcıdan sonra', () => pm.expect(1).to.equal(1));",
+      "}, 100);"
+    ],
+    "expect": { "tests": { "zamanlayıcıdan sonra": "passed" }, "console": ["istek tamam", "\"kod\": 200", "uyarı"] }
+  },
+  {
+    "name": "Desteklenmeyen modül anlaşılır hata verir",
+    "source": "Postman'de olup Apivator'da olmayan bir modül",
+    "response": { "status": 200, "headers": {}, "body": "" },
+    "test": ["const cheerio = require('cheerio');"],
+    "expect": { "error": "satır 1: Error: \"cheerio\" modülü desteklenmiyor" }
+  }
+]

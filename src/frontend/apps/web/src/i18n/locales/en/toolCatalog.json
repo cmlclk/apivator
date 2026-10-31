@@ -1,0 +1,283 @@
+{
+  "categories": {
+    "encoding": "Encoding / decoding",
+    "convert": "Data conversion",
+    "format": "Formatting and query",
+    "security": "Security and identity",
+    "generate": "Generators",
+    "time": "Time and numbers",
+    "web": "Web and network",
+    "text": "Text"
+  },
+  "tools": {
+    "base64": {
+      "name": "Base64",
+      "description": "Encode or decode text and files as Base64; URL-safe, image preview.",
+      "keywords": "base64|encode|decode|image|file"
+    },
+    "url": {
+      "name": "URL encoding",
+      "description": "URL encode / decode (component or full address).",
+      "keywords": "url|percent|encode|decode|query|uri"
+    },
+    "html-entity": {
+      "name": "HTML entities",
+      "description": "Encode / decode HTML entities: &lt; &ccedil; &#231; &#xE7;.",
+      "keywords": "html|entity|entities|escape|encode|decode|amp|xml"
+    },
+    "unicode": {
+      "name": "Unicode escape",
+      "description": "Text ↔ \\u00e7, \\u'{'1F600'}', \\U0001F600, U+00E7 escape sequences.",
+      "keywords": "unicode|escape|unescape|\\u|utf-16|surrogate|code point|codepoint"
+    },
+    "hex": {
+      "name": "Hex ↔ text",
+      "description": "Convert text to the hex form of its UTF-8 bytes, or decode a hex dump back to text.",
+      "keywords": "hex|hexadecimal|byte|bytes|utf-8|0x|encode|decode"
+    },
+    "base32": {
+      "name": "Base32",
+      "description": "RFC 4648 Base32 and Base32hex encode / decode; padded or unpadded.",
+      "keywords": "base32|base32hex|rfc4648|totp|otp|encode|decode"
+    },
+    "string-escape": {
+      "name": "String escaping",
+      "description": "Escape / unescape strings for JSON, JavaScript, Java, C#, SQL and regex.",
+      "keywords": "string|escape|unescape|json|javascript|java|c#|csharp|verbatim|sql|regex|quote"
+    },
+    "compress": {
+      "name": "Compression",
+      "description": "Compress or decompress with gzip / deflate; Base64 or hex, file upload and download.",
+      "keywords": "gzip|gunzip|deflate|zlib|inflate|compress|decompress|archive|gz"
+    },
+    "json-format": {
+      "name": "JSON formatter",
+      "description": "Format, minify, validate, sort keys; tree view.",
+      "keywords": "json|format|pretty|minify|validate|beautify|tree"
+    },
+    "json-convert": {
+      "name": "JSON converter",
+      "description": "JSON ↔ CSV, Excel, YAML, TOML, XML and query string; CSV ↔ Excel.",
+      "keywords": "json|csv|excel|xlsx|yaml|yml|toml|xml|query string|querystring|form-urlencoded|x-www-form-urlencoded|url parameter|tsv|convert|transform|table"
+    },
+    "json-schema": {
+      "name": "JSON Schema",
+      "description": "Infers a JSON Schema (2020-12 / draft-07) from a JSON sample; generates sample data from a schema or OpenAPI schema; validates data against a schema.",
+      "keywords": "json schema|schema|infer|sample data|sample|mock|fake data|openapi|swagger|$ref|draft-07|2020-12|validate|validator|validation"
+    },
+    "curl-code": {
+      "name": "cURL → code",
+      "description": "Generate JavaScript, Python, C#, Go, PowerShell code from a cURL command; open the request in a new tab.",
+      "keywords": "curl|code|snippet|codegen|convert|javascript|fetch|python|requests|c#|csharp|go|powershell|request"
+    },
+    "har": {
+      "name": "HAR viewer",
+      "description": "Filter, sort and inspect requests in a HAR file; copy as cURL.",
+      "keywords": "har|http archive|network|devtools|developer tools|recording|request|response|timing|waterfall"
+    },
+    "json-model": {
+      "name": "JSON → model",
+      "description": "C#, Java, Kotlin, TypeScript, Python, Go, Swift, Dart classes from JSON or a schema.",
+      "keywords": "model|class|dto|pojo|code|c#|csharp|java|kotlin|typescript|python|go|swift|dart|schema|openapi"
+    },
+    "xml-format": {
+      "name": "XML formatter",
+      "description": "Format and minify XML; comments, CDATA and mixed content are preserved, line/column on error.",
+      "keywords": "xml|format|pretty|beautify|minify|soap"
+    },
+    "yaml-format": {
+      "name": "YAML formatter",
+      "description": "YAML indentation, line width and key sorting; multi-document files.",
+      "keywords": "yaml|yml|format|pretty|indent|openapi|kubernetes"
+    },
+    "sql-format": {
+      "name": "SQL formatter",
+      "description": "PostgreSQL, MySQL, T-SQL, SQLite, PL/SQL; keyword casing, minify.",
+      "keywords": "sql|format|pretty|beautify|minify|query|postgresql|mysql|t-sql|sql server|sqlite|pl/sql"
+    },
+    "graphql-format": {
+      "name": "GraphQL formatter",
+      "description": "Format and minify GraphQL queries and schemas (SDL).",
+      "keywords": "graphql|gql|sdl|query|format|pretty|minify|schema"
+    },
+    "html-format": {
+      "name": "HTML formatter",
+      "description": "Format and minify HTML; pre, script and style content is left as is.",
+      "keywords": "html|htm|format|pretty|beautify|minify"
+    },
+    "jsonpath": {
+      "name": "Query (JSONPath / JMESPath / XPath)",
+      "description": "Try the JSONPath and JMESPath expressions you use in scripts, or XPath for XML, live.",
+      "keywords": "jsonpath|jmespath|xpath|xml|query|filter|$.."
+    },
+    "diff": {
+      "name": "Text / JSON diff",
+      "description": "Compare two texts line by line or two JSON documents structurally; pick from earlier responses.",
+      "keywords": "diff|compare|json|text|history|response"
+    },
+    "python-indent": {
+      "name": "Python indent fixer",
+      "description": "Tab ↔ space, indent width, show mixed and inconsistent indentation with line numbers; trailing whitespace and LF/CRLF.",
+      "keywords": "python|py|indent|indentation|reindent|tab|spaces|taberror|indentationerror|pep8|line ending|trailing whitespace|crlf|lf"
+    },
+    "regex": {
+      "name": "Regex tester",
+      "description": "Regular expression matches, groups and replacement preview.",
+      "keywords": "regex|regexp|regular expression|match|replace"
+    },
+    "jwt": {
+      "name": "JWT decoder",
+      "description": "Header, payload and times; signature verification and signing for tests.",
+      "keywords": "jwt|token|bearer|jws|signature|sign|exp|claims"
+    },
+    "hash": {
+      "name": "Hash and HMAC",
+      "description": "MD5, SHA-1, SHA-256/384/512; text and files; HMAC.",
+      "keywords": "hash|md5|sha|sha256|sha1|sha512|hmac|checksum|digest"
+    },
+    "bcrypt": {
+      "name": "bcrypt",
+      "description": "Generate and verify bcrypt password hashes; $2a$/$2b$/$2y$, cost 4–15.",
+      "keywords": "bcrypt|password|hash|digest|verify|salt|blowfish|2b|2y"
+    },
+    "aes": {
+      "name": "AES encrypt / decrypt",
+      "description": "AES-GCM and AES-CBC; raw key or password-derived (PBKDF2), IV, AAD; Base64 / hex.",
+      "keywords": "aes|gcm|cbc|encrypt|decrypt|encryption|pbkdf2|iv|aad|cipher|symmetric"
+    },
+    "key-pair": {
+      "name": "Key pair generator",
+      "description": "RSA (2048–4096), ECDSA (P-256/384/521) and Ed25519; PEM / JWK, fingerprint, RSA-OAEP test.",
+      "keywords": "rsa|ecdsa|ed25519|key pair|keypair|pem|jwk|pkcs8|spki|public key|private key|fingerprint|oaep|generate"
+    },
+    "certificate": {
+      "name": "Certificate decoder (X.509 / PEM)",
+      "description": "PEM/DER certificates, chains, CSRs and keys: subject, SAN, validity, fingerprint, chain check.",
+      "keywords": "x509|x.509|pem|der|crt|cer|certificate|ssl|tls|csr|chain|san|fingerprint|public key|private key"
+    },
+    "basic-auth": {
+      "name": "Basic auth",
+      "description": "Build an Authorization: Basic header from a user and password, or decode an existing header.",
+      "keywords": "basic|basic auth|authorization|header|credentials|user|password|base64|http auth"
+    },
+    "pkce": {
+      "name": "OAuth 2.0 PKCE",
+      "description": "Generate code_verifier and code_challenge (S256 / plain).",
+      "keywords": "pkce|oauth|oauth2|code_verifier|code_challenge|s256|rfc 7636|authorization code"
+    },
+    "password": {
+      "name": "Password and token generator",
+      "description": "Strong passwords, passphrases and random tokens (hex / Base64 / Base64url); entropy display.",
+      "keywords": "password|passphrase|token|random|secret|api key|entropy|generate"
+    },
+    "uuid": {
+      "name": "ID generator",
+      "description": "UUID v4/v7, ULID and nanoid; bulk generation (lines, JSON, CSV), UUID/ULID inspection.",
+      "keywords": "uuid|guid|ulid|nanoid|v4|v7|id|bulk|generate"
+    },
+    "lorem": {
+      "name": "Lorem ipsum",
+      "description": "Placeholder text: words, sentences, paragraphs; Turkish text, HTML <p>, repeatable with a seed.",
+      "keywords": "lorem|ipsum|placeholder|dummy text|text|paragraph|generate"
+    },
+    "random": {
+      "name": "Random number and date",
+      "description": "Integers, decimals and dates in a range; unique, sorted, time-zone aware.",
+      "keywords": "random|number|integer|decimal|date|range"
+    },
+    "qr": {
+      "name": "QR code",
+      "description": "QR code for text or a URL; error correction level, size, colors; download SVG and PNG.",
+      "keywords": "qr|qr code|barcode|url|svg|png"
+    },
+    "fake-data": {
+      "name": "Fake data",
+      "description": "Turkish or English test data: name, address, email, phone, company, algorithm-valid TCKN, IBAN and card numbers; JSON, CSV, SQL.",
+      "keywords": "fake data|fake|faker|mock|test data|tckn|national id|iban|luhn|card|credit card|name|surname|address|email|phone|company|sql insert|csv"
+    },
+    "timestamp": {
+      "name": "Timestamp",
+      "description": "Unix timestamp ↔ date; time zone, ISO 8601, RFC 1123, duration between two dates.",
+      "keywords": "unix|timestamp|epoch|date|iso|time|time zone"
+    },
+    "cron": {
+      "name": "Cron explainer",
+      "description": "Explains a cron expression and shows upcoming run times in the chosen time zone (same rules as monitors).",
+      "keywords": "cron|crontab|schedule|monitor|next run|quartz|cronos"
+    },
+    "number-base": {
+      "name": "Number base",
+      "description": "Convert between binary, octal, decimal, hexadecimal and bases 2–36; two's complement, bit view.",
+      "keywords": "binary|hex|octal|decimal|radix|base|twos complement|bit|signed"
+    },
+    "byte-units": {
+      "name": "Byte units",
+      "description": "KB, MB, GiB and bit conversions (SI / IEC), readable size and transfer time.",
+      "keywords": "byte|bit|kb|mb|gb|kib|mib|gib|size|unit|bandwidth|mbps|transfer"
+    },
+    "color": {
+      "name": "Color",
+      "description": "Convert between HEX, RGB, HSL, HWB, OKLCH and CSS color names; WCAG contrast, tone palette.",
+      "keywords": "color|colour|hex|rgb|rgba|hsl|hwb|oklch|css|contrast|wcag|palette"
+    },
+    "url-parser": {
+      "name": "URL parser",
+      "description": "Split an address into scheme, host, port, path, query and fragment, edit and reassemble it; punycode.",
+      "keywords": "url|uri|address|parse|query|parameter|host|port|path|fragment|punycode|idn|xn--"
+    },
+    "http-reference": {
+      "name": "HTTP reference",
+      "description": "Status codes, headers and MIME types; with explanations and examples, offline.",
+      "keywords": "http|status|status code|404|500|header|mime|content-type|media type|rfc|reference"
+    },
+    "cookie": {
+      "name": "Cookie parser",
+      "description": "Decode Cookie and Set-Cookie headers: expiry, SameSite, prefix and size checks; build Set-Cookie from fields.",
+      "keywords": "cookie|set-cookie|samesite|httponly|secure|expires|max-age|__host-|partitioned|chips|session|header"
+    },
+    "user-agent": {
+      "name": "User-Agent parser",
+      "description": "Identify browser, engine, operating system, device type and bots from a User-Agent string.",
+      "keywords": "user agent|ua|browser|os|operating system|device|bot|crawler|googlebot|client hints|sec-ch-ua|mobile"
+    },
+    "cidr": {
+      "name": "IP / CIDR calculator",
+      "description": "IPv4 and IPv6 network address, mask, usable range, address type; subnet splitting and range checks.",
+      "keywords": "ip|cidr|subnet|netmask|mask|ipv4|ipv6|network|wildcard|rfc1918|reverse dns|ptr"
+    },
+    "case-convert": {
+      "name": "Name conversion",
+      "description": "camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case and other formats; Turkish casing rules, convert to ASCII.",
+      "keywords": "case|camelcase|pascalcase|snake case|kebab case|constant case|title case|sentence case|variable name|identifier|naming|upper|lower"
+    },
+    "slug": {
+      "name": "Slug generator",
+      "description": "URL-friendly slugs from titles; Turkish letter transliteration, separator, maximum length, one slug per line.",
+      "keywords": "slug|url|seo|permalink|title|turkish characters|transliterate|ascii"
+    },
+    "line-ops": {
+      "name": "Line operations",
+      "description": "Sort lines (Turkish/natural), deduplicate, remove blanks, trim, reverse, shuffle, add prefix/suffix, number, join/split, filter; steps can be chained.",
+      "keywords": "line|lines|sort|unique|dedupe|duplicate|blank line|trim|reverse|shuffle|prefix|suffix|number|join|split|filter|wrap"
+    },
+    "text-stats": {
+      "name": "Text counter",
+      "description": "Characters (grapheme, code point, UTF-16), words, lines, paragraphs, sentences, UTF-8/UTF-16 bytes, reading time and most frequent words.",
+      "keywords": "counter|character count|word count|line count|byte|reading time|statistics|stats"
+    },
+    "byte-view": {
+      "name": "Byte view",
+      "description": "See text as a hexdump and in binary (UTF-8, UTF-16, Latin-1); find invisible characters such as BOM, zero-width and non-breaking spaces; convert back.",
+      "keywords": "hexdump|hex|binary|byte|utf-8|utf-16|latin-1|bom|zwsp|nbsp|invisible character|invisible|code point"
+    },
+    "sql-insert": {
+      "name": "CSV / Excel → SQL INSERT",
+      "description": "Generates INSERT statements (optionally CREATE TABLE) from CSV or an Excel sheet; PostgreSQL, MySQL, SQL Server, SQLite, Oracle.",
+      "keywords": "sql|insert|csv|excel|xlsx|table|database|import|bulk|postgres|postgresql|mysql|mariadb|mssql|sql server|sqlite|oracle|create table"
+    }
+  },
+  "openIn": {
+    "label": "Open in tools",
+    "hint": "Open the body or selected text in a tool"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "panel": {
+    "title": "Access token",
+    "lessThanMinute": "less than 1 minute",
+    "minutes": "{count, plural, one {# minute} other {# minutes}}",
+    "hours": "{count, plural, one {# hour} other {# hours}}",
+    "validLeft": "valid · {time} left",
+    "validNoExpiry": "valid · no expiry reported",
+    "expiredRefresh": "expired · will be refreshed when sending",
+    "expired": "expired",
+    "noneAuto": "none · fetched automatically when sending",
+    "none": "none",
+    "delete": "Delete token",
+    "fetching": "Fetching…",
+    "fetch": "Get new token",
+    "localOnlyTitle": "The token is stored only in this browser",
+    "scope": "scope: {scope}",
+    "note": "The token is stored only in this browser; it is not shared with the collection.",
+    "noteServer": " With client credentials and password flows, the server fetches and caches the token if there is none."
+  },
+  "flow": {
+    "authUrlEmpty": "The authorization address (Auth URL) is empty.",
+    "authUrlInvalid": "The authorization address (Auth URL) is not a valid address.",
+    "denied": "Sign-in was denied: {error}",
+    "noCode": "The provider did not return an authorization code.",
+    "timeout": "Sign-in was not completed within 5 minutes.",
+    "redirectMismatch": "The redirect address must return to this application ({uri}); otherwise the returned code cannot be captured.",
+    "popupBlocked": "The sign-in window could not be opened. Disable your browser’s popup blocker.",
+    "popupClosed": "The sign-in window was closed.",
+    "tokenUrlEmpty": "The token address (Token URL) is empty."
+  }
+}

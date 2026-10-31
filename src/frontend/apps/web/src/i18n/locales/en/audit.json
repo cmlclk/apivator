@@ -1,0 +1,152 @@
+{
+  "intro": "Who changed what in the organization and when: memberships, roles, teams, workspaces, collection access, published docs and mocks, API keys and admin actions. Changes to request and environment contents are in the workspace's activity feed.",
+  "retention": "Records are kept for {days} days.",
+  "eventType": "Event type",
+  "all": "All",
+  "from": "From",
+  "to": "To",
+  "searchLabel": "Search by person or target",
+  "searchPlaceholder": "Search person, email or target",
+  "searchButton": "Search",
+  "list": "Audit log",
+  "empty": "No records match this filter.",
+  "older": "Older records",
+  "viaApiKey": "via API key",
+  "details": {
+    "actor": "Actor",
+    "method": "Method",
+    "apiKey": "API key",
+    "ip": "IP",
+    "device": "Device",
+    "code": "Event code",
+    "time": "Time"
+  },
+  "categories": {
+    "organization": "Organization",
+    "member": "Members",
+    "invitation": "Invitations",
+    "team": "Teams",
+    "workspace": "Workspaces",
+    "collection": "Collection access",
+    "docs": "Documentation",
+    "git": "Git sync",
+    "mock": "Mocks",
+    "monitor": "Monitors",
+    "api_key": "API keys",
+    "sso": "SSO",
+    "audit": "Audit log"
+  },
+  "actions": {
+    "organization": {
+      "created": "created the organization",
+      "renamed": "renamed the organization",
+      "ownership_transferred": "transferred ownership",
+      "two_factor_required": "required two-step verification",
+      "two_factor_optional": "removed the two-step verification requirement"
+    },
+    "member": {
+      "added": "added a member",
+      "role_changed": "changed a member's role",
+      "removed": "removed a member",
+      "left": "left the organization",
+      "account_deleted": "deleted their account",
+      "sessions_revoked": "signed out a member's sessions",
+      "password_reset_sent": "sent a member a password reset link"
+    },
+    "invitation": {
+      "sent": "sent an invitation",
+      "revoked": "revoked an invitation",
+      "accepted": "accepted an invitation"
+    },
+    "team": {
+      "created": "created a team",
+      "renamed": "renamed a team",
+      "deleted": "deleted a team",
+      "member_added": "added a person to a team",
+      "member_removed": "removed a person from a team"
+    },
+    "workspace": {
+      "created": "created a workspace",
+      "renamed": "renamed a workspace",
+      "deleted": "deleted a workspace",
+      "member_added": "added a person to a workspace",
+      "member_role_changed": "changed a workspace role",
+      "member_removed": "removed a person from a workspace",
+      "team_added": "added a team to a workspace",
+      "team_role_changed": "changed a team's workspace role",
+      "team_removed": "removed a team from a workspace"
+    },
+    "collection": {
+      "deleted": "deleted a collection",
+      "moved_in": "moved a collection into this workspace",
+      "moved_out": "moved a collection to another organization",
+      "editing_restricted": "restricted editing",
+      "editing_unrestricted": "removed the editing restriction",
+      "access_granted": "granted a collection role",
+      "access_changed": "changed a collection role",
+      "access_removed": "removed a collection role"
+    },
+    "docs": {
+      "published": "published documentation",
+      "visibility_changed": "changed the documentation's visibility",
+      "link_regenerated": "regenerated the documentation link",
+      "unpublished": "unpublished documentation"
+    },
+    "git": {
+      "connected": "connected a collection to a Git repository",
+      "disconnected": "removed the Git connection",
+      "pushed": "pushed a collection to the Git repository",
+      "pulled": "pulled changes from the Git repository"
+    },
+    "mock": {
+      "created": "created a mock",
+      "deleted": "deleted a mock",
+      "visibility_changed": "changed a mock's visibility",
+      "key_regenerated": "regenerated a mock address"
+    },
+    "monitor": {
+      "created": "created a monitor",
+      "deleted": "deleted a monitor"
+    },
+    "api_key": {
+      "created": "created an API key",
+      "revoked": "revoked an API key"
+    },
+    "audit": {
+      "exported": "exported the audit log"
+    }
+  },
+  "dataLabels": {
+    "email": "Email",
+    "role": "Role",
+    "from": "Before",
+    "to": "After",
+    "via": "Via",
+    "team": "Team",
+    "workspace": "Workspace",
+    "workspace_role": "Workspace role",
+    "type": "Type",
+    "subject": "To",
+    "subject_type": "Type",
+    "visibility": "Visibility",
+    "schedule": "Schedule",
+    "owner": "Owner",
+    "owner_email": "Owner's email",
+    "prefix": "Prefix",
+    "expires_at": "Expires",
+    "sessions": "Session count",
+    "format": "Format",
+    "action": "Event filter",
+    "search": "Search",
+    "from_workspace": "Source workspace",
+    "to_workspace": "Target workspace",
+    "remote": "Repository",
+    "branch": "Branch",
+    "path": "Folder",
+    "token": "Token",
+    "commit": "Commit",
+    "changed": "Items pushed",
+    "applied": "Items pulled",
+    "kept_local": "Kept locally"
+  }
+}

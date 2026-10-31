@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Mağaza API", "version": "1.2.0", "description": "Ürün ve sipariş uçları." },
+  "servers": [
+    { "url": "https://{ortam}.magaza.test/api/{surum}", "variables": { "ortam": { "default": "test" }, "surum": { "default": "v1" } } }
+  ],
+  "tags": [{ "name": "Siparişler" }, { "name": "Ürünler" }],
+  "security": [{ "bearerAuth": [] }],
+  "paths": {
+    "/urunler": {
+      "get": {
+        "tags": ["Ürünler"],
+        "summary": "Ürünleri listele",
+        "parameters": [
+          { "$ref": "#/components/parameters/Sayfa" },
+          { "name": "kategori", "in": "query", "schema": { "type": "string" } },
+          { "name": "X-Dil", "in": "header", "required": true, "schema": { "type": "string", "default": "tr" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Başarılı",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Urun" } },
+                "example": [{ "id": 1, "ad": "Kalem" }]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Ürünler"],
+        "operationId": "urunEkle",
+        "requestBody": { "$ref": "#/components/requestBodies/YeniUrun" },
+        "responses": { "201": { "description": "Oluşturuldu" } }
+      }
+    },
+    "/urunler/{urunId}": {
+      "parameters": [{ "name": "urunId", "in": "path", "required": true, "schema": { "type": "integer", "example": 42 } }],
+      "get": {
+        "tags": ["Ürünler"],
+        "summary": "Ürün getir",
+        "security": [{ "apiKey": [] }],
+        "responses": {
+          "200": { "description": "Bulundu", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Urun" } } } },
+          "404": {
+            "description": "Bulunamadı",
+            "content": { "application/json": { "examples": { "yok": { "value": { "hata": "ürün yok" } } } } }
+          }
+        }
+      },
+      "delete": { "tags": ["Ürünler"], "summary": "Ürün sil", "responses": { "204": { "description": "Silindi" } } }
+    },
+    "/siparisler/{siparisNo}/dekont": {
+      "post": {
+        "tags": ["Siparişler"],
+        "summary": "Dekont yükle",
+        "parameters": [{ "name": "siparisNo", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": { "aciklama": { "type": "string", "example": "Ekim" }, "dosya": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Tamam" } }
+      }
+    },
+    "/saglik": {
+      "get": { "summary": "Sağlık", "security": [], "responses": { "200": { "description": "Ayakta", "content": { "text/plain": { "example": "OK" } } } } }
+    },
+    "/giris": {
+      "post": {
+        "summary": "Giriş",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": { "type": "object", "required": ["kullanici"], "properties": { "kullanici": { "type": "string" }, "sifre": { "type": "string", "format": "password" } } }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Token" } }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Sayfa": { "name": "sayfa", "in": "query", "required": true, "schema": { "type": "integer", "default": 1 } }
+    },
+    "requestBodies": {
+      "YeniUrun": {
+        "required": true,
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/YeniUrun" } } }
+      }
+    },
+    "schemas": {
+      "Urun": {
+        "type": "object",
+        "properties": { "id": { "type": "integer" }, "ad": { "type": "string" }, "kategori": { "$ref": "#/components/schemas/Kategori" } }
+      },
+      "Kategori": {
+        "type": "object",
+        "properties": { "ad": { "type": "string" }, "ust": { "$ref": "#/components/schemas/Kategori" } }
+      },
+      "YeniUrun": {
+        "allOf": [
+          { "type": "object", "properties": { "ad": { "type": "string", "example": "Defter" } } },
+          { "type": "object", "properties": { "fiyat": { "type": "number", "example": 12.5 }, "etiketler": { "type": "array", "items": { "type": "string" } }, "durum": { "type": "string", "enum": ["taslak", "yayında"] }, "olusturma": { "type": "string", "format": "date-time" } } }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer" },
+      "apiKey": { "type": "apiKey", "in": "header", "name": "X-API-Key" }
+    }
+  }
+}

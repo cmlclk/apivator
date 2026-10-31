@@ -1,0 +1,27 @@
+{
+  "composer": {
+    "mentionList": "Person to mention",
+    "hint": "Tag people with @ · Ctrl+Enter sends",
+    "cancel": "Cancel"
+  },
+  "panel": {
+    "title": "Comments",
+    "close": "Close comments",
+    "edited": " · edited",
+    "editLabel": "Edit comment",
+    "deleteLabel": "Delete comment",
+    "editPlaceholder": "Edit comment",
+    "save": "Save",
+    "empty": "No comments yet. Write to ask a question, suggest a change or notify someone; you can tag people with @.",
+    "hideResolved": "Hide resolved",
+    "showResolved": "{count, plural, one {Show # resolved thread} other {Show # resolved threads}}",
+    "threadLabel": "{name}'s thread",
+    "reply": "Reply",
+    "reopen": "Reopen",
+    "resolve": "Resolved",
+    "resolvedBy": "Resolved by {name}",
+    "replyPlaceholder": "Write a reply",
+    "newPlaceholder": "Write a comment",
+    "send": "Send"
+  }
+}

@@ -1,0 +1,68 @@
+# Tüm yığını başlatır:   docker compose up -d --build
+# Yalnız altyapı (yerel geliştirme için):   docker compose up -d postgres redis mailpit
+name: apivator
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-apivator}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apivator}
+      POSTGRES_DB: ${POSTGRES_DB:-apivator}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  mailpit:
+    # Gönderilen tüm e-postaları yakalar: http://localhost:8025
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  api:
+    build:
+      context: ./src/backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Postgres: Host=postgres;Port=5432;Database=${POSTGRES_DB:-apivator};Username=${POSTGRES_USER:-apivator};Password=${POSTGRES_PASSWORD:-apivator}
+      Jwt__SigningKey: ${JWT_SIGNING_KEY:-dev-only-change-me-0123456789-abcdefghijklmnop}
+      App__PublicUrl: ${APP_PUBLIC_URL:-http://localhost:8080}
+      Smtp__Host: mailpit
+      Smtp__Port: "1025"
+      Database__MigrateOnStartup: "true"
+      # Canlı güncellemeler: birden fazla API container'ı çalıştırılırsa olaylar Redis üzerinden dağıtılır.
+      Redis__ConnectionString: redis:6379
+      # Web'den atılan istekler sunucu üzerinden gider; güvenlik için iç ağ adresleri varsayılan kapalı.
+      # Şirket içi API'leri test edecekseniz ilgili ağları açın (CIDR), ör.:
+      # Proxy__AllowedNetworks__0: 10.0.0.0/8
+      # Proxy__AllowedNetworks__1: 192.168.10.0/24
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+      redis:
+        condition: service_started
+
+  web:
+    build:
+      context: ./src/frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:

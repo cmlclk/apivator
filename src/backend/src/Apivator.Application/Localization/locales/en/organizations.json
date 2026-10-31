@@ -1,0 +1,17 @@
+{
+  "invitation.not_found": "Invitation not found.",
+  "organization.language_invalid": "Unsupported language.",
+  "organization.member_not_found": "Member not found.",
+  "organization.ownership_transfer": "Only the organization owner can transfer ownership.",
+  "organization.owner_role": "The owner's role cannot be changed; transfer ownership first.",
+  "organization.owner_leave": "The owner cannot leave the organization; transfer ownership to another member first.",
+  "organization.owner_remove": "The organization owner cannot be removed.",
+  "invitation.owner_role": "You cannot assign the owner role by invitation; ownership is transferred among members.",
+  "invitation.already_member": "This person is already a member of the organization.",
+  "invitation.workspace_invalid": "The invited workspace must be a team workspace of this organization.",
+  "invitation.expired": "The invitation has expired. Ask an administrator to send it again.",
+  "invitation.already_accepted": "This invitation has already been accepted.",
+  "invitation.revoked": "This invitation was revoked.",
+  "invitation.email_mismatch": "This invitation was sent to {email}. Sign in with that address.",
+  "invitation.email_unconfirmed": "To accept the invitation, first confirm your email address or use the invitation link in the email."
+}

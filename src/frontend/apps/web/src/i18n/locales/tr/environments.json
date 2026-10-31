@@ -1,0 +1,69 @@
+{
+  "panel": {
+    "title": "Environments",
+    "import": "İçe aktar",
+    "importTitle": "İçe aktar (Postman environment)",
+    "new": "Yeni environment",
+    "emptyHint": "Geliştirme, test ve canlı ortamların için ayrı değişken setleri tanımla; tek tıkla aralarında geç."
+  },
+  "globals": {
+    "title": "Globals",
+    "description": "Workspace'teki tüm isteklerde geçerli değişkenler. En düşük önceliğe sahiptir; environment ve collection değişkenleri bunları ezer."
+  },
+  "item": {
+    "active": "Aktif",
+    "actions": "{name} işlemleri",
+    "deactivate": "Devre dışı bırak",
+    "activate": "Aktif yap",
+    "edit": "Düzenle",
+    "versions": "Sürümler",
+    "exportPostman": "Dışa aktar (Postman)",
+    "delete": "Sil"
+  },
+  "dialog": {
+    "title": "Environment: {name}",
+    "description": "Bu ortamda geçerli değişkenler. Aynı adlı collection ve global değişkenlerini ezer.",
+    "defaultName": "Yeni environment"
+  },
+  "delete": {
+    "title": "Environment'ı sil",
+    "message": "<b>{name}</b> environment'ı ve {count, plural, other {# değişkeni}} kalıcı olarak silinecek. Bu workspace'i kullanan herkes için silinir."
+  },
+  "switcher": {
+    "active": "Aktif environment",
+    "none": "Environment yok",
+    "list": "Environment'lar",
+    "manage": "Environment'ları yönet"
+  },
+  "variables": {
+    "close": "Kapat",
+    "cancel": "Vazgeç",
+    "save": "Kaydet",
+    "name": "Ad",
+    "hideSecrets": "Gizli değerleri gizle",
+    "showSecrets": "Gizli değerleri göster",
+    "tableLabel": "Değişkenler",
+    "colName": "Değişken",
+    "colInitial": "Başlangıç değeri",
+    "colInitialHint": "· ekiple paylaşılır",
+    "colCurrent": "Güncel değer",
+    "colCurrentHint": "· yalnızca sizde",
+    "rowEnabled": "{name} etkin",
+    "fallbackName": "Değişken",
+    "newPlaceholder": "Yeni değişken",
+    "keyLabel": "Değişken adı {n}",
+    "initialLabel": "Başlangıç değeri {n}",
+    "currentLabel": "Güncel değer {n}",
+    "unmarkSecret": "{name} gizli değil yap",
+    "markSecret": "{name} gizli yap",
+    "secretTitle": "Gizli (değer maskelenir)",
+    "makeSecret": "Gizli yap",
+    "rowDelete": "{name} sil",
+    "fallbackDelete": "Değişkeni",
+    "exampleName": "değişkenAdı",
+    "footnote": "İsteklerde <code>{token}</code> yazarak kullanın. Güncel değeri boş bırakırsanız başlangıç değeri kullanılır. Token ve şifreleri başlangıç değerine değil, güncel değere yazın; böylece sunucuya gitmez ve ekiple paylaşılmaz.",
+    "errors": {
+      "duplicate": "\"{name}\" adlı değişken birden fazla kez tanımlı."
+    }
+  }
+}

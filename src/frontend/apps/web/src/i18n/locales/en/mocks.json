@@ -1,0 +1,79 @@
+{
+  "detail": {
+    "title": "Mock: {name}",
+    "address": "Address",
+    "copyAddress": "Copy address",
+    "private": "Private (requires API key)",
+    "public": "Public",
+    "delay": "{ms} ms delay",
+    "off": "Off",
+    "settings": "Settings",
+    "newAddress": "New address",
+    "delete": "Delete",
+    "tabsLabel": "Mock details",
+    "tabRoutes": "Endpoints",
+    "tabCalls": "Calls",
+    "tabUsage": "Usage",
+    "regenerateTitle": "Generate a new address?",
+    "regenerateConfirm": "Generate new address",
+    "regenerateBody": "The current address stops working immediately; you will need to update the address in apps that use this mock. Use this if the address ended up in the wrong hands.",
+    "deleteTitle": "Delete this mock?",
+    "deleteConfirm": "Delete",
+    "deleteBody": "“{name}” and its call log will be deleted; the address will start returning 404. The collection and examples are not affected."
+  },
+  "routes": {
+    "empty": "The “{collection}” collection has no example responses yet. Send a request and choose “Save as example” in the response panel; the mock starts serving that response right away.",
+    "copyCurl": "Copy curl command for {method} {path}",
+    "open": "Open request",
+    "openNamed": "Open request {name}"
+  },
+  "calls": {
+    "empty": "No calls yet. Requests to the mock appear here within a few seconds.",
+    "summary": "Last {count, plural, one {# call} other {# calls}}; the newest 500 records are kept per mock.",
+    "clear": "Clear",
+    "noMatch": "No match"
+  },
+  "usage": {
+    "intro": "In your app, replace the API's base URL with the mock address. The host in the examples' URLs (or <code>{baseUrl}</code>) is ignored; the best-matching example is returned based on path, method, query and body. Segments like <code>:id</code> match any value.",
+    "copyCommand": "Copy command",
+    "private": "This mock is private: send an API key belonging to a member of this workspace in the <code>x-api-key</code> header (Account menu › Account settings › API keys).",
+    "pickTitle": "Choosing the response",
+    "pickIntro": "If a path has several examples (e.g. 200 and 404), you can send these headers with the request:",
+    "byCode": "<code>x-mock-response-code: 404</code>: the example with this status code",
+    "byName": "<code>x-mock-response-name: Not found</code>: the example with this name",
+    "byId": "<code>x-mock-response-id: …</code>: a specific example",
+    "byBody": "<code>x-mock-match-request-body: true</code>: only an example with the same body (whitespace and field order are ignored in JSON)",
+    "byHeaders": "<code>x-mock-match-request-headers: x-tenant,accept</code>: an example with the same values for these headers",
+    "fallback": "If nothing is specified, the example matching the most segments is chosen, preferring a 2xx response on ties. If nothing matches, <code>404 mockRequestNotFoundError</code> is returned; you can see the reason in the Calls tab."
+  },
+  "settings": {
+    "titleEdit": "Mock settings: {name}",
+    "titleNew": "New mock",
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "intro": "A mock serves the example responses saved on the requests in a collection like a real API. Incoming requests are matched to the best-fitting example by method, path, query and body.",
+    "collection": "Collection",
+    "noCollections": "No collections in this workspace",
+    "name": "Name",
+    "environment": "Environment",
+    "environmentNone": "None (collection variables and globals only)",
+    "variableName": "variable",
+    "environmentHint": "{token} placeholders in the examples are resolved from here. Values marked secret are never written to the response.",
+    "delay": "Delay (ms)",
+    "delayError": "Enter a whole number between 0 and 60000.",
+    "delayHint": "Waits before every response, to try out a slow network.",
+    "private": "Private",
+    "privateHint": "Callers must send an API key belonging to a member of this workspace in the <code>x-api-key</code> header. If off, anyone who knows the address can call it.",
+    "enabled": "Enabled",
+    "enabledHint": "A disabled mock returns 404 for every request."
+  },
+  "panel": {
+    "title": "Mocks",
+    "new": "New mock",
+    "empty": "A stand-in server for an API that isn't written yet. It serves the collection's example responses at an address, so the frontend team can build without waiting.",
+    "enabled": "Enabled",
+    "off": "Off",
+    "private": "Private"
+  }
+}

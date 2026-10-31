@@ -1,0 +1,54 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.trx
+coverage*/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+coverage/
+
+# Ortam
+.env
+*.local
+appsettings.*.local.json
+
+# IDE / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# Tauri (masaüstü)
+src/frontend/apps/desktop/src-tauri/target/
+src/frontend/apps/desktop/src-tauri/gen/
+src/frontend/apps/desktop/src-tauri/binaries/apivator-agent-*
+src/frontend/apps/desktop/src-tauri/tauri.updater.conf.json
+
+# Ruflo local secrets and runtime data
+.env.local
+.env.*.local
+.claude-flow/data/
+.claude-flow/logs/
+.claude-flow/sessions/
+
+# Yerel çıktılar ve araç kalıntıları (depoya girmez)
+Claude outputs/
+artifacts/
+.claude-flow/
+.swarm/
+.claude/*
+!.claude/settings.json
+
+# Masaüstü güncelleme imza anahtarı (asla commit edilmez)
+*.key
+*.key.pub

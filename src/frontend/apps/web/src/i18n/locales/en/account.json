@@ -1,0 +1,237 @@
+{
+  "preferences": {
+    "intro": "Your preferences are stored in your account and are the same on the web, in the desktop app and on every device.",
+    "saved": "Saved.",
+    "appearance": "Appearance",
+    "theme": "Theme",
+    "themes": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": "Language",
+    "languageHint": "The interface, emails and server messages are shown in this language.",
+    "startup": "Startup",
+    "defaultWorkspace": "Default workspace",
+    "lastUsedWorkspace": "Last used workspace",
+    "personal": "Personal",
+    "defaultWorkspaceHint": "This workspace is selected when the app opens.",
+    "emailNotifications": "Email notifications",
+    "emailNotificationsHint": "In-app notifications are always delivered. Account security emails (password and email changes) cannot be turned off.",
+    "history": "History",
+    "saveHistoryResponses": "Save response bodies in history",
+    "saveHistoryResponsesHint": "Text responses of the requests you send (up to 256 KB) are kept for 30 days, so the diff tool can also offer responses from earlier sessions. Responses may contain secrets such as tokens. Turning this off deletes the saved responses.",
+    "emails": {
+      "emailMentions": {
+        "label": "Mentions",
+        "hint": "When someone mentions you in a comment."
+      },
+      "emailMergeRequests": {
+        "label": "Merge requests",
+        "hint": "When a request is opened for a collection you can edit, and when your request is merged or rejected."
+      },
+      "emailMonitorAlerts": {
+        "label": "Monitor alerts",
+        "hint": "If your address is on a monitor's notification list. Webhook notifications are not affected."
+      }
+    }
+  },
+  "page": {
+    "back": "Back to requests",
+    "title": "Account settings",
+    "sections": "Account sections",
+    "tabs": {
+      "profile": "Profile",
+      "security": "Security",
+      "api-keys": "API keys",
+      "preferences": "Preferences",
+      "data": "Data and account"
+    }
+  },
+  "apiKeys": {
+    "intro": "Keys let the <code>apivator</code> command-line tool and CI jobs read and run collections on your behalf. A key can only read and submit run reports; nothing can be modified. Create a separate key for each job so you can revoke it on its own when needed.",
+    "expiry": {
+      "d30": "30 days",
+      "d90": "90 days",
+      "y1": "1 year",
+      "never": "Never"
+    },
+    "newKey": "New key",
+    "created": "“{name}” was created. Copy the key now; it will not be shown again.",
+    "copyKey": "Copy key",
+    "ci": "Store it as a secret variable in CI (GitHub: Settings › Secrets, Azure DevOps: Pipeline variables).",
+    "namePlaceholder": "What is it for? (e.g. GitHub Actions, Jenkins, my computer)",
+    "validity": "Validity",
+    "create": "Create",
+    "yourKeys": "Your keys",
+    "lastUsed": "last used {time}",
+    "neverUsed": "never used",
+    "expired": "expired",
+    "until": "until {date}",
+    "noExpiry": "no expiry",
+    "revoke": "Revoke",
+    "none": "You have no keys yet.",
+    "usage": "Usage",
+    "install": "Install the tool (requires the .NET 10 SDK): <code>dotnet tool install -g Apivator.Cli</code>",
+    "example": "export APIVATOR_SERVER={server}\nexport APIVATOR_API_KEY={key}\napivator run \"Collection name\" -e \"Environment name\" -r cli,junit",
+    "keyPlaceholder": "<key>",
+    "copyCommand": "Copy command",
+    "exitCode": "The exit code is 1 if tests fail, so the CI step counts as failed. Reports appear in Apivator's runner history with a “From CLI” label."
+  },
+  "data": {
+    "export": {
+      "title": "Download my data",
+      "body": "Your profile, preferences, sessions, API key names and all collections and environments in your personal workspace (in Postman format) are downloaded as a single ZIP archive. Data in team workspaces belongs to the organization; you can export it from within the workspace.",
+      "button": "Download archive (.zip)"
+    },
+    "delete": {
+      "title": "Delete account",
+      "body": "Your personal workspace and everything in it, your sessions, API keys, request history and notifications are permanently deleted; you are removed from all organizations and workspaces. Collections and comments you created in team workspaces stay with the team, and the author appears as “Deleted user”. We recommend downloading your data before deleting.",
+      "mustTransfer": "You own the following organizations and they have other members. Transfer ownership to a member before deleting: <orgs/>.",
+      "willDelete": "The following organizations have no other members and will be deleted together with their workspaces: {organizations}.",
+      "sent": "A confirmation link was sent to your email address. Your account is deleted only after you confirm via the link; the link is valid for 24 hours.",
+      "password": "Your password",
+      "confirmLabel": "Type {word} to confirm",
+      "confirmWord": "DELETE",
+      "submit": "Send deletion link"
+    }
+  },
+  "recovery": {
+    "header": "Apivator backup codes",
+    "headerEmail": "Apivator backup codes ({email})",
+    "note": "Each code can be used once. Store them somewhere safe.",
+    "list": "Backup codes",
+    "copy": "Copy codes",
+    "download": "Download (.txt)",
+    "fileName": "apivator-backup-codes.txt"
+  },
+  "history": {
+    "intro": "Sign-in and security events on your account. If you see a sign-in you do not recognize, change your password and sign out of all sessions; signing in from a new device also sends an email.",
+    "list": "Security history",
+    "empty": "No records yet.",
+    "kinds": {
+      "LoginSucceeded": "Signed in",
+      "LoginFailed": "Failed sign-in",
+      "LockedOut": "Account temporarily locked",
+      "PasswordChanged": "Password changed",
+      "PasswordReset": "Password reset",
+      "EmailChanged": "Email changed",
+      "TwoFactorEnabled": "Two-step verification enabled",
+      "TwoFactorDisabled": "Two-step verification disabled",
+      "RecoveryCodesRegenerated": "Backup codes regenerated",
+      "RecoveryCodeUsed": "Signed in with a backup code",
+      "SessionsRevokedByAdmin": "An admin signed out your sessions",
+      "PasswordResetSentByAdmin": "An admin sent a password reset link"
+    }
+  },
+  "avatar": {
+    "notImage": "Choose an image file (PNG, JPEG, WebP).",
+    "tooLarge": "The image can be at most 10 MB.",
+    "unreadable": "The image could not be read.",
+    "failed": "The image could not be processed."
+  },
+  "cancel": "Cancel",
+  "people": "{count, plural, one {# person} other {# people}}",
+  "profile": {
+    "title": "Profile",
+    "emailTitle": "Email",
+    "membershipsTitle": "Organizations and workspaces",
+    "avatar": {
+      "change": "Change image",
+      "upload": "Upload image",
+      "remove": "Remove",
+      "hint": "PNG, JPEG or WebP. Cropped to a square; your initials are shown when there is no image.",
+      "choose": "Choose profile image"
+    },
+    "name": "Full name",
+    "saved": "Saved.",
+    "save": "Save",
+    "memberSince": "Member since: {date}",
+    "email": {
+      "confirmed": "verified",
+      "unconfirmed": "not verified",
+      "change": "Change email",
+      "pending": "A verification link was sent to <b>{email}</b>. Your current address stays valid until you click the link.",
+      "cancelChange": "Cancel change",
+      "formLabel": "Change email",
+      "newEmail": "New email",
+      "password": "Your password",
+      "passwordHint": "Enter your current password for security.",
+      "submit": "Send verification link"
+    },
+    "personal": "Personal",
+    "noWorkspaces": "You have no accessible workspaces."
+  },
+  "security": {
+    "passwordHint": "At least 8 characters, one lowercase letter and one digit.",
+    "password": {
+      "title": "Password",
+      "formLabel": "Change password",
+      "done": "Your password was changed. Sessions on other devices were signed out; you stay signed in on this device.",
+      "current": "Current password",
+      "new": "New password",
+      "repeat": "New password (repeat)",
+      "mismatch": "Passwords do not match.",
+      "submit": "Change password"
+    },
+    "twoFactorTitle": "Two-step verification",
+    "sessions": {
+      "title": "Sessions",
+      "thisDevice": "This device",
+      "active": "active now",
+      "lastUsed": "last used {time}",
+      "signedIn": "signed in {time}",
+      "revoke": "Sign out session",
+      "intro": "Browsers and apps signed in to your account. If you see a session you do not recognize, sign it out and change your password. A signed-out session is logged out within a few seconds at most.",
+      "list": "Active sessions",
+      "revokedOthers": "All other sessions were signed out.",
+      "revokeOthers": "Sign out of all other sessions ({count})"
+    },
+    "historyTitle": "Security history"
+  },
+  "twoFactor": {
+    "disable": {
+      "title": "Turn off two-step verification",
+      "body": "Once turned off, your account can be accessed with just a password. To confirm, enter your password and the authenticator code (or a backup code).",
+      "password": "Password",
+      "code": "Code",
+      "placeholder": "123456 or abcde-fghjk",
+      "submit": "Turn off verification"
+    },
+    "regenerate": {
+      "title": "Regenerate backup codes",
+      "done": "New codes were generated; the old ones are no longer valid.",
+      "ok": "Done",
+      "body": "10 new codes are generated and any unused old codes become invalid. To confirm, enter the authenticator code.",
+      "submit": "Regenerate"
+    },
+    "codeLabel": "Verification code",
+    "on": "On",
+    "since": "since {date}",
+    "codesLeft": "{count, plural, one {# backup code left} other {# backup codes left}}",
+    "off": "Turn off",
+    "requiredBy": "Required by {names}",
+    "offBody": "At sign-in, a code generated by the authenticator app on your phone is requested in addition to your password; even if your password is stolen, your account cannot be accessed.",
+    "setup": "Set up",
+    "lowCodes": "You are running low on backup codes. Generate new codes.",
+    "requiredEnabled": "The {names} organization requires two-step verification; it cannot be turned off.",
+    "requiredDisabled": "The {names} organization requires two-step verification; you cannot access its workspaces until you set it up.",
+    "setupDialog": {
+      "qr": "Authenticator QR code",
+      "codesTitle": "Backup codes",
+      "ok": "Done",
+      "enabled": "Two-step verification is on.",
+      "codesBody": "If you lose access to your phone you can sign in with these codes. Each code can be used once. <b>The codes are shown only now.</b>",
+      "savedCheck": "I saved the codes somewhere safe",
+      "title": "Turn on two-step verification",
+      "step1": "Open an authenticator app on your phone (Google Authenticator, Microsoft Authenticator, 1Password…).",
+      "step2": "Scan the QR code or enter the key manually.",
+      "step3": "Enter the 6-digit code generated by the app below.",
+      "keyHint": "Key (for manual entry)",
+      "key": "Key",
+      "copyKey": "Copy key",
+      "meta": "Account: {email} · Type: time-based (TOTP)",
+      "submit": "Verify and turn on"
+    }
+  }
+}

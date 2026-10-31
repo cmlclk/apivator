@@ -1,0 +1,47 @@
+{
+  "language": "Dil",
+  "unexpectedError": "Beklenmeyen bir hata oluştu.",
+  "actions": {
+    "cancel": "Vazgeç",
+    "close": "Kapat",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı"
+  },
+  "fields": {
+    "name": "Ad"
+  },
+  "roles": {
+    "organization": {
+      "owner": "Sahip",
+      "admin": "Yönetici",
+      "member": "Üye"
+    },
+    "workspace": {
+      "admin": "Yönetici",
+      "editor": "Düzenleyici",
+      "viewer": "Görüntüleyici"
+    },
+    "workspaceHints": {
+      "admin": "Üyeleri ve workspace ayarlarını yönetir",
+      "editor": "Collection ve environment'ları düzenler",
+      "viewer": "Görür ve istek gönderir, değiştiremez"
+    }
+  },
+  "errors": {
+    "requestNotCached": "Çevrimdışısınız ve bu istek henüz bu cihaza indirilmemiş. Bağlantı gelince açılabilir.",
+    "serverUrlInvalid": "Geçerli bir adres girin (ör. https://apivator.sirket.com).",
+    "serverUrlScheme": "Adres http:// ya da https:// ile başlamalı."
+  },
+  "desktop": {
+    "agentStartFailed": "Yerel ajan başlatılamadı: {detail}",
+    "agentExited": "Yerel ajan kapandı (çıkış kodu {code}). {detail}",
+    "agentTimeout": "Yerel ajan {seconds} saniye içinde hazır olmadı.",
+    "fileBodyInvalid": "Dosya içeriği ham gövde olarak gönderilmeli.",
+    "fileWriteFailed": "Dosya yazılamadı: {detail}",
+    "invalidUrl": "Geçersiz adres.",
+    "urlScheme": "Yalnızca http ve https adresleri açılabilir.",
+    "secretKeyNotAllowed": "İzin verilmeyen anahtar: {key}",
+    "noUpdate": "Kurulacak güncelleme yok.",
+    "updatesDisabled": "Bu sürümde otomatik güncelleme kapalı."
+  }
+}

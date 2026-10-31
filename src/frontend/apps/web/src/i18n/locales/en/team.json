@@ -1,0 +1,150 @@
+{
+  "invite": {
+    "title": "Invitation",
+    "intro": "<b>{inviter}</b> invited you to the <b>{organization}</b> organization.",
+    "introWorkspace": "<b>{inviter}</b> invited you to the <b>{organization}</b> organization and the <b>“{workspace}”</b> workspace.",
+    "sentTo": "The invitation was sent to <code>{email}</code>.",
+    "missing": "The invitation link is incomplete.",
+    "status": {
+      "Expired": "This invitation has expired. Ask the person who invited you to send it again.",
+      "Accepted": "This invitation has already been accepted.",
+      "Revoked": "This invitation was revoked or replaced by a new one. Use the latest invitation in your email."
+    },
+    "wrongAccount": "You are currently signed in as <b>{current}</b>. To accept the invitation, sign out and sign in as <b>{invited}</b>.",
+    "accept": "Accept invitation",
+    "loginJoin": "Sign in and join",
+    "registerJoin": "Create account and join",
+    "haveAccount": "Have an account? <link>Sign in</link>"
+  },
+  "oauthCallback": {
+    "failed": "The sign-in details could not be delivered to the Apivator window. Close this window and try again.",
+    "done": "Sign-in complete. You can close this window if it does not close by itself."
+  },
+  "cancel": "Cancel",
+  "people": "{count, plural, one {# person} other {# people}}",
+  "roles": {
+    "member": "Member",
+    "admin": "Admin"
+  },
+  "org": {
+    "newName": "New organization name",
+    "name": "Organization name",
+    "language": "Default language",
+    "languageHint": "Language of invitation and notification emails and the starting language of new members",
+    "namePlaceholder": "Name of your company or team",
+    "create": "Create",
+    "select": "Select organization",
+    "add": "Organization",
+    "sections": "Organization sections",
+    "backToRequests": "Back to requests",
+    "empty": {
+      "title": "Work with your team",
+      "body": "Create an organization, invite people by email and share collections in team workspaces. Your personal workspace <lock/> stays private to you.",
+      "back": "Back"
+    },
+    "save": "Save"
+  },
+  "tabs": {
+    "members": "Members",
+    "teams": "Teams",
+    "workspaces": "Workspaces",
+    "security": "Security",
+    "sso": "SSO",
+    "audit": "Audit log"
+  },
+  "inviteForm": {
+    "label": "Invite",
+    "title": "Invite people",
+    "sent": "Invitation sent to {email}.",
+    "emailLabel": "Invitation email",
+    "orgRole": "Organization role",
+    "workspace": "Workspace",
+    "noWorkspace": "Without a workspace",
+    "workspaceRole": "Workspace role",
+    "language": "Email language",
+    "submit": "Send invitation",
+    "hint": "The invitation link is valid for 7 days. Admins can access all team workspaces and manage people."
+  },
+  "members": {
+    "list": "Members",
+    "you": "(you)",
+    "owner": "Owner (transfer)",
+    "twoFactorOn": "Two-step verification is on",
+    "twoFactorOnLabel": "2FA on",
+    "twoFactorOff": "Two-step verification is off",
+    "twoFactorOffLabel": "2FA off",
+    "roleOf": "{name}'s role",
+    "securityActions": "{name} security actions",
+    "transfer": {
+      "title": "Transfer ownership",
+      "label": "Transfer",
+      "body": "{name} becomes the owner of the organization and you remain an admin. Only the new owner can undo this."
+    },
+    "revokeSessions": {
+      "menu": "Sign out of all sessions",
+      "title": "Sign out of all sessions",
+      "label": "Sign out sessions",
+      "body": "{name} will be signed out on all devices and must sign in again. They are notified by email and it is recorded in their security history.",
+      "done": "All sessions for {name} were signed out."
+    },
+    "passwordReset": {
+      "menu": "Send password reset link",
+      "title": "Send password reset link",
+      "label": "Send",
+      "body": "A password reset link will be sent to {email}. Their current password stays valid until they set a new one.",
+      "done": "Password reset link sent to {email}."
+    },
+    "remove": {
+      "aria": "Remove {name} from organization",
+      "title": "Remove from organization",
+      "label": "Remove",
+      "body": "{name} loses access to all workspaces and teams of this organization."
+    },
+    "pending": {
+      "title": "Pending invitations",
+      "withWorkspace": "{workspace} ({role})",
+      "expired": "expired",
+      "until": "until {date}",
+      "resend": "Resend",
+      "revoke": "Revoke invitation for {email}"
+    },
+    "leave": {
+      "title": "Leave organization",
+      "label": "Leave",
+      "body": "You lose access to the workspaces and teams in {name}. You need to be invited again to return."
+    }
+  },
+  "teams": {
+    "intro": "Teams group people. When you add a team to a workspace, all of its members get access; anyone who joins the team gets access automatically.",
+    "nameLabel": "Team name",
+    "namePlaceholder": "Backend, QA, Mobile…",
+    "create": "Create team",
+    "empty": "No teams yet.",
+    "section": "{name} team",
+    "count": "· {count, plural, one {# person} other {# people}}",
+    "noMembers": "No members.",
+    "remove": {
+      "aria": "Delete team {name}",
+      "title": "Delete team",
+      "label": "Delete",
+      "body": "Workspace access granted through “{name}” is removed. People stay in the organization."
+    },
+    "removeMember": "Remove {name} from team",
+    "addMember": "Add person to team {name}",
+    "addMemberOption": "+ Add person"
+  },
+  "security": {
+    "require": "Require two-step verification",
+    "requireHint": "Members who have not enabled it cannot see the organization’s workspaces (including API keys) until they set it up; they see a warning in the app.",
+    "enableFirst": "Before requiring it, enable two-step verification on your own account: <link>Account settings › Security</link>",
+    "summary": "Enabled for {enabled} / {total} members.",
+    "summaryOff": "Enabled for {enabled} / {total} members. Not enabled: {names}.",
+    "note": "To sign a member out of all sessions or send them a password reset link, use the menu next to their name in the Members tab. These actions are recorded in the member’s security history under your name."
+  },
+  "workspaces": {
+    "create": "New workspace",
+    "empty": "You have no accessible workspaces. Ask an admin to add you.",
+    "switchTo": "Switch to this workspace",
+    "settings": "{name} settings"
+  }
+}

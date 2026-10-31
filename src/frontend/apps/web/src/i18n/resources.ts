@@ -1,0 +1,73 @@
+/* Ad alanlarının tipleri Türkçe dosyalardan gelir (Türkçe kaynak dildir; diğer diller aynı anahtarları taşır). */
+import type common from './locales/tr/common.json';
+import type auth from './locales/tr/auth.json';
+import type shell from './locales/tr/shell.json';
+import type team from './locales/tr/team.json';
+import type account from './locales/tr/account.json';
+import type activity from './locales/tr/activity.json';
+import type audit from './locales/tr/audit.json';
+import type collab from './locales/tr/collab.json';
+import type collections from './locales/tr/collections.json';
+import type comments from './locales/tr/comments.json';
+import type console from './locales/tr/console.json';
+import type docs from './locales/tr/docs.json';
+import type environments from './locales/tr/environments.json';
+import type exchange from './locales/tr/exchange.json';
+import type forks from './locales/tr/forks.json';
+import type gitsync from './locales/tr/gitsync.json';
+import type graphql from './locales/tr/graphql.json';
+import type grpc from './locales/tr/grpc.json';
+import type history from './locales/tr/history.json';
+import type mocks from './locales/tr/mocks.json';
+import type models from './locales/tr/models.json';
+import type monitors from './locales/tr/monitors.json';
+import type oauth from './locales/tr/oauth.json';
+import type requests from './locales/tr/requests.json';
+import type runner from './locales/tr/runner.json';
+import type scripts from './locales/tr/scripts.json';
+import type sso from './locales/tr/sso.json';
+import type streaming from './locales/tr/streaming.json';
+import type toolCatalog from './locales/tr/toolCatalog.json';
+import type tools from './locales/tr/tools.json';
+import type toolsData from './locales/tr/toolsData.json';
+import type toolsMisc from './locales/tr/toolsMisc.json';
+import type toolsSecurity from './locales/tr/toolsSecurity.json';
+
+/** Ad alanları: özellik başına bir dosya. Yeni ad alanı: her dilde `<ad>.json` oluştur ve buraya ekle. */
+export interface Resources {
+  common: typeof common;
+  auth: typeof auth;
+  shell: typeof shell;
+  team: typeof team;
+  account: typeof account;
+  activity: typeof activity;
+  audit: typeof audit;
+  collab: typeof collab;
+  collections: typeof collections;
+  comments: typeof comments;
+  console: typeof console;
+  docs: typeof docs;
+  environments: typeof environments;
+  exchange: typeof exchange;
+  forks: typeof forks;
+  gitsync: typeof gitsync;
+  graphql: typeof graphql;
+  grpc: typeof grpc;
+  history: typeof history;
+  mocks: typeof mocks;
+  models: typeof models;
+  monitors: typeof monitors;
+  oauth: typeof oauth;
+  requests: typeof requests;
+  runner: typeof runner;
+  scripts: typeof scripts;
+  sso: typeof sso;
+  streaming: typeof streaming;
+  toolCatalog: typeof toolCatalog;
+  tools: typeof tools;
+  toolsData: typeof toolsData;
+  toolsSecurity: typeof toolsSecurity;
+  toolsMisc: typeof toolsMisc;
+}
+
+export type Namespace = keyof Resources;

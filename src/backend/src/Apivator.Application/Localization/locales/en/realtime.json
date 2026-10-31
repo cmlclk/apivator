@@ -1,0 +1,10 @@
+{
+  "realtime.workspace_forbidden": "You don't have access to this workspace.",
+  "realtime.request_not_found": "Request not found or you don't have access.",
+  "realtime.document_not_joined": "You haven't joined this document.",
+  "realtime.request_no_edit": "You don't have permission to edit this request.",
+  "realtime.rate_limited": "You're sending updates too fast; wait a moment.",
+  "realtime.request_access_lost": "You no longer have access to this request.",
+  "realtime.draft_too_large": "The shared draft has grown too large; refresh the page.",
+  "realtime.invalid_update": "Invalid or too large update."
+}

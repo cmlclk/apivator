@@ -1,0 +1,54 @@
+# Apivator collection'ını her push'ta ve her gece çalıştırır, sonucu test raporu olarak gösterir.
+# Kurulum: depo ayarlarında Settings › Secrets and variables › Actions altına
+#   Secret   APIVATOR_API_KEY  (Apivator › Hesap menüsü › API anahtarları)
+#   Variable APIVATOR_SERVER   (ör. https://apivator.sirket.com)
+# Bu dosyayı .github/workflows/api-tests.yml olarak kopyalayın.
+name: API testleri
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write # test raporunu PR'da göstermek için
+
+jobs:
+  apivator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Apivator CLI'ı kur
+        run: dotnet tool install -g Apivator.Cli
+
+      - name: Collection'ı çalıştır
+        env:
+          APIVATOR_SERVER: ${{ vars.APIVATOR_SERVER }}
+          APIVATOR_API_KEY: ${{ secrets.APIVATOR_API_KEY }}
+        run: >
+          apivator run "Ödeme API"
+          --environment "Test"
+          --reporters cli,junit,html
+          --reporter-junit-export reports/apivator.xml
+          --reporter-html-export reports/apivator.html
+
+      - name: Raporu yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apivator-raporu
+          path: reports/
+
+      - name: Test sonuçlarını göster
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Apivator
+          path: reports/apivator.xml
+          reporter: java-junit

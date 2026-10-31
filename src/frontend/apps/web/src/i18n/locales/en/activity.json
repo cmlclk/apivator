@@ -1,0 +1,61 @@
+{
+  "time": {
+    "justNow": "just now",
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "targets": {
+    "Collection": "collection",
+    "Folder": "folder",
+    "Request": "request",
+    "Environment": "environment",
+    "Example": "example response"
+  },
+  "actions": {
+    "Created": "Created",
+    "Updated": "Saved",
+    "Renamed": "Renamed",
+    "Moved": "Moved",
+    "Deleted": "Deleted",
+    "Restored": "Restored"
+  },
+  "sentence": {
+    "Created": "<b>{user}</b> <m>created</m> <m>{target}</m> <n>{name}</n>",
+    "Updated": "<b>{user}</b> <m>updated</m> <m>{target}</m> <n>{name}</n>",
+    "Renamed": "<b>{user}</b> <m>renamed</m> <m>{target}</m> <n>{name}</n>",
+    "RenamedFrom": "<b>{user}</b> <m>renamed</m> <m>{target}</m> <n>{name}</n> <m>(previously: {detail})</m>",
+    "Moved": "<b>{user}</b> <m>moved</m> <m>{target}</m> <n>{name}</n>",
+    "MovedDetail": "<b>{user}</b> <m>moved</m> <m>{target}</m> <n>{name}</n> <m>{detail}</m>",
+    "Deleted": "<b>{user}</b> <m>deleted</m> <m>{target}</m> <n>{name}</n>",
+    "Restored": "<b>{user}</b> <m>restored</m> <m>{target}</m> <n>{name}</n>",
+    "RestoredVersion": "<b>{user}</b> <m>{target}</m> <n>{name}</n> <m>reverted to {detail}</m>"
+  },
+  "panel": {
+    "title": "Activity",
+    "empty": "Changes to collections, requests and environments in this workspace appear here, along with who made them.",
+    "restore": "Restore",
+    "older": "Older"
+  },
+  "versions": {
+    "title": "Versions: {name}",
+    "list": "Versions",
+    "restoreVersion": "Restore v{version}",
+    "restoreVersionConfirm": "Yes, restore v{version}",
+    "isLatest": "This is the latest saved version.",
+    "confirmDiscard": "Your unsaved changes in the tab will be lost. Click again to confirm.",
+    "restoreNote": "Restoring is saved as a new version; the history is not deleted.",
+    "olderNotKept": "Older versions are not kept.",
+    "compare": "Comparison",
+    "comparePrevious": "Changes in this version",
+    "compareDraft": "Difference from your tab",
+    "emptyNoChange": "The content is unchanged (only its position or order may have changed).",
+    "emptyFirst": "The request's first version.",
+    "emptyDraftSame": "Your tab is identical to this version.",
+    "envName": "Name",
+    "envVariables": "Variables",
+    "envNote": "Changes in the selected version. Current values live on each person's own device; the history only contains the shared initial values.",
+    "secretValue": "•••••• ({count, plural, one {# character} other {# characters}}, secret)",
+    "envNoChange": "No variable changed.",
+    "envFirst": "The environment's first version."
+  }
+}

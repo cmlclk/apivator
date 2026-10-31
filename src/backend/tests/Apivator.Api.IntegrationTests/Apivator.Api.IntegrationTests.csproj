@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Apivator.Api\Apivator.Api.csproj" />
+    <ProjectReference Include="..\..\src\Apivator.Agent\Apivator.Agent.csproj" />
+    <ProjectReference Include="..\..\src\Apivator.Cli\Apivator.Cli.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
+    <PackageReference Include="Grpc.AspNetCore" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fixtures\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Dinamik değişken sözleşmesi (src/shared); istemci testleri de aynı dosyayı kullanır. -->
+    <None Include="..\..\..\shared\dynamic-variables.json" Link="shared\dynamic-variables.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Postman script uyumluluk seti (depo kökündeki compat/ klasörü). -->
+    <None Include="..\..\..\..\compat\**\*.json" Link="compat\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- gRPC testlerindeki örnek sunucu; aynı dosya .proto yükleme testinde de kullanılır. -->
+    <Protobuf Include="Grpc\katalog.proto" GrpcServices="Server" />
+    <None Include="Grpc\katalog.proto" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

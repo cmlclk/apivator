@@ -1,0 +1,16 @@
+{
+  "title": "Geçmiş",
+  "clear": "Geçmişi temizle",
+  "clearConfirm": "Temizle",
+  "searchPlaceholder": "URL ya da method ara",
+  "searchLabel": "Geçmişte ara",
+  "empty": "Gönderdiğin istekler burada tarih sırasıyla listelenir. Yalnızca sen görürsün.",
+  "noMatch": "Eşleşen kayıt yok.",
+  "deleteEntry": "Kaydı sil",
+  "older": "Daha eski kayıtlar",
+  "clearBody": "Bu workspace'teki tüm istek geçmişin silinecek. Kayıtlı istekler etkilenmez.",
+  "untitledTab": "Geçmişten istek",
+  "exportName": "Geçmiş {date}",
+  "today": "Bugün",
+  "yesterday": "Dün"
+}

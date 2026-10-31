@@ -1,0 +1,6 @@
+{
+  "environment.not_found": "Environment not found.",
+  "environment.version_conflict": "Someone else changed this environment after you opened it. Close the dialog and open it again.",
+  "environment.name_required": "Environment name can't be empty.",
+  "environment.name_max_length": "Environment name can be at most {max} characters long."
+}

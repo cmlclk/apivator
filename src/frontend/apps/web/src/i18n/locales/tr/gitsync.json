@@ -1,0 +1,88 @@
+{
+  "pull": {
+    "sides": {
+      "mine": "Benimki",
+      "theirs": "Depodaki",
+      "none": "(yok)"
+    },
+    "kinds": {
+      "Collection": "Collection ayarları",
+      "Folder": "Klasör",
+      "Request": "İstek"
+    },
+    "changes": {
+      "Added": "Eklendi",
+      "Modified": "Değişti",
+      "Removed": "Silindi"
+    },
+    "applied": "{applied, plural, other {# değişiklik}} alındı{skipped, plural, =0 {} other {, # öğe bekletildi}}.",
+    "title": "Repodan al",
+    "showDiff": "Farkları göster",
+    "applySelected": "Seçilenleri al",
+    "unresolved": "{count, plural, other {# öğe}} iki tarafta da değişmiş. Her biri için hangisinin kalacağını seçin.",
+    "nothing": "Depoda alınacak değişiklik yok.",
+    "choiceFor": "{name} için seçim",
+    "choose": "Çakışma: seçin",
+    "takeTheirs": "Depodakini al",
+    "keepMine": "Benimkini koru",
+    "skip": "Şimdilik dokunma",
+    "take": "Al"
+  },
+  "connect": {
+    "url": "Depo adresi (https)",
+    "branch": "Dal",
+    "folder": "Depodaki klasör",
+    "folderHint": "Collection bu klasöre dosya dosya yazılır.",
+    "username": "Kullanıcı adı (isteğe bağlı)",
+    "token": "Erişim belirteci",
+    "tokenSaved": "Kayıtlı bir belirteç var; değiştirmek için yenisini girin.",
+    "tokenHint": "Şifreli saklanır, geri gösterilmez.",
+    "saveSettings": "Ayarları kaydet",
+    "connect": "Bağla"
+  },
+  "push": {
+    "upToDate": "Depo zaten güncel; gönderilecek değişiklik yok.",
+    "pushed": "{count, plural, other {# öğe}} repoya gönderildi.",
+    "title": "Repoya gönder",
+    "intro": "Gönderirken bu bağlantının erişim belirteci kullanılır; yani yaptığınız her gönderim bağlantıyı kuran kişinin yetkisiyle depoya yazılır.",
+    "force": "Yine de gönder",
+    "message": "Commit mesajı",
+    "messagePlaceholder": "Apivator: {name} güncellendi",
+    "submit": "Gönder",
+    "noPermission": "Göndermek ve almak için collection'ı düzenleme yetkisi gerekir."
+  },
+  "dialog": {
+    "title": "Git senkronu: {name}",
+    "intro": "Collection'ı bir Git deposuna (GitHub, GitLab, Azure DevOps, Gitea, Bitbucket) dosya olarak saklayın: her istek ayrı bir dosya, klasörler dizin olur. Gizli değerler dosyalara yazılmaz.",
+    "adminOnly": "Bağlantıyı yalnızca workspace yöneticisi kurabilir."
+  },
+  "status": {
+    "repo": "Depo",
+    "token": "Belirteç",
+    "tokenSaved": "Kayıtlı",
+    "tokenNone": "Yok",
+    "lastSync": "Son eşitleme",
+    "lastSyncValue": "{time}{hasBy, select, y { · {by}} other {}} · {commit}",
+    "never": "Henüz yok",
+    "state": "Durum",
+    "stateValue": "{ahead} gönderilecek · {behind} alınacak{hasChecked, select, y { (son kontrol {checked})} other {}}",
+    "autoCheck": "Otomatik kontrol",
+    "intervals": {
+      "off": "Kapalı",
+      "hourly": "Saatte bir",
+      "every6h": "6 saatte bir",
+      "daily": "Günde bir"
+    },
+    "lastError": "Son hata: {error}"
+  },
+  "connection": {
+    "settings": "Bağlantı ayarları",
+    "title": "Bağlantı",
+    "hide": "Gizle",
+    "edit": "Düzenle",
+    "disconnect": "Bağlantıyı kaldır",
+    "disconnectTitle": "Git bağlantısını kaldır",
+    "disconnectConfirm": "Kaldır",
+    "disconnectMessage": "Collection ve depodaki dosyalar olduğu gibi kalır; yalnızca eşitleme durur."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "button": {
+    "title": "Generate model classes (C#, Java, TypeScript…) from this data",
+    "label": "Model"
+  },
+  "controls": {
+    "namespace": "Namespace",
+    "package": "Package",
+    "placeholderOptional": "{label} (optional)",
+    "placeholderGo": "{label} (models)",
+    "languageLabel": "Model language",
+    "optionsLabel": "Language options",
+    "csharpStyle": "C# style",
+    "styleClass": "Class",
+    "jsonLibrary": "JSON library",
+    "javaStyle": "Java style",
+    "zod": "zod schema",
+    "pythonStyle": "Python style",
+    "decimal": "{type} for decimals",
+    "filesLabel": "Files"
+  },
+  "dialog": {
+    "title": "Generate model",
+    "noSamples": "This source has no JSON samples.",
+    "errorFile": "error.txt",
+    "typeCount": "{count, plural, one {# type} other {# types}}",
+    "fileCount": "{count, plural, one {# file} other {# files}}",
+    "copyCode": "Copy code",
+    "downloadZip": "Download as ZIP",
+    "downloadFile": "Download as file",
+    "source": "Source",
+    "sourceLabel": "Model source",
+    "pasteSchema": "Paste schema (JSON Schema / OpenAPI)",
+    "language": "Language",
+    "rootOpenApi": "Root name (OpenAPI: all schemas are generated)",
+    "rootName": "Root class name",
+    "schemaLabel": "Schema",
+    "pastePlaceholder": "{example}\n\nor an OpenAPI document (JSON / YAML)",
+    "generatedLabel": "Generated model",
+    "pasteAbove": "Paste the schema above.",
+    "noData": "There is no data to generate a model from."
+  }
+}

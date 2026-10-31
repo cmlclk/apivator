@@ -1,0 +1,43 @@
+{
+  "button": {
+    "title": "Bu veriden C#, Java, TypeScript… model sınıfı üret",
+    "label": "Model"
+  },
+  "controls": {
+    "namespace": "Namespace",
+    "package": "Paket",
+    "placeholderOptional": "{label} (isteğe bağlı)",
+    "placeholderGo": "{label} (models)",
+    "languageLabel": "Model dili",
+    "optionsLabel": "Dil seçenekleri",
+    "csharpStyle": "C# stili",
+    "styleClass": "Sınıf",
+    "jsonLibrary": "JSON kütüphanesi",
+    "javaStyle": "Java stili",
+    "zod": "zod şeması",
+    "pythonStyle": "Python stili",
+    "decimal": "Ondalık için {type}",
+    "filesLabel": "Dosyalar"
+  },
+  "dialog": {
+    "title": "Model üret",
+    "noSamples": "Bu kaynakta JSON örnek yok.",
+    "errorFile": "hata.txt",
+    "typeCount": "{count, plural, other {# tip}}",
+    "fileCount": "{count, plural, other {# dosya}}",
+    "copyCode": "Kodu kopyala",
+    "downloadZip": "ZIP olarak indir",
+    "downloadFile": "Dosya olarak indir",
+    "source": "Kaynak",
+    "sourceLabel": "Model kaynağı",
+    "pasteSchema": "Şema yapıştır (JSON Schema / OpenAPI)",
+    "language": "Dil",
+    "rootOpenApi": "Kök adı (OpenAPI: tüm şemalar üretilir)",
+    "rootName": "Kök sınıf adı",
+    "schemaLabel": "Şema",
+    "pastePlaceholder": "{example}\n\nya da bir OpenAPI belgesi (JSON / YAML)",
+    "generatedLabel": "Üretilen model",
+    "pasteAbove": "Şemayı yukarıya yapıştırın.",
+    "noData": "Model üretilecek veri yok."
+  }
+}

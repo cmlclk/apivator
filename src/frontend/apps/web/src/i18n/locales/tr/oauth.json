@@ -1,0 +1,32 @@
+{
+  "panel": {
+    "title": "Erişim token'ı",
+    "lessThanMinute": "1 dakikadan az",
+    "minutes": "{count, plural, other {# dakika}}",
+    "hours": "{count, plural, other {# saat}}",
+    "validLeft": "geçerli · {time} kaldı",
+    "validNoExpiry": "geçerli · süresi bildirilmedi",
+    "expiredRefresh": "süresi doldu · gönderirken yenilenecek",
+    "expired": "süresi doldu",
+    "noneAuto": "yok · gönderirken otomatik alınır",
+    "none": "yok",
+    "delete": "Token'ı sil",
+    "fetching": "Alınıyor…",
+    "fetch": "Yeni token al",
+    "localOnlyTitle": "Token yalnızca bu tarayıcıda saklanır",
+    "scope": "kapsam: {scope}",
+    "note": "Token yalnızca bu tarayıcıda saklanır; collection'la birlikte paylaşılmaz.",
+    "noteServer": " Client credentials ve password akışlarında token yoksa sunucu alır ve önbelleğe koyar."
+  },
+  "flow": {
+    "authUrlEmpty": "Yetkilendirme adresi (Auth URL) boş.",
+    "authUrlInvalid": "Yetkilendirme adresi (Auth URL) geçerli bir adres değil.",
+    "denied": "Giriş reddedildi: {error}",
+    "noCode": "Sağlayıcı yetkilendirme kodu döndürmedi.",
+    "timeout": "Giriş 5 dakika içinde tamamlanmadı.",
+    "redirectMismatch": "Yönlendirme adresi bu uygulamaya dönmeli ({uri}); aksi hâlde dönen kod yakalanamaz.",
+    "popupBlocked": "Giriş penceresi açılamadı. Tarayıcının açılır pencere engelini kaldırın.",
+    "popupClosed": "Giriş penceresi kapatıldı.",
+    "tokenUrlEmpty": "Token adresi (Token URL) boş."
+  }
+}

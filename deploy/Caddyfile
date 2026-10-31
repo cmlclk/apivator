@@ -1,0 +1,24 @@
+# HTTPS'i sonlandırır ve web container'ına (nginx) iletir; nginx de /api ve /hubs'ı API'ye yollar.
+# Sertifika kaynağı .env'deki CADDY_TLS ile seçilir: auto | files | internal
+
+(tls_auto) {
+	# Let's Encrypt: alan adı herkese açık DNS'te bu sunucuyu göstermeli, 80 ve 443 dışarıdan açık olmalı.
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+(tls_files) {
+	# Şirket sertifikası: deploy/certs/cert.pem (zincir dahil) ve deploy/certs/key.pem
+	tls /certs/cert.pem /certs/key.pem
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+(tls_internal) {
+	# Caddy'nin kendi CA'sı: tarayıcıların Caddy kök sertifikasına güvenmesi gerekir (docs/kurulum.md).
+	tls internal
+}
+
+{$APIVATOR_DOMAIN} {
+	import tls_{$CADDY_TLS:auto}
+	encode zstd gzip
+	reverse_proxy web:80
+}

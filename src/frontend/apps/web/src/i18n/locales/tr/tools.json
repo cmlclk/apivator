@@ -1,0 +1,255 @@
+{
+  "page": {
+    "toolFailed": "Araç açılamadı: {message}",
+    "clearAndRetry": "Bu aracın girdilerini temizle ve yeniden dene",
+    "reload": "Sayfayı yenile"
+  },
+  "nav": {
+    "title": "Araçlar",
+    "search": "Araç ara",
+    "results": "Sonuçlar",
+    "noMatch": "Eşleşen araç yok.",
+    "favorites": "Favoriler",
+    "localNote": "Araçlar tamamen bu cihazda çalışır; girdiler sunucuya gönderilmez."
+  },
+  "home": {
+    "title": "Geliştirici araçları",
+    "intro": "Base64, JWT, JSON dönüştürme gibi işler için başka siteye gitmeyin. Hiçbir girdi sunucuya gönderilmez; token ve müşteri verisi güvenle yapıştırılabilir.",
+    "remember": "Son girdileri bu cihazda hatırla",
+    "clearAll": "Tüm girdileri temizle"
+  },
+  "view": {
+    "removeFavorite": "Favorilerden çıkar",
+    "addFavorite": "Favorilere ekle",
+    "clearTool": "Bu aracın girdilerini temizle",
+    "clear": "Temizle",
+    "notFound": "Bu araç bulunamadı.",
+    "allTools": "Tüm araçlar"
+  },
+  "pane": {
+    "loadFile": "Dosyadan yükle",
+    "loadFileLabel": "{label}: dosyadan yükle",
+    "fileTooLarge": "Dosya çok büyük: metin alanına en fazla 20 MB yüklenebilir.",
+    "download": "Dosyaya indir",
+    "clear": "Temizle",
+    "clearLabel": "{label}: temizle",
+    "copyLabel": "{label}: kopyala",
+    "swap": "Yer değiştir"
+  },
+  "codec": {
+    "operation": "İşlem",
+    "encode": "Kodla (encode)",
+    "decode": "Çöz (decode)",
+    "text": "Metin",
+    "escapedText": "Kaçışlı metin",
+    "encodedText": "Kodlanmış metin",
+    "decodedText": "Çözülmüş metin",
+    "downloadAsFile": "Dosya olarak indir"
+  },
+  "smartPaste": {
+    "title": "Akıllı yapıştırma",
+    "placeholder": "Yapıştırın, uygun aracı önerelim (JWT, Base64, zaman damgası, JSON, URL, UUID, cURL…)",
+    "noMatch": "Tanınan bir biçim yok; listeden bir araç seçin.",
+    "openInRequest": "Yeni istekte aç",
+    "suggestion": "{reason} · {tool}",
+    "suggestionRequest": "{reason} · Yeni istekte aç"
+  },
+  "request": {
+    "curlName": "cURL isteği",
+    "fromTool": "Araçtan istek",
+    "curlSkipped": "cURL komutundaki bazı seçenekler atlandı:"
+  },
+  "output": {
+    "use": "Çıktıyı kullan",
+    "saveVariable": "Değişken olarak kaydet",
+    "useInRequest": "Yeni istekte kullan"
+  },
+  "saveVariable": {
+    "noPermission": "Bu workspace’te değişken ekleme ya da paylaşma yetkiniz yok.",
+    "saved": "{variable} kaydedildi ({target}).",
+    "close": "Kapat",
+    "cancel": "Vazgeç",
+    "save": "Kaydet",
+    "name": "Değişken adı",
+    "target": "Hedef",
+    "activeEnvironment": "Aktif environment: {name}",
+    "globals": "Globals",
+    "shareInitial": "Başlangıç değeri olarak da kaydet (ekiple paylaşılır)",
+    "localNote": "Değer güncel değer olarak yalnızca bu cihazda saklanır. Token ve şifreleri paylaşmayın."
+  },
+  "size": {
+    "bytes": "{count} bayt"
+  },
+  "diff": {
+    "truncated": "İlk {max} satır gösteriliyor ({total} satır).",
+    "added": "Eklendi",
+    "removed": "Silindi",
+    "changed": "Değişti"
+  },
+  "tree": {
+    "showMore": "{count, plural, other {# öğe daha göster}}"
+  },
+  "convert": {
+    "rows": "Satırlar",
+    "rootArray": "Kök dizi ({count})",
+    "rootSingle": "Kök (tek satır)",
+    "delimiter": "Ayırıcı",
+    "delimiterSemicolon": "Noktalı virgül ; (Türkçe Excel)",
+    "delimiterComma": "Virgül ,",
+    "delimiterTab": "Sekme",
+    "decimal": "Ondalık",
+    "decimalComma": "Virgül (1,5)",
+    "decimalDot": "Nokta (1.5)",
+    "arrays": "Diziler",
+    "plusSpaces": "Boşluk + olarak (form-urlencoded)",
+    "excelFile": "Excel dosyası",
+    "excelFileXlsx": "Excel dosyası (.xlsx)",
+    "sheetSummary": "— {rows} satır, {columns} kolon",
+    "excelNote": "Başlık satırı kalın ve sabit; sayı, tarih ve mantıksal kolonlar Excel tipiyle yazılır.",
+    "downloadExcel": "Excel olarak indir",
+    "fileTooLarge": "Dosya çok büyük (en fazla 50 MB).",
+    "pickExcel": "Excel dosyası seç",
+    "pickFile": "Dosya seç",
+    "sheet": "Sayfa",
+    "sheetOption": "{name} ({rows, plural, other {# satır}})",
+    "firstRowHeader": "İlk satır başlık",
+    "sheetEmpty": "Bu sayfa boş.",
+    "localRead": "Dosya bu cihazda okunur; hiçbir yere gönderilmez.",
+    "columnName": "Sütun{n}",
+    "rootPath": "(kök)"
+  },
+  "errors": {
+    "jsonAt": "JSON: {line}. satır, {column}. sütun: {message}",
+    "yamlAt": "YAML: {line}. satır, {column}. sütun: {message}",
+    "tomlAt": "TOML: {line}. satır, {column}. sütun: {message}",
+    "invalidXml": "Geçerli bir XML değil.",
+    "invalidXmlDetail": "Geçerli bir XML değil. {detail}",
+    "csvUnclosedQuote": "CSV: kapanmamış tırnak.",
+    "csvEmpty": "CSV boş.",
+    "tomlRootTable": "TOML belgesinin kökü bir tablo (nesne) olmalı; dizi ya da tek değer yazılamaz. Örn. '{' \"liste\": [...] '}'",
+    "tomlNull": "TOML'da null yok: \"{path}\" alanını silin ya da bir değer verin.",
+    "tomlWrite": "TOML'a çevrilemedi: {message}",
+    "xmlDoctype": "Güvenlik nedeniyle DOCTYPE / ENTITY tanımı içeren XML desteklenmez; bu bölümü silin.",
+    "xpathPrefix": "Geçersiz XPath ifadesi. Tanımsız ad alanı öneki: {prefix}",
+    "xpathInvalid": "Geçersiz XPath ifadesi.",
+    "xpathInvalidDetail": "Geçersiz XPath ifadesi. {detail}"
+  },
+  "query": {
+    "values": "Değerler",
+    "paths": "Yollar",
+    "text": "Metin",
+    "matches": "{count, plural, other {# eşleşme}}",
+    "items": "{count, plural, other {# öğe}}",
+    "resultNull": "Sonuç: null",
+    "resultOf": "Sonuç ({type})",
+    "typeNumber": "sayı",
+    "typeString": "metin",
+    "typeBoolean": "mantıksal",
+    "nodes": "{count, plural, other {# düğüm}}",
+    "nodesShown": "{count, plural, other {# düğüm}} (ilk {shown} gösteriliyor)"
+  },
+  "worker": {
+    "outOfMemory": "Bellek yetersiz ya da veri çok büyük ({detail}).",
+    "unreadable": "Dosya okunamadı.",
+    "failed": "İşlem başarısız oldu."
+  },
+  "base32": {
+    "notUtf8": "Çözülen veri geçerli bir UTF-8 metni değil; çıktıyı hex olarak gösterin.",
+    "alphabet": "Alfabe",
+    "alphabetStandard": "Standart (A–Z, 2–7)",
+    "alphabetHex": "Base32hex (0–9, A–V)",
+    "output": "Çıktı",
+    "outputText": "Metin (UTF-8)",
+    "padding": "Dolgu (=)"
+  },
+  "hex": {
+    "invalidUtf8": "Geçersiz UTF-8",
+    "showError": "Hata göster",
+    "replace": "� ile değiştir",
+    "separator": "Ayraç",
+    "sepNone": "Yok (48656c)",
+    "sepSpace": "Boşluk (48 65 6c)",
+    "sepColon": "İki nokta (48:65:6c)",
+    "uppercase": "Büyük harf",
+    "encode": "Metin → hex",
+    "decode": "Hex → metin"
+  },
+  "htmlEntity": {
+    "nonAscii": "ASCII dışını da kodla",
+    "named": "Adlandırılmış varlık (&ccedil;)"
+  },
+  "unicode": {
+    "style": "Biçim",
+    "allChars": "Tüm karakterler",
+    "uppercase": "Büyük harf",
+    "strict": "Hatalı dizide hata ver",
+    "encode": "Kaçışla (ç → \\u00e7)",
+    "decode": "Çöz (\\u00e7 → ç)"
+  },
+  "url": {
+    "scope": "Kapsam",
+    "component": "Bileşen (query değeri, path parçası)",
+    "full": "Tam adres (yapı korunur)"
+  },
+  "stringEscape": {
+    "language": "Dil",
+    "regexPattern": "Regex deseni",
+    "quotes": "Tırnaklarla",
+    "encode": "Kaçışla (escape)",
+    "decode": "Kaçışı çöz (unescape)"
+  },
+  "base64": {
+    "fileTooLargeDecode": "Dosya çok büyük: en fazla {max} MB çözülebilir.",
+    "fileTooLargeEncode": "Dosya çok büyük: en fazla {max} MB kodlanabilir.",
+    "source": "Kaynak",
+    "sourceTextDecode": "Metin",
+    "sourceTextEncode": "Metin (UTF-8)",
+    "sourceFileDecode": "Dosya (Base64 metni)",
+    "sourceFileEncode": "Dosya",
+    "urlSafe": "URL-safe (-_ , dolgusuz)",
+    "wrap": "{length} karakterde satır kır",
+    "fileLabelDecode": "Çözülecek Base64 dosyası",
+    "fileLabelEncode": "Kodlanacak dosya",
+    "pickDecode": "Base64 metni içeren dosyayı seçin (en fazla {max} MB). Dosya cihazdan çıkmaz.",
+    "pickEncode": "Base64'e çevrilecek dosyayı seçin (en fazla {max} MB). Dosya cihazdan çıkmaz.",
+    "pickFile": "Dosya seç",
+    "pickOtherFile": "Başka dosya seç",
+    "decoding": "Çözülüyor…",
+    "encoding": "Kodlanıyor…",
+    "cancel": "İptal",
+    "cancelled": "İşlem iptal edildi.",
+    "retry": "Yeniden dene",
+    "largeOutput": "Base64 çıktısı {size}; editörde gösterilemeyecek kadar büyük (en fazla {max}). Dosya olarak indirin.",
+    "downloadTxt": "base64.txt indir",
+    "decodedImage": "Çözülen görsel",
+    "imageInfo": "Görsel: {info}",
+    "binaryInfo": "İkili veri: {info}",
+    "placeholderDecode": "SGVsbG8gZMO8bnlh veya data:image/png;base64,...",
+    "placeholderEncode": "Kodlanacak metin"
+  },
+  "compress": {
+    "compress": "Sıkıştır",
+    "decompress": "Aç (decompress)",
+    "format": "Biçim",
+    "auto": "Otomatik",
+    "input": "Girdi",
+    "output": "Çıktı",
+    "stats": "Orijinal: {plain} · Sıkıştırılmış: {packed} · Oran: {ratio}",
+    "statsWithFormat": "Orijinal: {plain} · Sıkıştırılmış: {packed} · Oran: {ratio} · Biçim: {format}",
+    "file": "Dosya: <b>{name}</b> <muted>({size})</muted>",
+    "removeFile": "Dosyayı kaldır",
+    "remove": "Kaldır",
+    "packedData": "Sıkıştırılmış veri",
+    "usingFile": "Yüklenen dosya kullanılıyor.",
+    "placeholderDecompress": "H4sIAAAAAAAAA... (Base64) ya da 1f 8b 08 ... (hex); ikili dosyayı yükleyin.",
+    "placeholderCompress": "Sıkıştırılacak metin; ya da dosya yükleyin.",
+    "binaryData": "İkili veri: {size}",
+    "unpackedText": "Açılmış metin",
+    "packedHex": "Sıkıştırılmış (hex)",
+    "packedBase64": "Sıkıştırılmış (Base64)",
+    "limit": "Açılan veri en fazla {max} MB olabilir; veri cihazdan çıkmaz.",
+    "fileTooLarge": "Dosya çok büyük: en fazla {max} MB yüklenebilir.",
+    "downloadRaw": "Ham veriyi dosya olarak indir",
+    "downloadBinary": "İkili indir"
+  }
+}

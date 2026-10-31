@@ -1,0 +1,15 @@
+@api = http://localhost:5080
+
+POST {{api}}/api/auth/register
+Content-Type: application/json
+
+{ "email": "ayse@example.com", "password": "Sifre1234", "displayName": "Ayşe Yılmaz" }
+
+###
+POST {{api}}/api/auth/login
+Content-Type: application/json
+
+{ "email": "ayse@example.com", "password": "Sifre1234" }
+
+###
+GET {{api}}/health/ready

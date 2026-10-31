@@ -1,0 +1,139 @@
+{
+  "info": {
+    "_postman_id": "6f0e8c1a-2b3c-4d5e-8f90-a1b2c3d4e5f6",
+    "name": "Ödeme API",
+    "description": "Ödeme servisinin uçları.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.odeme.test" },
+    { "key": "apiVersion", "value": "v2", "disabled": true },
+    { "key": "retry", "value": 3, "type": "number" }
+  ],
+  "event": [{ "listen": "prerequest", "script": { "type": "text/javascript", "exec": ["console.log('collection');"] } }],
+  "item": [
+    {
+      "name": "Müşteriler",
+      "item": [
+        {
+          "name": "Müşteri listesi",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "X-Debug", "value": "1", "disabled": true }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers?page=1&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers"],
+              "query": [{ "key": "page", "value": "1" }, { "key": "size", "value": "20" }]
+            }
+          },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('200', () => pm.response.to.have.status(200));"] } }],
+          "response": [{ "name": "Başarılı", "code": 200, "body": "[]" }]
+        },
+        {
+          "name": "Müşteri oluştur",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ayşe\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/customers"
+          }
+        },
+        {
+          "name": "Yönetim",
+          "auth": {
+            "type": "basic",
+            "basic": [
+              { "key": "username", "value": "admin", "type": "string" },
+              { "key": "password", "value": "{{adminPassword}}", "type": "string" }
+            ]
+          },
+          "item": [
+            {
+              "name": "Müşteri sil",
+              "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/customers/:id" } }
+            },
+            {
+              "name": "Herkese açık sağlık",
+              "request": { "auth": { "type": "noauth" }, "method": "GET", "url": "{{baseUrl}}/health" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Token al",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "grant_type", "value": "client_credentials", "type": "text" },
+            { "key": "scope", "value": "read", "type": "text", "disabled": true }
+          ]
+        },
+        "url": { "protocol": "https", "host": ["auth", "odeme", "test"], "path": ["oauth", "token"] }
+      }
+    },
+    {
+      "name": "Dekont yükle",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "aciklama", "value": "Ekim", "type": "text" },
+            { "key": "dosya", "type": "file", "src": "/Users/ayse/dekont.pdf" }
+          ]
+        },
+        "url": "{{baseUrl}}/receipts"
+      }
+    },
+    {
+      "name": "GraphQL sorgusu",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "graphql",
+          "graphql": { "query": "query { customers { id } }", "variables": "{\"first\": 10}" }
+        },
+        "url": "{{baseUrl}}/graphql"
+      }
+    },
+    {
+      "name": "API key ile",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": { "key": "api_key", "value": "{{apiKey}}", "in": "query" }
+        },
+        "method": "get",
+        "url": "{{baseUrl}}/rates"
+      }
+    },
+    {
+      "name": "OAuth 2 korumalı",
+      "request": {
+        "auth": { "type": "oauth2", "oauth2": [{ "key": "accessToken", "value": "x" }] },
+        "method": "GET",
+        "url": "{{baseUrl}}/secure"
+      }
+    },
+    {
+      "name": "Sadece URL",
+      "request": "https://example.com/ping"
+    }
+  ]
+}

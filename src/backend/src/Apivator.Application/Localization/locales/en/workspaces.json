@@ -1,0 +1,13 @@
+{
+  "workspace.not_found": "Workspace not found.",
+  "workspace.forbidden": "You don't have permission to do this.",
+  "collection.forbidden": "You can't edit this collection; you are a viewer on it.",
+  "organization.not_found": "Organization not found.",
+  "organization.forbidden": "You must be an organization admin to do this.",
+  "organization.two_factor_required": "This organization requires two-step verification; turn it on in your account first to manage it.",
+  "workspace.personal_delete": "A personal workspace can't be deleted.",
+  "workspace.not_org_member": "Invite the person to the organization first; only organization members can be added to a workspace.",
+  "workspace.personal_leave": "You can't leave your personal workspace.",
+  "workspace.personal_share": "A personal workspace can't be shared. Create a team workspace in an organization.",
+  "onboarding.personal_workspace": "Personal Workspace"
+}

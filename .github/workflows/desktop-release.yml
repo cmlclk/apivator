@@ -1,0 +1,193 @@
+name: Masaüstü sürümü
+
+# "desktop-v0.2.0" gibi bir etiket gönderilince Windows, macOS (Apple Silicon ve Intel) ve Linux paketleri ile
+# imzalı güncelleme dosyaları (latest.json + .sig) üretilir ve GitHub Releases'e taslak olarak yüklenir.
+# Taslak yayınlanınca kurulu uygulamalar açılışta yeni sürümü görür.
+#
+# Gerekenler (Settings > Secrets and variables > Actions):
+#   Secret   TAURI_SIGNING_PRIVATE_KEY           tauri signer generate ile üretilen özel anahtar (içeriği)
+#   Secret   TAURI_SIGNING_PRIVATE_KEY_PASSWORD  anahtarın parolası
+#   Variable TAURI_UPDATER_PUBKEY                aynı komutun verdiği açık anahtar (.pub içeriği)
+#   Variable APIVATOR_API_URL                    (isteğe bağlı) uygulamanın varsayılan sunucu adresi
+
+on:
+  push:
+    tags: ['desktop-v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desktop-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    name: Sürümü denetle, taslak oluştur
+    runs-on: ubuntu-latest
+    outputs:
+      release_id: ${{ steps.release.outputs.result }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Etiket, tauri.conf.json ve package.json aynı sürümü göstermeli; yoksa güncelleme yanlış sürümü duyurur.
+      - name: Sürüm uyumu
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const tag = process.env.TAG.replace(/^desktop-v/, "");
+            const conf = JSON.parse(fs.readFileSync("src/frontend/apps/desktop/src-tauri/tauri.conf.json", "utf8")).version;
+            const pkg = JSON.parse(fs.readFileSync("src/frontend/apps/desktop/package.json", "utf8")).version;
+            if (tag !== conf || tag !== pkg) {
+              console.error(`Sürüm uyuşmuyor: etiket ${tag}, tauri.conf.json ${conf}, package.json ${pkg}`);
+              process.exit(1);
+            }
+          '
+
+      - name: Gerekli ayarlar
+        env:
+          PUBKEY: ${{ vars.TAURI_UPDATER_PUBKEY }}
+          KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+        run: |
+          test -n "$PUBKEY" || { echo "TAURI_UPDATER_PUBKEY değişkeni tanımlı değil."; exit 1; }
+          test -n "$KEY" || { echo "TAURI_SIGNING_PRIVATE_KEY secret'ı tanımlı değil."; exit 1; }
+
+      # Paralel derlemeler aynı taslağa yüklesin diye taslak önce oluşturulur.
+      - id: release
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const tag = context.ref.replace('refs/tags/', '');
+            const version = tag.replace(/^desktop-v/, '');
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: `Apivator masaüstü ${version}`,
+              body: [
+                'Kurulum dosyaları:',
+                '- Windows: `Apivator_<sürüm>_x64-setup.exe` (önerilen) ya da `.msi`',
+                '- macOS: Apple Silicon için `aarch64.dmg`, Intel için `x64.dmg`',
+                '- Linux: `.AppImage` (otomatik güncellenir), `.deb` ya da `.rpm`',
+                '',
+                'Kurulu uygulamalar bu sürümü açılışta otomatik olarak bulur.',
+              ].join('\n'),
+              draft: true,
+            });
+            return String(data.id);
+
+  build:
+    name: ${{ matrix.name }}
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+          - name: macOS Apple Silicon
+            os: macos-latest
+            target: aarch64-apple-darwin
+          - name: macOS Intel
+            os: macos-latest
+            target: x86_64-apple-darwin
+          # Eski glibc ile derlenen paket daha çok dağıtımda çalışır.
+          - name: Linux x64
+            os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: src/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: src/backend/global.json
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: src/frontend/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: src/frontend/pnpm-lock.yaml
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src/frontend/apps/desktop/src-tauri
+          key: ${{ matrix.target }}
+
+      - name: Linux bağımlılıkları
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libsoup-3.0-dev libdbus-1-dev libayatana-appindicator3-dev patchelf
+
+      - run: pnpm install --frozen-lockfile
+      - run: node apps/desktop/scripts/build-agent.mjs --target ${{ matrix.target }}
+
+      # Güncelleme ayarı yalnızca bu derlemeye eklenir; yerel derlemeler güncelleme aramaz.
+      # macOS: Apple Developer sertifikası olmadığından ad-hoc imzalanır (Apple Silicon'da çalışması için gerekir).
+      - name: Güncelleme ayarını yaz
+        env:
+          PUBKEY: ${{ vars.TAURI_UPDATER_PUBKEY }}
+          ENDPOINT: https://github.com/${{ github.repository }}/releases/latest/download/latest.json
+        run: |
+          node -e '
+            const config = {
+              bundle: { createUpdaterArtifacts: true, macOS: { signingIdentity: "-" } },
+              plugins: {
+                updater: {
+                  pubkey: process.env.PUBKEY,
+                  endpoints: [process.env.ENDPOINT],
+                  windows: { installMode: "passive" },
+                },
+              },
+            };
+            require("fs").writeFileSync("apps/desktop/src-tauri/tauri.updater.conf.json", JSON.stringify(config, null, 2));
+          '
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          VITE_API_URL: ${{ vars.APIVATOR_API_URL }}
+        with:
+          projectPath: src/frontend/apps/desktop
+          tauriScript: pnpm tauri
+          args: --target ${{ matrix.target }} --features updater --config src-tauri/tauri.updater.conf.json
+          releaseId: ${{ needs.prepare.outputs.release_id }}
+          # Her derleme kendi platformunu latest.json'a ekler.
+          includeUpdaterJson: true
+
+  # Paralel derlemeler latest.json'ı sırayla günceller; bir platform düşerse yayınlamadan önce yakalanır.
+  verify:
+    name: latest.json denetimi
+    needs: [prepare, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          RELEASE_ID: ${{ needs.prepare.outputs.release_id }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
+              owner, repo, release_id: Number(process.env.RELEASE_ID),
+            });
+            const latest = assets.find((a) => a.name === 'latest.json');
+            if (!latest) throw new Error('latest.json yüklenmemiş.');
+            const { data } = await github.rest.repos.getReleaseAsset({
+              owner, repo, asset_id: latest.id, headers: { accept: 'application/octet-stream' },
+            });
+            const manifest = JSON.parse(Buffer.from(data).toString('utf8'));
+            const expected = ['windows-x86_64', 'darwin-aarch64', 'darwin-x86_64', 'linux-x86_64'];
+            const missing = expected.filter((p) => !manifest.platforms?.[p]?.signature);
+            if (missing.length) throw new Error(`latest.json'da eksik platform: ${missing.join(', ')}`);
+            core.info(`latest.json ${manifest.version}: ${Object.keys(manifest.platforms).join(', ')}`);

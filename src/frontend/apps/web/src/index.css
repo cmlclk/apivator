@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+
+/* Paylaşılan UI paketi node_modules üzerinden bağlandığı için sınıflarını ayrıca taratıyoruz. */
+@source '../../../packages/ui/src';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+
+  --color-bg: var(--app-bg);
+  --color-surface: var(--app-surface);
+  --color-muted: var(--app-muted);
+  --color-line: var(--app-line);
+  --color-fg: var(--app-fg);
+  --color-fg-muted: var(--app-fg-muted);
+  --color-fg-subtle: var(--app-fg-subtle);
+  --color-accent: var(--app-accent);
+  --color-accent-hover: var(--app-accent-hover);
+  --color-accent-fg: var(--app-accent-fg);
+  --color-danger: var(--app-danger);
+  --color-success: var(--app-success);
+  --color-warning: var(--app-warning);
+}
+
+:root {
+  --app-bg: #f6f7f9;
+  --app-surface: #ffffff;
+  --app-muted: #eef0f3;
+  --app-line: #dfe3e8;
+  --app-fg: #1b1f24;
+  --app-fg-muted: #4b5563;
+  --app-fg-subtle: #8a94a3;
+  --app-accent: #0f8b7d;
+  --app-accent-hover: #0c7468;
+  --app-accent-fg: #ffffff;
+  --app-danger: #d1383d;
+  --app-success: #1f8a4c;
+  --app-warning: #b7791f;
+}
+
+.dark {
+  --app-bg: #111418;
+  --app-surface: #181c21;
+  --app-muted: #22272e;
+  --app-line: #2d333b;
+  --app-fg: #e6e9ed;
+  --app-fg-muted: #a8b1bd;
+  --app-fg-subtle: #6e7781;
+  --app-accent: #2bc4ae;
+  --app-accent-hover: #4fd6c2;
+  --app-accent-fg: #0b1512;
+  --app-danger: #f2676b;
+  --app-success: #4ac27c;
+  --app-warning: #e3b341;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg font-sans text-fg antialiased;
+}
+
+/* Collection açıklaması gibi Markdown içerikleri (Tailwind sıfırlamasının üstüne sade tipografi). */
+.markdown > * + * {
+  margin-top: 0.75em;
+}
+.markdown h1 {
+  font-size: 1.35em;
+  font-weight: 600;
+}
+.markdown h2 {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+.markdown h3 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.markdown ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+.markdown ol {
+  list-style: decimal;
+  padding-left: 1.4em;
+}
+.markdown li + li {
+  margin-top: 0.2em;
+}
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--app-muted);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.markdown pre {
+  background: var(--app-muted);
+  padding: 0.75em 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.markdown pre code {
+  background: none;
+  padding: 0;
+}
+.markdown blockquote {
+  border-left: 3px solid var(--app-line);
+  padding-left: 0.9em;
+  color: var(--app-fg-muted);
+}
+.markdown table {
+  border-collapse: collapse;
+}
+.markdown th,
+.markdown td {
+  border: 1px solid var(--app-line);
+  padding: 0.3em 0.6em;
+  text-align: left;
+}
+.markdown hr {
+  border-color: var(--app-line);
+}

@@ -1,0 +1,7 @@
+{
+  "oauth2_token_required": "This request uses OAuth 2.0 (authorization code); sign in first with \"Get token\" on the Authorization tab.",
+  "oauth2.token_url_invalid": "Enter a valid token URL (Access Token URL).",
+  "oauth2.code_missing": "The authorization code is missing.",
+  "oauth2.token_unreachable": "Couldn't reach the token URL: {error}",
+  "oauth2.token_failed": "Couldn't get a token ({status}): {reason}"
+}

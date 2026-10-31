@@ -1,0 +1,27 @@
+{
+  "composer": {
+    "mentionList": "Bahsedilecek kişi",
+    "hint": "@ ile kişi etiketleyin · Ctrl+Enter gönderir",
+    "cancel": "Vazgeç"
+  },
+  "panel": {
+    "title": "Yorumlar",
+    "close": "Yorumları kapat",
+    "edited": " · düzenlendi",
+    "editLabel": "Yorumu düzenle",
+    "deleteLabel": "Yorumu sil",
+    "editPlaceholder": "Yorumu düzenle",
+    "save": "Kaydet",
+    "empty": "Henüz yorum yok. Soru sormak, değişiklik önermek ya da birini haberdar etmek için yazın; @ ile kişi etiketleyebilirsiniz.",
+    "hideResolved": "Çözülenleri gizle",
+    "showResolved": "Çözülen {count} başlığı göster",
+    "threadLabel": "{name} başlığı",
+    "reply": "Yanıtla",
+    "reopen": "Yeniden aç",
+    "resolve": "Çözüldü",
+    "resolvedBy": "{name} çözdü",
+    "replyPlaceholder": "Yanıt yazın",
+    "newPlaceholder": "Yorum yazın",
+    "send": "Gönder"
+  }
+}

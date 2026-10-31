@@ -1,0 +1,1250 @@
+{
+  "cookie": {
+    "unit": {
+      "year": "{n, plural, one {{text} year} other {{text} years}}",
+      "day": "{n, plural, one {{text} day} other {{text} days}}",
+      "hour": "{n, plural, one {{text} hour} other {{text} hours}}",
+      "minute": "{n, plural, one {{text} minute} other {{text} minutes}}",
+      "second": "{n, plural, one {{text} second} other {{text} seconds}}",
+      "zero": "0 seconds"
+    },
+    "session": "Session cookie (deleted when the browser closes)",
+    "deletedNow": "deleted immediately (Max-Age ≤ 0)",
+    "expiresIn": "in {duration}",
+    "expiredAgo": "expired ({duration} ago) — the cookie is deleted",
+    "emptyLine": "The Set-Cookie line is empty.",
+    "noPair": "No name=value pair found: {raw}",
+    "warn": {
+      "nameless": "Nameless cookie: browsers accept it, but many server frameworks cannot read it.",
+      "tooLarge": "Name + value is {size} bytes: browsers ignore cookies larger than {max} bytes.",
+      "badName": "The cookie name contains an invalid character: {name}",
+      "valueChars": "The value contains a space, a comma or a non-ASCII character; percent-encoding is recommended.",
+      "attrTooLarge": "The {name} value exceeds 1024 bytes; the browser ignores it.",
+      "unknownAttr": "Unknown attribute is ignored: {name}",
+      "badExpires": "The Expires date could not be parsed and is ignored: {value}",
+      "badMaxAge": "Max-Age is invalid and is ignored: {value}",
+      "maxAgeWins": "Max-Age and Expires together: Max-Age takes precedence.",
+      "capped": "The lifetime exceeds 400 days; browsers cap it at 400 days.",
+      "domainDot": "The leading dot in Domain is ignored; subdomains are already included.",
+      "pathSlash": "Path does not start with \"/\"; the default path is used.",
+      "badSameSite": "The SameSite value is invalid ({value}); the default Lax is applied.",
+      "noneNeedsSecure": "SameSite=None requires Secure; browsers reject this cookie.",
+      "noSameSite": "No SameSite: Chromium-based browsers assume Lax.",
+      "partitionedNeedsSecure": "Partitioned (CHIPS) requires Secure; the cookie is rejected.",
+      "badPriority": "Priority must be Low, Medium or High: {value}",
+      "securePrefix": "A cookie with the __Secure- prefix is rejected without Secure.",
+      "hostPrefix": "__Host- prefix rule violated: {problems}; the cookie is rejected.",
+      "sessionNotHttpOnly": "It looks like a session cookie but is not HttpOnly; JavaScript can read it.",
+      "over4096": "{name}: {size} bytes, exceeds the 4096 limit.",
+      "duplicates": "Duplicate name: {names}. The browser sends the one with the longer Path first; servers usually read the first one.",
+      "noEquals": "A part without \"=\" was read as a nameless cookie.",
+      "headerLarge": "The header is {size} bytes: most servers reject headers over 8 KB."
+    },
+    "empty": "(empty)",
+    "hostProblem": {
+      "secure": "Secure is missing",
+      "domain": "Domain must not be set",
+      "path": "Path must be /"
+    },
+    "noLines": "No Set-Cookie line found.",
+    "emptyHeader": "The Cookie header is empty.",
+    "unnamed": "(unnamed)",
+    "build": {
+      "nameRequired": "A cookie name is required.",
+      "valueChars": "The value contains a space, \";\", \",\" or a non-ASCII character; turn on the \"Percent-encode\" option.",
+      "badExpires": "The Expires date is invalid.",
+      "badMaxAge": "Max-Age must be an integer (seconds).",
+      "badDomain": "Invalid Domain: {domain}",
+      "badPath": "Invalid Path: {path}"
+    }
+  },
+  "ipRange": {
+    "thisNetwork": "This network (source only)",
+    "private": "Private network",
+    "cgnat": "Carrier-grade NAT (CGNAT) shared space",
+    "loopback": "Loopback",
+    "linkLocalApipa": "Link-local (APIPA)",
+    "ietf": "IETF protocol assignments",
+    "testNet1": "Documentation (TEST-NET-1)",
+    "relay6to4": "6to4 relay (deprecated)",
+    "benchmark": "Benchmarking",
+    "testNet2": "Documentation (TEST-NET-2)",
+    "testNet3": "Documentation (TEST-NET-3)",
+    "multicast": "Multicast",
+    "reservedE": "Reserved (class E)",
+    "broadcast": "Limited broadcast",
+    "unspecified": "Unspecified address",
+    "v4Mapped": "IPv4-mapped address",
+    "nat64": "NAT64 well-known prefix",
+    "nat64Local": "Local-use NAT64",
+    "discard": "Discard prefix",
+    "teredo": "Teredo",
+    "documentation": "Documentation",
+    "sixToFour": "6to4",
+    "globalUnicast": "Global unicast",
+    "ula": "Unique local address (ULA)",
+    "linkLocal": "Link-local",
+    "public": "Public address",
+    "reservedV6": "Reserved / unassigned space"
+  },
+  "ip": {
+    "badV4": "Invalid IPv4 address (it must have four parts): {text}",
+    "badV4Part": "Invalid IPv4 part: \"{part}\" ({text})",
+    "leadingZero": "Leading zeros are not accepted: \"{part}\" could be mistaken for an octal number ({text})",
+    "v4TooBig": "An IPv4 part cannot be greater than 255: {part} ({text})",
+    "badV6": "Invalid IPv6 address: {text}",
+    "doubleColonOnce": "\"::\" can be used only once: {text}",
+    "embeddedV4": "An embedded IPv4 address can only be at the end: {text}",
+    "badV6Group": "Invalid IPv6 group: \"{piece}\" ({text})",
+    "v6Groups": "An IPv6 address must have 8 groups (or use \"::\"): {text}",
+    "doubleColonZero": "\"::\" must stand for at least one group of zeros: {text}",
+    "empty": "The address is empty."
+  },
+  "punycode": {
+    "overflow": "Punycode overflow.",
+    "nonAscii": "Invalid Punycode: \"{input}\" contains a non-ASCII basic character.",
+    "truncated": "Invalid Punycode: \"{input}\" is truncated.",
+    "badChar": "Invalid Punycode: \"{input}\" contains an invalid character.",
+    "badCodePoint": "Invalid Punycode: \"{input}\" produces an invalid code point."
+  },
+  "url": {
+    "badPort": "Invalid port: \"{port}\". The port must be a number between 0 and 65535.",
+    "badIpv6": "Invalid IPv6 address: \"[{host}]\".",
+    "empty": "Enter a URL to parse: https://example.com/path?q=1",
+    "singleLine": "The URL must be a single line.",
+    "warn": {
+      "space": "The URL contains a space; it is encoded as %20 in the rebuilt URL.",
+      "noScheme": "No scheme; the start of the URL was interpreted as the host.",
+      "emptyHost": "The host is empty.",
+      "badPercent": "Invalid percent-encoding was left as is: {list}"
+    },
+    "ipv6Close": "The closing bracket (]) is missing in the IPv6 address.",
+    "ipv6After": "Only :port can follow an IPv6 address."
+  },
+  "ua": {
+    "name": {
+      "facebookPreview": "Facebook preview",
+      "whatsappPreview": "WhatsApp preview",
+      "googleApp": "Google app",
+      "legacyEdge": "Edge (legacy, EdgeHTML)"
+    },
+    "note": {
+      "windows11": "Windows 10 and 11 send the same \"Windows NT 10.0\" value, so they cannot be told apart by the UA. If the Sec-CH-UA-Platform-Version header is 13 or higher, it is Windows 11.",
+      "androidReduced": "Reduced UA: Chrome on Android pins the version to \"10\" and the model to \"K\"; the real values are in the Sec-CH-UA-Model / Platform-Version headers.",
+      "macFrozen": "Browsers freeze the macOS version at 10.15.7; the real version may be newer.",
+      "ipadMac": "iPadOS 13+ also sends \"Macintosh\" when it requests the desktop site; it cannot be told apart by the UA.",
+      "truncated": "The text is longer than {max} characters; only the first {max} characters were parsed.",
+      "botSpoof": "A bot UA is easily spoofed; verify a genuine crawler with a reverse DNS lookup (e.g. *.googlebot.com).",
+      "chromiumReduced": "Chromium-based browsers reduce the UA (minor version 0.0.0, fixed platform). To get the full version, model and platform version, the server must request the Sec-CH-UA-Full-Version-List, Sec-CH-UA-Model and Sec-CH-UA-Platform-Version hints with Accept-CH.",
+      "zeroVersion": "The version is in the \"x.0.0.0\" form: a reduced UA; only the major version is reliable.",
+      "ie": "Support for Internet Explorer ended in 2022.",
+      "unrecognized": "No recognized browser, operating system or client."
+    },
+    "empty": "The User-Agent text is empty.",
+    "unknownBot": "Unidentified bot",
+    "device": {
+      "mobile": "Mobile",
+      "tablet": "Tablet",
+      "desktop": "Desktop",
+      "tv": "Television",
+      "console": "Game console",
+      "bot": "Bot / client",
+      "unknown": "Unknown"
+    }
+  },
+  "cidr": {
+    "badPrefix": "Invalid prefix length: /{text}",
+    "prefixRange": "An IPv{version} prefix must be between 0 and {bits}: /{text}",
+    "wildcardMask": "{mask} looks like a wildcard mask; the netmask would be {netmask}.",
+    "nonContiguous": "The netmask is not contiguous: {mask}",
+    "empty": "Enter an address or CIDR.",
+    "unrecognized": "Unrecognized format: {value}",
+    "v6NeedsPrefix": "Use a prefix length for IPv6 (such as /64).",
+    "note": {
+      "slash32": "/32 is a single address (a host route); it has no network or broadcast address.",
+      "slash31": "/31 is a point-to-point link (RFC 3021): both addresses are usable.",
+      "v6NoBroadcast": "IPv6 has no broadcast; the first address is the Subnet-Router anycast address (RFC 4291).",
+      "slash127": "/127 is recommended for point-to-point links (RFC 6164).",
+      "notNetwork": "The address you entered is not the network address; the network address is {network}.",
+      "slaac": "SLAAC does not work on IPv6 subnets smaller than /64.",
+      "classless": "The prefix is not on an octet boundary: reverse DNS needs RFC 2317 classless delegation."
+    },
+    "rangeVersion": "Both ends of the range must be the same IP version.",
+    "rangeOrder": "The start of the range cannot be greater than its end.",
+    "versionMismatch": "Version mismatch: the block is IPv{block}, the address is IPv{address}.",
+    "subnetCount": "The number of subnets must be a positive integer.",
+    "newPrefixRange": "The new prefix must be between /{prefix} and /{bits} (requested: /{requested})."
+  },
+  "har": {
+    "timing": {
+      "blocked": "Queueing",
+      "dns": "DNS lookup",
+      "connect": "Connect",
+      "ssl": "TLS handshake",
+      "send": "Send",
+      "wait": "Waiting (TTFB)",
+      "receive": "Download"
+    },
+    "badEntry": "HAR entry #{number} is invalid: the \"request\" field is missing.",
+    "empty": "The HAR content is empty.",
+    "tooLarge": "The HAR is too large: at most {mb} MB can be opened.",
+    "notJson": "The HAR is not valid JSON{detail}",
+    "noLog": "HAR format not recognized: there must be a top-level \"log\" object.",
+    "noEntries": "HAR format not recognized: the \"log.entries\" array is missing.",
+    "mime": {
+      "image": "Image",
+      "font": "Font",
+      "text": "Text",
+      "other": "Other"
+    }
+  },
+  "charName": {
+    "20": "SPACE",
+    "85": "NEL (next line)",
+    "2009": "THIN SPACE",
+    "2028": "LS (line separator)",
+    "2029": "PS (paragraph separator)",
+    "2060": "WJ (word joiner)",
+    "a0": "NBSP (no-break space)",
+    "ad": "SHY (soft hyphen)",
+    "34f": "CGJ (combining grapheme joiner)",
+    "61c": "ALM (Arabic letter mark)",
+    "180e": "MVS (Mongolian vowel separator)",
+    "200b": "ZWSP (zero-width space)",
+    "200c": "ZWNJ (zero-width non-joiner)",
+    "200d": "ZWJ (zero-width joiner)",
+    "200e": "LRM (left-to-right mark)",
+    "200f": "RLM (right-to-left mark)",
+    "202c": "PDF (pop directional formatting)",
+    "202e": "RLO (right-to-left override)",
+    "202f": "NNBSP (narrow no-break space)",
+    "205f": "MMSP (medium mathematical space)",
+    "feff": "BOM / ZWNBSP (byte order mark)"
+  },
+  "byte": {
+    "utf16Odd": "The byte count for UTF-16 must be even ({count}).",
+    "loneSurrogate": "Invalid UTF-16: unpaired surrogate code unit.",
+    "badBinary": "Invalid binary character: \"{char}\".",
+    "bitCount": "The number of bits ({count}) is not a multiple of 8: each byte must be written with 8 bits.",
+    "c1": "C1 control character",
+    "variationSelector": "VS{n} (variation selector)",
+    "tag": "TAG character"
+  },
+  "detect": {
+    "curlLike": "Looks like a cURL command",
+    "curl": "cURL command",
+    "pemCert": "Looks like a PEM certificate",
+    "pemKey": "Looks like a PEM key",
+    "basicAuth": "Looks like an HTTP Basic authentication header",
+    "jwt": "Looks like a JWT",
+    "uuid": "Looks like a UUID",
+    "har": "Looks like a HAR (HTTP Archive)",
+    "harAsJson": "Format it as JSON",
+    "json": "Looks like JSON",
+    "jsonpath": "Run a query on the JSON",
+    "jsonConvert": "Convert the JSON to CSV, Excel, YAML or XML",
+    "jsonModel": "Generate a model class from the JSON structure",
+    "encodedUrl": "Looks like a percent-encoded URL",
+    "url": "Looks like a URL",
+    "encodedText": "Looks like percent-encoded text",
+    "gzipBase64": "Looks like gzip-compressed Base64",
+    "base64AsBinary": "Decode it as Base64 (binary data)",
+    "setCookieHeader": "Looks like a Set-Cookie header",
+    "cookieHeader": "Looks like a Cookie header",
+    "setCookieValue": "Looks like a Set-Cookie value",
+    "userAgent": "Looks like a browser User-Agent string",
+    "cidr": "Looks like an IP / CIDR block",
+    "unicodeEscapes": "Looks like text with Unicode escapes (\\uXXXX)",
+    "htmlEntities": "Looks like text containing HTML entities (such as &amp;)",
+    "isoDate": "Looks like a date (ISO 8601)",
+    "unixSeconds": "Looks like a Unix timestamp (seconds)",
+    "unixMillis": "Looks like a Unix timestamp (milliseconds)",
+    "unixMicros": "Looks like a Unix timestamp (microseconds)",
+    "base64Text": "Looks like Base64 (text)",
+    "base64Binary": "Looks like Base64 (binary data)"
+  },
+  "query": {
+    "needObject": "The query string needs a JSON object: '{' \"name\": \"Ann\", \"page\": 2 '}'",
+    "badPercent": "Invalid percent-encoding: \"{text}\"",
+    "badKey": "The key \"{key}\" could not be read.",
+    "objectAndValue": "\"{key}\": \"{path}\" is used as both an object and a value.",
+    "valueAndObject": "\"{key}\": \"{path}\" is used as both a value and an object."
+  },
+  "status": {
+    "100": {
+      "name": "Continue",
+      "description": "The client's request headers were accepted; it may go on to send the body.",
+      "usage": "For large uploads the client sends \"Expect: 100-continue\" and sends the body once the server agrees."
+    },
+    "101": {
+      "name": "Switching Protocols",
+      "description": "The server is switching to the protocol requested in the Upgrade header.",
+      "usage": "Upgrading an HTTP connection to WebSocket (Upgrade: websocket)."
+    },
+    "102": {
+      "name": "Processing",
+      "description": "The request was received and is being processed, but there is no response yet; keeps the client from timing out.",
+      "usage": "Long-running WebDAV operations.",
+      "note": "Deprecated; prefer 103 or an asynchronous 202."
+    },
+    "103": {
+      "name": "Early Hints",
+      "description": "Tells the client about resources it can preload while the final response is still being prepared.",
+      "usage": "Preloading CSS/JS with Link: </app.css>; rel=preload headers."
+    },
+    "104": {
+      "name": "Upload Resumption Supported",
+      "description": "The server indicates that an interrupted upload can be resumed where it left off.",
+      "usage": "Resumable uploads of large files (draft specification).",
+      "note": "Temporary registration."
+    },
+    "200": {
+      "name": "OK",
+      "description": "The request succeeded; the meaning of the body depends on the method.",
+      "usage": "Reading a resource with GET, returning the result of an action with POST."
+    },
+    "201": {
+      "name": "Created",
+      "description": "The request resulted in a new resource; its address is usually in the Location header.",
+      "usage": "Location: /users/42 after POST /users."
+    },
+    "202": {
+      "name": "Accepted",
+      "description": "The request was accepted for processing, but the processing has not finished yet.",
+      "usage": "A queued report generation; the status URL is given in the body or in Location."
+    },
+    "203": {
+      "name": "Non-Authoritative Information",
+      "description": "The response is successful, but an intermediary (proxy) modified the content.",
+      "usage": "A transforming proxy adding headers or body content."
+    },
+    "204": {
+      "name": "No Content",
+      "description": "The request succeeded and there is no body to return.",
+      "usage": "An empty response after DELETE or PUT; the response to a CORS preflight (OPTIONS) request."
+    },
+    "205": {
+      "name": "Reset Content",
+      "description": "The request succeeded; the client should reset the form or view that sent the request.",
+      "usage": "Clearing form fields after a submission."
+    },
+    "206": {
+      "name": "Partial Content",
+      "description": "The range requested with the Range header was returned.",
+      "usage": "Video streaming, resuming an interrupted download (Content-Range: bytes 0-1023/5000)."
+    },
+    "207": {
+      "name": "Multi-Status",
+      "description": "The body contains separate statuses for multiple resources (XML).",
+      "usage": "WebDAV PROPFIND and batch operations."
+    },
+    "208": {
+      "name": "Already Reported",
+      "description": "The members of a DAV binding were already listed earlier in the response and are not repeated.",
+      "usage": "WebDAV binding loops."
+    },
+    "226": {
+      "name": "IM Used",
+      "description": "The server applied one or more instance manipulations (deltas) to the resource.",
+      "usage": "A delta-encoded response using the A-IM header."
+    },
+    "300": {
+      "name": "Multiple Choices",
+      "description": "The resource has several representations; the client or user must pick one.",
+      "usage": "A list of links to documents in different languages or formats."
+    },
+    "301": {
+      "name": "Moved Permanently",
+      "description": "The resource has moved permanently to the address in Location.",
+      "usage": "http to https redirects, pointing old page URLs to the new ones.",
+      "note": "Browsers may change POST to GET; use 308 to preserve the method."
+    },
+    "302": {
+      "name": "Found (temporary redirect)",
+      "description": "The resource is temporarily at another address; keep using the original address for later requests.",
+      "usage": "Redirect after sign-in.",
+      "note": "Browsers may change POST to GET; use 307 to preserve the method."
+    },
+    "303": {
+      "name": "See Other",
+      "description": "The result is at the address in Location; fetch it with GET.",
+      "usage": "Redirecting to a result page after a form POST (Post/Redirect/Get)."
+    },
+    "304": {
+      "name": "Not Modified",
+      "description": "The resource in a conditional request has not changed; the client can use its cached copy.",
+      "usage": "Cache validation with If-None-Match / If-Modified-Since."
+    },
+    "305": {
+      "name": "Use Proxy",
+      "description": "The resource must be accessed through the proxy given in Location.",
+      "usage": "Not used.",
+      "note": "Deprecated for security reasons."
+    },
+    "306": {
+      "name": "(Unused)",
+      "description": "It was \"Switch Proxy\" in an old draft; now a reserved code that is no longer used.",
+      "usage": "Not used.",
+      "note": "Reserved."
+    },
+    "307": {
+      "name": "Temporary Redirect",
+      "description": "The resource is temporarily at another address; the client must repeat the request with the same method and body.",
+      "usage": "Redirecting POST requests to another server during maintenance."
+    },
+    "308": {
+      "name": "Permanent Redirect",
+      "description": "The resource has moved permanently; the request must be repeated with the same method and body.",
+      "usage": "Permanently moving an API endpoint to a new version's address."
+    },
+    "400": {
+      "name": "Bad Request",
+      "description": "The server cannot process the request because of a client error (malformed syntax, invalid field).",
+      "usage": "An invalid JSON body, a missing required parameter."
+    },
+    "401": {
+      "name": "Unauthorized",
+      "description": "There are no valid credentials; the response must include a WWW-Authenticate header.",
+      "usage": "A missing or expired Bearer token."
+    },
+    "402": {
+      "name": "Payment Required",
+      "description": "Reserved for future use; some APIs use it for quota or payment errors.",
+      "usage": "An API key whose subscription has expired."
+    },
+    "403": {
+      "name": "Forbidden",
+      "description": "The server understood the request but refuses to authorize it; authenticating again does not change the result.",
+      "usage": "A user without permission accessing an admin endpoint."
+    },
+    "404": {
+      "name": "Not Found",
+      "description": "The resource was not found, or the server does not want to reveal that it exists.",
+      "usage": "A record ID that does not exist, a misspelled URL."
+    },
+    "405": {
+      "name": "Method Not Allowed",
+      "description": "The method is not supported for this resource; the response must include an Allow header.",
+      "usage": "Sending DELETE to a read-only resource."
+    },
+    "406": {
+      "name": "Not Acceptable",
+      "description": "No representation matching the Accept headers can be produced.",
+      "usage": "Accept: application/xml sent to an API that only returns JSON."
+    },
+    "407": {
+      "name": "Proxy Authentication Required",
+      "description": "Like 401, but authentication is required by the proxy (Proxy-Authenticate).",
+      "usage": "An outbound request from behind a corporate proxy."
+    },
+    "408": {
+      "name": "Request Timeout",
+      "description": "The server timed out while waiting for the client to complete the request.",
+      "usage": "A body left half-sent on a slow connection."
+    },
+    "409": {
+      "name": "Conflict",
+      "description": "The request conflicts with the current state of the resource.",
+      "usage": "A second account with the same email, an update with a conflicting version."
+    },
+    "410": {
+      "name": "Gone",
+      "description": "The resource no longer exists and will not come back.",
+      "usage": "A retired API version, deleted content."
+    },
+    "411": {
+      "name": "Length Required",
+      "description": "The server does not accept the request without a Content-Length header.",
+      "usage": "Uploading to a server that does not accept chunked bodies."
+    },
+    "412": {
+      "name": "Precondition Failed",
+      "description": "A condition in a conditional header such as If-Match was not met.",
+      "usage": "A PUT with If-Match for a resource whose ETag changed (optimistic locking)."
+    },
+    "413": {
+      "name": "Content Too Large",
+      "description": "The body is larger than the server is willing to accept.",
+      "usage": "A file upload that exceeds the size limit.",
+      "note": "Formerly named Payload Too Large / Request Entity Too Large."
+    },
+    "414": {
+      "name": "URI Too Long",
+      "description": "The request URI is longer than the server can process.",
+      "usage": "A very long query string; move the data into a POST body."
+    },
+    "415": {
+      "name": "Unsupported Media Type",
+      "description": "The body's Content-Type or encoding is not supported.",
+      "usage": "Sending form data to an endpoint that expects JSON."
+    },
+    "416": {
+      "name": "Range Not Satisfiable",
+      "description": "The range in the Range header lies outside the size of the resource.",
+      "usage": "Requesting bytes=6000- from a 5000-byte file."
+    },
+    "417": {
+      "name": "Expectation Failed",
+      "description": "The expectation in the Expect header cannot be met.",
+      "usage": "A server that does not support 100-continue."
+    },
+    "418": {
+      "name": "(Unused) \"I'm a teapot\"",
+      "description": "From the 1998 April Fools' HTCPCP joke, \"I'm a teapot\"; a reserved, unused code in IANA.",
+      "usage": "Not used; some services return it as a joke or as a bot block.",
+      "note": "Reserved."
+    },
+    "421": {
+      "name": "Misdirected Request",
+      "description": "The request was sent to a server that cannot produce a response (e.g. a TLS connection made for another host).",
+      "usage": "A different domain name when reusing an HTTP/2 connection."
+    },
+    "422": {
+      "name": "Unprocessable Content",
+      "description": "The syntax is correct, but the content cannot be processed semantically.",
+      "usage": "Validation errors: an invalid email format, a negative quantity.",
+      "note": "Formerly named Unprocessable Entity."
+    },
+    "423": {
+      "name": "Locked",
+      "description": "The resource is locked.",
+      "usage": "A file locked by another user in WebDAV."
+    },
+    "424": {
+      "name": "Failed Dependency",
+      "description": "The request could not be performed because another action it depends on failed.",
+      "usage": "A cascading failure in WebDAV batch operations."
+    },
+    "425": {
+      "name": "Too Early",
+      "description": "The server is unwilling to process a request that might be replayed (TLS 1.3 early data).",
+      "usage": "A payment request arriving over 0-RTT."
+    },
+    "426": {
+      "name": "Upgrade Required",
+      "description": "The server will not process the request unless the client switches to another protocol (Upgrade header).",
+      "usage": "An endpoint that accepts only HTTP/2 or TLS."
+    },
+    "428": {
+      "name": "Precondition Required",
+      "description": "The server requires the request to be conditional (If-Match).",
+      "usage": "Rejecting a PUT without an ETag to prevent lost updates."
+    },
+    "429": {
+      "name": "Too Many Requests",
+      "description": "The client sent too many requests in a given time (rate limiting).",
+      "usage": "The API quota was exceeded; wait for the Retry-After period."
+    },
+    "431": {
+      "name": "Request Header Fields Too Large",
+      "description": "The headers (individually or in total) are too large.",
+      "usage": "An oversized Cookie header."
+    },
+    "451": {
+      "name": "Unavailable For Legal Reasons",
+      "description": "Access to the resource is blocked because of a legal demand.",
+      "usage": "Content blocked by a court order."
+    },
+    "500": {
+      "name": "Internal Server Error",
+      "description": "The server encountered an unexpected condition.",
+      "usage": "An uncaught exception, a misconfiguration."
+    },
+    "501": {
+      "name": "Not Implemented",
+      "description": "The server does not support the functionality required to fulfil the request.",
+      "usage": "An unrecognized HTTP method."
+    },
+    "502": {
+      "name": "Bad Gateway",
+      "description": "A gateway or proxy received an invalid response from the upstream server.",
+      "usage": "The nginx response when the application server crashes."
+    },
+    "503": {
+      "name": "Service Unavailable",
+      "description": "The server is temporarily unable to handle the request (overload, maintenance).",
+      "usage": "Maintenance mode; Retry-After says when to try again."
+    },
+    "504": {
+      "name": "Gateway Timeout",
+      "description": "A gateway or proxy did not get a timely response from the upstream server.",
+      "usage": "A load balancer timeout caused by a slow database query."
+    },
+    "505": {
+      "name": "HTTP Version Not Supported",
+      "description": "The HTTP major version in the request is not supported.",
+      "usage": "An HTTP/2 or HTTP/3 request to a server that only knows HTTP/1.x."
+    },
+    "506": {
+      "name": "Variant Also Negotiates",
+      "description": "The content negotiation configuration enters a loop.",
+      "usage": "A faulty transparent content negotiation setup."
+    },
+    "507": {
+      "name": "Insufficient Storage",
+      "description": "The server cannot store the data needed to complete the request.",
+      "usage": "A full disk in WebDAV."
+    },
+    "508": {
+      "name": "Loop Detected",
+      "description": "The server detected an infinite loop while processing the operation.",
+      "usage": "A Depth: infinity loop in WebDAV bindings."
+    },
+    "510": {
+      "name": "Not Extended",
+      "description": "Further extensions are required to fulfil the request.",
+      "usage": "The HTTP Extension Framework (RFC 2774).",
+      "note": "Obsoleted."
+    },
+    "511": {
+      "name": "Network Authentication Required",
+      "description": "Authentication is required to gain network access.",
+      "usage": "The sign-in (captive portal) page on hotel or cafe Wi-Fi."
+    }
+  },
+  "header": {
+    "Accept": {
+      "description": "The media types the client accepts, with their priorities (q)."
+    },
+    "Accept-Charset": {
+      "description": "Accepted character sets; browsers no longer send it."
+    },
+    "Accept-Encoding": {
+      "description": "Accepted compression encodings."
+    },
+    "Accept-Language": {
+      "description": "Preferred languages.",
+      "example": "en-US, en;q=0.9, tr;q=0.8"
+    },
+    "Accept-Patch": {
+      "description": "Body types accepted for PATCH."
+    },
+    "Accept-Ranges": {
+      "description": "Whether the server supports range (Range) requests."
+    },
+    "Access-Control-Allow-Credentials": {
+      "description": "Allows cookies and credentials to be sent in a cross-origin request."
+    },
+    "Access-Control-Allow-Headers": {
+      "description": "Request headers allowed in the preflight response."
+    },
+    "Access-Control-Allow-Methods": {
+      "description": "Methods allowed in the preflight response."
+    },
+    "Access-Control-Allow-Origin": {
+      "description": "The origin that may read the response; * is open to everyone.",
+      "example": "https://app.example.com"
+    },
+    "Access-Control-Expose-Headers": {
+      "description": "Additional response headers that browser scripts may read."
+    },
+    "Access-Control-Max-Age": {
+      "description": "How many seconds the preflight response may stay cached."
+    },
+    "Access-Control-Request-Headers": {
+      "description": "In a preflight request, the headers that the actual request will use."
+    },
+    "Access-Control-Request-Method": {
+      "description": "In a preflight request, the method that the actual request will use."
+    },
+    "Age": {
+      "description": "How many seconds the response has spent in a cache."
+    },
+    "Allow": {
+      "description": "The methods the resource supports (required in a 405 response)."
+    },
+    "Alt-Svc": {
+      "description": "Alternative services where the same resource can be reached (e.g. HTTP/3)."
+    },
+    "Authorization": {
+      "description": "The client's credentials (Bearer, Basic, Digest...)."
+    },
+    "Cache-Control": {
+      "description": "Caching directives: lifetime, sharing, revalidation."
+    },
+    "Clear-Site-Data": {
+      "description": "Asks the browser to clear cookies, storage and cache belonging to this site."
+    },
+    "Connection": {
+      "description": "Options specific to the connection; not used in HTTP/2."
+    },
+    "Content-Disposition": {
+      "description": "Whether the body is shown inline or as an attachment (download), and its file name.",
+      "example": "attachment; filename=\"report.pdf\""
+    },
+    "Content-Encoding": {
+      "description": "The compression applied to the body."
+    },
+    "Content-Language": {
+      "description": "The language of the body's intended audience.",
+      "example": "en-US"
+    },
+    "Content-Length": {
+      "description": "The length of the body in bytes."
+    },
+    "Content-Location": {
+      "description": "The direct address of the returned representation.",
+      "example": "/documents/42.json"
+    },
+    "Content-Range": {
+      "description": "The range and total size in a partial response."
+    },
+    "Content-Security-Policy": {
+      "description": "Restricts the resources a page may load (against XSS)."
+    },
+    "Content-Security-Policy-Report-Only": {
+      "description": "Only reports violations of the CSP without enforcing it."
+    },
+    "Content-Type": {
+      "description": "The media type and character set of the body."
+    },
+    "Cookie": {
+      "description": "The cookies the server previously set with Set-Cookie.",
+      "example": "session=abc123; theme=dark"
+    },
+    "Cross-Origin-Embedder-Policy": {
+      "description": "Requires cross-origin resources to be loaded only with explicit permission."
+    },
+    "Cross-Origin-Opener-Policy": {
+      "description": "Prevents the window from sharing a browsing context group with cross-origin openers."
+    },
+    "Cross-Origin-Resource-Policy": {
+      "description": "Limits which origins may load the resource."
+    },
+    "Date": {
+      "description": "The date and time the message was created (GMT)."
+    },
+    "DNT": {
+      "description": "The \"Do Not Track\" preference; no longer recommended."
+    },
+    "ETag": {
+      "description": "The resource's version tag; used for cache validation and optimistic locking."
+    },
+    "Expect": {
+      "description": "The behavior expected from the server; only 100-continue is defined."
+    },
+    "Expires": {
+      "description": "The date after which the response becomes stale; Cache-Control max-age takes precedence."
+    },
+    "Forwarded": {
+      "description": "Information about the client and the proxy chain (the standard form of the X-Forwarded-* headers)."
+    },
+    "From": {
+      "description": "The email address of the user making the request (for bots).",
+      "example": "bot@example.com"
+    },
+    "Host": {
+      "description": "The name and port of the target server; required in HTTP/1.1.",
+      "example": "api.example.com:8443"
+    },
+    "If-Match": {
+      "description": "The operation is performed only if the ETag matches (412 otherwise)."
+    },
+    "If-Modified-Since": {
+      "description": "The body is returned if the resource changed after this date, otherwise 304."
+    },
+    "If-None-Match": {
+      "description": "The body is returned if the ETag does not match, otherwise 304."
+    },
+    "If-Range": {
+      "description": "The range is returned if the resource is unchanged, otherwise the whole resource."
+    },
+    "If-Unmodified-Since": {
+      "description": "The operation is performed only if the resource has not changed since this date."
+    },
+    "Keep-Alive": {
+      "description": "The timeout and maximum request count of a persistent connection."
+    },
+    "Last-Modified": {
+      "description": "The date the resource was last modified."
+    },
+    "Link": {
+      "description": "Links to related resources (pagination, preloading).",
+      "example": "</users?page=3>; rel=\"next\""
+    },
+    "Location": {
+      "description": "The redirect target or the address of a newly created resource.",
+      "example": "/users/42"
+    },
+    "Max-Forwards": {
+      "description": "The maximum number of proxies a TRACE/OPTIONS request may pass through."
+    },
+    "Origin": {
+      "description": "The origin (scheme, host, port) of the page that started the request.",
+      "example": "https://app.example.com"
+    },
+    "Permissions-Policy": {
+      "description": "Restricts the use of browser features such as camera and geolocation."
+    },
+    "Pragma": {
+      "description": "A cache directive from the HTTP/1.0 era; use Cache-Control instead."
+    },
+    "Prefer": {
+      "description": "Preferred server behavior (response format, asynchronous processing)."
+    },
+    "Preference-Applied": {
+      "description": "Which preferences from the Prefer header were applied."
+    },
+    "Proxy-Authenticate": {
+      "description": "The authentication method the proxy expects (with 407).",
+      "example": "Basic realm=\"corp\""
+    },
+    "Proxy-Authorization": {
+      "description": "Credentials for the proxy."
+    },
+    "Range": {
+      "description": "Requests only a part of the resource."
+    },
+    "Referer": {
+      "description": "The address of the page that led to the request (the misspelling is kept in the standard).",
+      "example": "https://example.com/products"
+    },
+    "Referrer-Policy": {
+      "description": "How much information is sent in the Referer header."
+    },
+    "Retry-After": {
+      "description": "How long to wait before retrying (seconds or a date); used with 429/503."
+    },
+    "Sec-Fetch-Dest": {
+      "description": "The destination type of the request, reported by the browser."
+    },
+    "Sec-Fetch-Mode": {
+      "description": "The mode of the request (cors, navigate, no-cors...)."
+    },
+    "Sec-Fetch-Site": {
+      "description": "The relationship between the request initiator and the target."
+    },
+    "Sec-WebSocket-Accept": {
+      "description": "The server's confirmation of the key in the WebSocket handshake."
+    },
+    "Sec-WebSocket-Key": {
+      "description": "The client's random key in the WebSocket handshake."
+    },
+    "Sec-WebSocket-Protocol": {
+      "description": "Selection of the WebSocket subprotocol."
+    },
+    "Server": {
+      "description": "The server software that produced the response."
+    },
+    "Server-Timing": {
+      "description": "Server-side timing measurements (visible in browser developer tools)."
+    },
+    "Set-Cookie": {
+      "description": "Makes the client store a cookie; with the Secure, HttpOnly and SameSite attributes.",
+      "example": "session=abc123; Path=/; HttpOnly; Secure; SameSite=Lax"
+    },
+    "Strict-Transport-Security": {
+      "description": "Makes the browser connect to the site over HTTPS only for a period (HSTS)."
+    },
+    "TE": {
+      "description": "Accepted transfer encodings; only trailers in HTTP/2."
+    },
+    "Trailer": {
+      "description": "Headers that will be sent at the end of a chunked body."
+    },
+    "Transfer-Encoding": {
+      "description": "The transfer format of the body; chunked in HTTP/1.1."
+    },
+    "Upgrade": {
+      "description": "A request to switch to another protocol (with 101)."
+    },
+    "User-Agent": {
+      "description": "The client software and its version."
+    },
+    "Vary": {
+      "description": "The request headers that are part of the cache key."
+    },
+    "Via": {
+      "description": "The intermediaries the message passed through.",
+      "example": "1.1 vegur, 2 proxy.example.com"
+    },
+    "WWW-Authenticate": {
+      "description": "The authentication method expected to access the resource (with 401)."
+    },
+    "X-Content-Type-Options": {
+      "description": "Prevents the browser from guessing the Content-Type (MIME sniffing)."
+    },
+    "X-Correlation-ID": {
+      "description": "An identifier for tracing a request across services (non-standard, common)."
+    },
+    "X-Forwarded-For": {
+      "description": "The client IP addresses along the proxy chain (non-standard, common)."
+    },
+    "X-Forwarded-Host": {
+      "description": "The original Host requested by the client (non-standard, common).",
+      "example": "example.com"
+    },
+    "X-Forwarded-Proto": {
+      "description": "The original scheme used by the client (non-standard, common)."
+    },
+    "X-Frame-Options": {
+      "description": "Restricts showing the page in an iframe (clickjacking); use CSP frame-ancestors instead."
+    },
+    "X-RateLimit-Limit": {
+      "description": "The request limit within the time window (non-standard, common; draft: RateLimit)."
+    },
+    "X-RateLimit-Remaining": {
+      "description": "The number of requests left in the window (non-standard, common)."
+    },
+    "X-Request-ID": {
+      "description": "A unique identifier for the request; for matching entries in logs (non-standard, common)."
+    },
+    "X-Requested-With": {
+      "description": "Marks AJAX requests (non-standard)."
+    }
+  },
+  "mime": {
+    "application/json": {
+      "description": "JSON data; the default body type of REST APIs."
+    },
+    "application/ld+json": {
+      "description": "JSON-LD linked data (schema.org structured data)."
+    },
+    "application/problem+json": {
+      "description": "RFC 9457 error details (Problem Details) body."
+    },
+    "application/problem+xml": {
+      "description": "XML form of RFC 9457 error details."
+    },
+    "application/merge-patch+json": {
+      "description": "JSON Merge Patch (RFC 7396) PATCH body."
+    },
+    "application/json-patch+json": {
+      "description": "JSON Patch (RFC 6902) operation list."
+    },
+    "application/x-ndjson": {
+      "description": "One JSON value per line (streaming and bulk data)."
+    },
+    "application/geo+json": {
+      "description": "GeoJSON geographic data."
+    },
+    "application/hal+json": {
+      "description": "HAL hypermedia JSON (_links, _embedded)."
+    },
+    "application/vnd_api+json": {
+      "description": "JSON:API format."
+    },
+    "application/schema+json": {
+      "description": "JSON Schema document."
+    },
+    "application/xml": {
+      "description": "XML document."
+    },
+    "application/atom+xml": {
+      "description": "Atom feed."
+    },
+    "application/rss+xml": {
+      "description": "RSS feed."
+    },
+    "application/soap+xml": {
+      "description": "SOAP 1.2 message."
+    },
+    "application/xhtml+xml": {
+      "description": "HTML written with XML rules."
+    },
+    "application/javascript": {
+      "description": "JavaScript (legacy type; use text/javascript instead)."
+    },
+    "application/ecmascript": {
+      "description": "ECMAScript (legacy type; use text/javascript instead)."
+    },
+    "application/x-www-form-urlencoded": {
+      "description": "HTML form submission: a body in the form a=1&b=two."
+    },
+    "application/graphql-response+json": {
+      "description": "GraphQL over HTTP response."
+    },
+    "application/graphql": {
+      "description": "GraphQL query text (legacy use)."
+    },
+    "application/yaml": {
+      "description": "YAML document (RFC 9512)."
+    },
+    "application/toml": {
+      "description": "TOML configuration file."
+    },
+    "application/sql": {
+      "description": "SQL script."
+    },
+    "application/wasm": {
+      "description": "WebAssembly module."
+    },
+    "application/octet-stream": {
+      "description": "Binary data of unknown type; the browser downloads it."
+    },
+    "application/pdf": {
+      "description": "PDF document."
+    },
+    "application/zip": {
+      "description": "ZIP archive."
+    },
+    "application/gzip": {
+      "description": "Gzip-compressed file."
+    },
+    "application/x-tar": {
+      "description": "Tar archive (uncompressed)."
+    },
+    "application/x-7z-compressed": {
+      "description": "7-Zip archive."
+    },
+    "application/vnd_rar": {
+      "description": "RAR archive."
+    },
+    "application/x-bzip2": {
+      "description": "Bzip2-compressed file."
+    },
+    "application/zstd": {
+      "description": "Zstandard-compressed file."
+    },
+    "application/java-archive": {
+      "description": "Java archive (JAR)."
+    },
+    "application/vnd_android_package-archive": {
+      "description": "Android application package."
+    },
+    "application/x-msdownload": {
+      "description": "Windows executable."
+    },
+    "application/x-sh": {
+      "description": "Shell script."
+    },
+    "application/msword": {
+      "description": "Microsoft Word 97-2003 document."
+    },
+    "application/vnd_openxmlformats-officedocument_wordprocessingml_document": {
+      "description": "Microsoft Word document."
+    },
+    "application/vnd_ms-excel": {
+      "description": "Microsoft Excel 97-2003 workbook."
+    },
+    "application/vnd_openxmlformats-officedocument_spreadsheetml_sheet": {
+      "description": "Microsoft Excel workbook."
+    },
+    "application/vnd_ms-powerpoint": {
+      "description": "Microsoft PowerPoint 97-2003 presentation."
+    },
+    "application/vnd_openxmlformats-officedocument_presentationml_presentation": {
+      "description": "Microsoft PowerPoint presentation."
+    },
+    "application/vnd_oasis_opendocument_text": {
+      "description": "OpenDocument text document."
+    },
+    "application/vnd_oasis_opendocument_spreadsheet": {
+      "description": "OpenDocument spreadsheet."
+    },
+    "application/rtf": {
+      "description": "Rich Text Format (RTF)."
+    },
+    "application/epub+zip": {
+      "description": "EPUB e-book."
+    },
+    "application/x-protobuf": {
+      "description": "Protocol Buffers binary message (common, non-standard name)."
+    },
+    "application/grpc": {
+      "description": "gRPC message stream (HTTP/2)."
+    },
+    "application/grpc-web+proto": {
+      "description": "gRPC-Web binary message."
+    },
+    "application/cbor": {
+      "description": "CBOR binary object representation."
+    },
+    "application/msgpack": {
+      "description": "MessagePack binary serialization."
+    },
+    "application/x-pem-file": {
+      "description": "Certificate or key in PEM format."
+    },
+    "application/pkix-cert": {
+      "description": "X.509 certificate in DER format."
+    },
+    "application/x-x509-ca-cert": {
+      "description": "CA certificate (for installing into a browser)."
+    },
+    "application/pkcs12": {
+      "description": "PKCS#12 certificate and private key bundle."
+    },
+    "application/jwt": {
+      "description": "JSON Web Token."
+    },
+    "application/jose+json": {
+      "description": "JWS/JWE JSON serialization."
+    },
+    "application/manifest+json": {
+      "description": "Web application manifest (PWA manifest)."
+    },
+    "application/x-shockwave-flash": {
+      "description": "Adobe Flash (no longer supported)."
+    },
+    "application/vnd_ms-fontobject": {
+      "description": "Embedded OpenType font (legacy IE)."
+    },
+    "text/plain": {
+      "description": "Plain text."
+    },
+    "text/html": {
+      "description": "HTML page."
+    },
+    "text/css": {
+      "description": "CSS style sheet."
+    },
+    "text/javascript": {
+      "description": "JavaScript (the current standard type, RFC 9239)."
+    },
+    "text/csv": {
+      "description": "Comma-separated values."
+    },
+    "text/tab-separated-values": {
+      "description": "Tab-separated values."
+    },
+    "text/markdown": {
+      "description": "Markdown text."
+    },
+    "text/xml": {
+      "description": "XML document (application/xml is preferred)."
+    },
+    "text/calendar": {
+      "description": "iCalendar calendar data."
+    },
+    "text/vcard": {
+      "description": "vCard contact card."
+    },
+    "text/event-stream": {
+      "description": "Server-Sent Events (SSE) stream."
+    },
+    "text/yaml": {
+      "description": "YAML (old, unregistered name; use application/yaml instead)."
+    },
+    "text/x-python": {
+      "description": "Python source code (common, unregistered)."
+    },
+    "text/x-csharp": {
+      "description": "C# source code (common, unregistered)."
+    },
+    "image/png": {
+      "description": "PNG image (lossless)."
+    },
+    "image/jpeg": {
+      "description": "JPEG photo."
+    },
+    "image/gif": {
+      "description": "GIF image and animation."
+    },
+    "image/webp": {
+      "description": "WebP image."
+    },
+    "image/avif": {
+      "description": "AVIF image (AV1-based)."
+    },
+    "image/svg+xml": {
+      "description": "SVG vector image (XML text)."
+    },
+    "image/x-icon": {
+      "description": "Icon (favicon)."
+    },
+    "image/vnd_microsoft_icon": {
+      "description": "Icon (registered name)."
+    },
+    "image/bmp": {
+      "description": "Bitmap image."
+    },
+    "image/tiff": {
+      "description": "TIFF image."
+    },
+    "image/heic": {
+      "description": "HEIC image (Apple devices)."
+    },
+    "audio/mpeg": {
+      "description": "MP3 audio."
+    },
+    "audio/ogg": {
+      "description": "Ogg audio (Vorbis/Opus)."
+    },
+    "audio/wav": {
+      "description": "WAV audio (uncompressed)."
+    },
+    "audio/webm": {
+      "description": "WebM audio."
+    },
+    "audio/aac": {
+      "description": "AAC audio."
+    },
+    "audio/flac": {
+      "description": "FLAC lossless audio."
+    },
+    "audio/mp4": {
+      "description": "Audio in an MP4 container."
+    },
+    "video/mp4": {
+      "description": "MP4 video."
+    },
+    "video/webm": {
+      "description": "WebM video."
+    },
+    "video/ogg": {
+      "description": "Ogg video."
+    },
+    "video/quicktime": {
+      "description": "QuickTime video."
+    },
+    "video/x-msvideo": {
+      "description": "AVI video."
+    },
+    "video/mp2t": {
+      "description": "MPEG transport stream (HLS segments)."
+    },
+    "application/vnd_apple_mpegurl": {
+      "description": "HLS playlist."
+    },
+    "application/dash+xml": {
+      "description": "MPEG-DASH manifest."
+    },
+    "font/woff": {
+      "description": "WOFF web font."
+    },
+    "font/woff2": {
+      "description": "WOFF2 web font (Brotli-compressed)."
+    },
+    "font/ttf": {
+      "description": "TrueType font."
+    },
+    "font/otf": {
+      "description": "OpenType font."
+    },
+    "multipart/form-data": {
+      "description": "Form submission with file uploads; parts are separated by a boundary."
+    },
+    "multipart/mixed": {
+      "description": "A body made of parts of different types (batch requests, email)."
+    },
+    "multipart/alternative": {
+      "description": "Different forms of the same content (plain text + HTML in an email)."
+    },
+    "multipart/byteranges": {
+      "description": "A 206 response containing multiple ranges."
+    },
+    "message/rfc822": {
+      "description": "Email message."
+    },
+    "message/http": {
+      "description": "HTTP message (TRACE response)."
+    }
+  },
+  "headerGroup": {
+    "negotiation": "Content negotiation",
+    "range": "Range",
+    "cors": "CORS",
+    "cache": "Caching",
+    "info": "Information",
+    "connection": "Connection",
+    "auth": "Authentication",
+    "security": "Security",
+    "content": "Content",
+    "cookie": "Cookies",
+    "privacy": "Privacy",
+    "conditional": "Conditional requests",
+    "proxy": "Proxy",
+    "redirect": "Redirection"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "invite": {
+    "title": "Davet",
+    "intro": "<b>{inviter}</b> sizi <b>{organization}</b> organizasyonuna davet etti.",
+    "introWorkspace": "<b>{inviter}</b> sizi <b>{organization}</b> organizasyonuna ve <b>“{workspace}”</b> workspace'ine davet etti.",
+    "sentTo": "Davet <code>{email}</code> adresine gönderildi.",
+    "missing": "Davet bağlantısı eksik.",
+    "status": {
+      "Expired": "Bu davetin süresi dolmuş. Sizi davet eden kişiden yeniden göndermesini isteyin.",
+      "Accepted": "Bu davet zaten kabul edilmiş.",
+      "Revoked": "Bu davet geri alınmış ya da yerine yenisi gönderilmiş. E-postanızdaki son daveti kullanın."
+    },
+    "wrongAccount": "Şu an <b>{current}</b> ile giriş yaptınız. Daveti kabul etmek için çıkış yapıp <b>{invited}</b> ile giriş yapın.",
+    "accept": "Daveti kabul et",
+    "loginJoin": "Giriş yap ve katıl",
+    "registerJoin": "Hesap oluştur ve katıl",
+    "haveAccount": "Hesabınız var mı? <link>Giriş yapın</link>"
+  },
+  "oauthCallback": {
+    "failed": "Giriş bilgisi Apivator penceresine iletilemedi. Bu pencereyi kapatıp yeniden deneyin.",
+    "done": "Giriş tamamlandı. Bu pencere kendiliğinden kapanmazsa kapatabilirsiniz."
+  },
+  "cancel": "Vazgeç",
+  "people": "{count, plural, other {# kişi}}",
+  "roles": {
+    "member": "Üye",
+    "admin": "Yönetici"
+  },
+  "org": {
+    "newName": "Yeni organizasyon adı",
+    "name": "Organizasyon adı",
+    "language": "Varsayılan dil",
+    "languageHint": "Davet ve bildirim e-postalarının ve yeni üyelerin başlangıç dili",
+    "namePlaceholder": "Şirketinizin ya da ekibinizin adı",
+    "create": "Oluştur",
+    "select": "Organizasyon seç",
+    "add": "Organizasyon",
+    "sections": "Organizasyon bölümleri",
+    "backToRequests": "İsteklere dön",
+    "empty": {
+      "title": "Ekibinizle çalışın",
+      "body": "Bir organizasyon oluşturun, kişileri e-postayla davet edin ve collection'ları takım workspace'lerinde paylaşın. Kişisel workspace'iniz <lock/> yalnızca sizin kalır.",
+      "back": "Geri"
+    },
+    "save": "Kaydet"
+  },
+  "tabs": {
+    "members": "Üyeler",
+    "teams": "Takımlar",
+    "workspaces": "Workspace'ler",
+    "security": "Güvenlik",
+    "sso": "SSO",
+    "audit": "Denetim kaydı"
+  },
+  "inviteForm": {
+    "label": "Davet et",
+    "title": "Kişi davet et",
+    "sent": "{email} adresine davet gönderildi.",
+    "emailLabel": "Davet e-postası",
+    "orgRole": "Organizasyon rolü",
+    "workspace": "Workspace",
+    "noWorkspace": "Workspace eklemeden",
+    "workspaceRole": "Workspace rolü",
+    "language": "E-posta dili",
+    "submit": "Davet gönder",
+    "hint": "Davet bağlantısı 7 gün geçerlidir. Yöneticiler tüm takım workspace'lerine erişir ve kişileri yönetir."
+  },
+  "members": {
+    "list": "Üyeler",
+    "you": "(siz)",
+    "owner": "Sahip (devret)",
+    "twoFactorOn": "İki adımlı doğrulama açık",
+    "twoFactorOnLabel": "2FA açık",
+    "twoFactorOff": "İki adımlı doğrulama kapalı",
+    "twoFactorOffLabel": "2FA kapalı",
+    "roleOf": "{name} rolü",
+    "securityActions": "{name} güvenlik işlemleri",
+    "transfer": {
+      "title": "Sahipliği devret",
+      "label": "Devret",
+      "body": "{name} organizasyonun sahibi olur; siz yönetici olarak kalırsınız. Bu işlemi yalnızca yeni sahip geri alabilir."
+    },
+    "revokeSessions": {
+      "menu": "Oturumlarını kapat",
+      "title": "Tüm oturumlarını kapat",
+      "label": "Oturumları kapat",
+      "body": "{name} tüm cihazlarda çıkış yapar ve tekrar giriş yapması gerekir. Kendisine e-postayla bildirilir ve güvenlik geçmişine yazılır.",
+      "done": "{name} için tüm oturumlar kapatıldı."
+    },
+    "passwordReset": {
+      "menu": "Şifre sıfırlama bağlantısı gönder",
+      "title": "Şifre sıfırlama bağlantısı gönder",
+      "label": "Gönder",
+      "body": "{email} adresine şifre sıfırlama bağlantısı gider. Mevcut şifresi, yeni şifre belirleyene kadar geçerli kalır.",
+      "done": "{email} adresine şifre sıfırlama bağlantısı gönderildi."
+    },
+    "remove": {
+      "aria": "{name} organizasyondan çıkar",
+      "title": "Organizasyondan çıkar",
+      "label": "Çıkar",
+      "body": "{name} bu organizasyonun tüm workspace'lerine ve takımlarına erişimini kaybeder."
+    },
+    "pending": {
+      "title": "Bekleyen davetler",
+      "withWorkspace": "{workspace} ({role})",
+      "expired": "süresi doldu",
+      "until": "{date} tarihine kadar",
+      "resend": "Yeniden gönder",
+      "revoke": "{email} davetini iptal et"
+    },
+    "leave": {
+      "title": "Organizasyondan ayrıl",
+      "label": "Ayrıl",
+      "body": "{name} içindeki workspace'lere ve takımlara erişiminizi kaybedersiniz. Geri dönmek için yeniden davet gerekir."
+    }
+  },
+  "teams": {
+    "intro": "Takımlar kişileri gruplar. Bir takımı workspace'e eklediğinizde tüm üyeleri erişir; takıma katılan biri de otomatik erişim kazanır.",
+    "nameLabel": "Takım adı",
+    "namePlaceholder": "Backend, QA, Mobil…",
+    "create": "Takım oluştur",
+    "empty": "Henüz takım yok.",
+    "section": "{name} takımı",
+    "count": "· {count, plural, other {# kişi}}",
+    "noMembers": "Üye yok.",
+    "remove": {
+      "aria": "{name} takımını sil",
+      "title": "Takımı sil",
+      "label": "Sil",
+      "body": "“{name}” üzerinden verilen workspace erişimleri kalkar. Kişiler organizasyonda kalır."
+    },
+    "removeMember": "{name} takımdan çıkar",
+    "addMember": "{name} takımına kişi ekle",
+    "addMemberOption": "+ Kişi ekle"
+  },
+  "security": {
+    "require": "İki adımlı doğrulamayı zorunlu kıl",
+    "requireHint": "Açık olmayan üyeler, kurana kadar organizasyonun workspace’lerini göremez (API anahtarları dahil); uygulamada kurmaları için uyarı görürler.",
+    "enableFirst": "Zorunlu kılmadan önce kendi hesabınızda iki adımlı doğrulamayı açın: <link>Hesap ayarları › Güvenlik</link>",
+    "summary": "{enabled} / {total} üyede açık.",
+    "summaryOff": "{enabled} / {total} üyede açık. Kapalı olanlar: {names}.",
+    "note": "Bir üyenin oturumlarını kapatmak ya da şifre sıfırlama bağlantısı göndermek için Üyeler sekmesinde adının yanındaki menüyü kullanın. Bu işlemler üyenin güvenlik geçmişine adınızla yazılır."
+  },
+  "workspaces": {
+    "create": "Yeni workspace",
+    "empty": "Erişebildiğiniz bir workspace yok. Bir yöneticiden sizi eklemesini isteyin.",
+    "switchTo": "Bu workspace'e geç",
+    "settings": "{name} ayarları"
+  }
+}

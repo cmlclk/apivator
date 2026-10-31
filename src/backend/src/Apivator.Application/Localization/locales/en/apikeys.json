@@ -1,0 +1,8 @@
+{
+  "api_key.name_length": "Key name must be 1–{max} characters (e.g. \"GitHub Actions\").",
+  "api_key.expiry_range": "Validity must be between 1 and {max} days.",
+  "api_key.limit": "You can have at most {max} active keys; revoke the ones you no longer use.",
+  "api_key.not_found": "Key not found.",
+  "api_key.invalid": "The API key is invalid, revoked or expired.",
+  "api_key.restricted": "An API key can only be used to read and to submit run reports."
+}

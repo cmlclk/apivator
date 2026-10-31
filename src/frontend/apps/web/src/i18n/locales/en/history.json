@@ -1,0 +1,16 @@
+{
+  "title": "History",
+  "clear": "Clear history",
+  "clearConfirm": "Clear",
+  "searchPlaceholder": "Search by URL or method",
+  "searchLabel": "Search history",
+  "empty": "Requests you send are listed here in chronological order. Only you can see them.",
+  "noMatch": "No matching entries.",
+  "deleteEntry": "Delete entry",
+  "older": "Older entries",
+  "clearBody": "All of your request history in this workspace will be deleted. Saved requests are not affected.",
+  "untitledTab": "Request from history",
+  "exportName": "History {date}",
+  "today": "Today",
+  "yesterday": "Yesterday"
+}

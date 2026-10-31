@@ -1,0 +1,79 @@
+{
+  "time": {
+    "invalidDate": "Invalid date.",
+    "invalidTimeZone": "Invalid time zone: {timeZone}",
+    "days": "{n}d",
+    "hours": "{n}h",
+    "minutes": "{n}m",
+    "seconds": "{n}s",
+    "zeroSeconds": "0s"
+  },
+  "numberBase": {
+    "invalidBase": "Invalid base: {base} (must be 2–36).",
+    "invalidDigit": "Invalid digit in base {base}: \"{char}\" (position {position}).",
+    "tooLong": "Number too long: at most {max} digits.",
+    "noDigits": "The number has no digits.",
+    "empty": "No number entered.",
+    "fraction": "Decimal fractions are not supported: \"{char}\" (position {position}). For a thousands separator write 1,000,000 or 1.000.000.",
+    "widthOverflow": "The value does not fit in {width} bits."
+  },
+  "byteUnits": {
+    "tooLong": "Number too long: at most {max} digits.",
+    "unknownSize": "Size not recognized: \"{text}\". Example: 1.5 GB or 1536 KiB.",
+    "invalidBytes": "Invalid byte count.",
+    "bandwidthEmpty": "No bandwidth entered.",
+    "bandwidthZero": "Bandwidth cannot be zero.",
+    "sizeEmpty": "No size entered.",
+    "sizeNegative": "Size cannot be negative.",
+    "unknownUnit": "Unknown unit: \"{raw}\".",
+    "invalidNumber": "Invalid number: \"{text}\".",
+    "day": "d",
+    "hour": "h",
+    "minute": "m",
+    "second": "s"
+  },
+  "color": {
+    "hue": "hue",
+    "saturation": "saturation",
+    "lightness": "lightness",
+    "whiteness": "whiteness",
+    "blackness": "blackness",
+    "chroma": "chroma",
+    "alpha": "alpha",
+    "rgbChannel": "RGB channel",
+    "invalidChannel": "Invalid {channel}: \"{text}\".",
+    "extraSlash": "{fn}(): extra \"/\".",
+    "argCount": "{fn}(): expected 3 values and an optional alpha.",
+    "empty": "No color entered.",
+    "invalidHex": "Invalid HEX color: \"{text}\" (3, 4, 6 or 8 digits).",
+    "unknown": "Color not recognized: \"{text}\"."
+  },
+  "lineOps": {
+    "separatorRequired": "Enter a separator to split on.",
+    "wrapWidth": "Line width must be between 1 and {max}."
+  },
+  "ids": {
+    "ulidTime": "The ULID time must be between 0 and 2^48 − 1 milliseconds.",
+    "ulidOverflow": "The ULID random part overflowed within the same millisecond.",
+    "alphabetSize": "The alphabet must have 2–256 characters.",
+    "alphabetDuplicate": "The alphabet has duplicate characters.",
+    "nanoidSize": "The nanoid length must be 1–{max}."
+  },
+  "random": {
+    "count": "Count must be between 1 and {max}.",
+    "notEnoughUnique": "The range has only {span} distinct values; cannot generate {count} unique values.",
+    "minSafe": "The minimum must be an integer within ±(2^53 − 1).",
+    "maxSafe": "The maximum must be an integer within ±(2^53 − 1).",
+    "minAboveMax": "The minimum cannot be greater than the maximum.",
+    "precision": "Decimal places must be 0–{max}.",
+    "finiteBounds": "The bounds must be valid numbers.",
+    "rangeTooLarge": "The range is too large for this precision (value × 10^places must not exceed 2^53).",
+    "noRepresentable": "The range has no value representable with this many decimal places.",
+    "invalidDate": "Invalid date.",
+    "startAfterEnd": "The start date cannot be after the end date.",
+    "invalidTimeZone": "Invalid time zone: {timeZone}"
+  },
+  "lorem": {
+    "count": "Count must be between 1 and {max}."
+  }
+}

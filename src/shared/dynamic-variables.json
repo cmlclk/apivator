@@ -1,0 +1,67 @@
+{
+  "$comment": "Dinamik değişkenlerin ({{$…}}) ortak sözleşmesi. İstemci (packages/core/variables.ts), sunucu (VariableResolver / DynamicValues) ve script sandbox'ı (sandbox.js) bu dosyaya karşı test edilir: aynı ad listesi, aynı biçim, aynı test-güvenli aralıklar ve algoritmalar. Değerler rastgele olduğundan eşitlik değerde değil kurallarda aranır. pattern: tam eşleşme (JS ve .NET'te aynı çalışacak alt küme; \\d yerine [0-9]). check: tckn | iban | luhn. int / number: kapalı aralık. domains: e-postada @ sonrası, URL'de konak. secondsFromNow: unix zaman damgası ya da ISO tarih için şimdiye göre saniye aralığı.",
+  "variables": [
+    { "name": "$guid", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    { "name": "$randomUUID", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    { "name": "$timestamp", "pattern": "^[0-9]{10}$", "secondsFromNow": [-5, 5] },
+    { "name": "$isoTimestamp", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$", "secondsFromNow": [-5, 5] },
+    { "name": "$randomInt", "pattern": "^(0|[1-9][0-9]{0,3})$", "int": [0, 1000] },
+    { "name": "$randomBoolean", "pattern": "^(true|false)$" },
+    { "name": "$randomAlphaNumeric", "pattern": "^[a-z0-9]$" },
+    { "name": "$randomFirstName", "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+$" },
+    { "name": "$randomLastName", "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+$" },
+    { "name": "$randomFullName", "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+ [A-ZÇĞİÖŞÜ][a-zçğıöşü]+$" },
+    { "name": "$randomUserName", "pattern": "^[a-z]+\\.[a-z]+(0|[1-9][0-9]?)$" },
+    {
+      "name": "$randomEmail",
+      "pattern": "^[a-z]+\\.[a-z]+(0|[1-9][0-9]{0,2})@[a-z.]+$",
+      "domains": ["example.com", "example.net", "example.org", "ornek.test"]
+    },
+    {
+      "name": "$randomExampleEmail",
+      "pattern": "^[a-z]+\\.[a-z]+(0|[1-9][0-9]{0,2})@[a-z.]+$",
+      "domains": ["example.com", "example.net", "example.org", "ornek.test"]
+    },
+    { "name": "$randomPhoneNumber", "pattern": "^\\+90 5[0345][0-9] [0-9]{3} [0-9]{2} [0-9]{2}$" },
+    { "name": "$randomWord", "pattern": "^[a-zçğıöşü]+$" },
+    { "name": "$randomWords", "pattern": "^[a-zçğıöşü]+ [a-zçğıöşü]+ [a-zçğıöşü]+$" },
+    { "name": "$randomCity", "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+$" },
+    {
+      "name": "$randomStreetAddress",
+      "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+( [A-ZÇĞİÖŞÜ][a-zçğıöşü]+)? Mah\\. [A-ZÇĞİÖŞÜ][a-zçğıöşü]+ (Sk\\.|Cad\\.|Bulvarı) No: ([1-9][0-9]?|1[0-7][0-9]|180), (0[1-9]|[1-7][0-9]|8[01])[0-9]{3} [A-ZÇĞİÖŞÜ][a-zçğıöşü]+/[A-ZÇĞİÖŞÜ][a-zçğıöşü]+$"
+    },
+    { "name": "$randomColor", "pattern": "^[a-zçğıöşü]+$" },
+    { "name": "$randomHexColor", "pattern": "^#[0-9a-f]{6}$" },
+    { "name": "$randomUrl", "pattern": "^https://[a-z]+\\.example\\.com/[a-z]+$", "domains": ["example.com"] },
+    {
+      "name": "$randomIP",
+      "pattern": "^(192\\.0\\.2|198\\.51\\.100|203\\.0\\.113)\\.([1-9][0-9]?|1[0-9]{2}|2[0-4][0-9]|25[0-4])$"
+    },
+    { "name": "$randomIPV6", "pattern": "^2001:db8(:(0|[1-9a-f][0-9a-f]{0,3})){6}$" },
+    { "name": "$randomPrice", "pattern": "^(0|[1-9][0-9]{0,2})(\\.[0-9]?[1-9])?$", "number": [0, 999.99] },
+    {
+      "name": "$randomDatePast",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+      "secondsFromNow": [-31536005, 5]
+    },
+    {
+      "name": "$randomDateFuture",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+      "secondsFromNow": [-4, 31536005]
+    },
+    {
+      "name": "$randomCompanyName",
+      "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+ [A-ZÇĞİÖŞÜ][a-zçğıöşü]+ (A\\.Ş\\.|Ltd\\. Şti\\.|San\\. ve Tic\\. A\\.Ş\\.|San\\. ve Tic\\. Ltd\\. Şti\\.)$"
+    },
+    { "name": "$randomJobTitle", "pattern": "^[A-ZÇĞİÖŞÜ][a-zçğıöşü]+( [A-ZÇĞİÖŞÜ][a-zçğıöşü]+)*$" },
+    {
+      "name": "$randomPassword",
+      "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%&*?_-])[A-Za-z0-9!@#$%&*?_-]{14}$"
+    },
+    { "name": "$randomTckn", "pattern": "^[1-9][0-9]{10}$", "check": "tckn" },
+    { "name": "$randomIban", "pattern": "^TR[0-9]{2}999[0-9]{2}0[0-9]{16}$", "check": "iban" },
+    { "name": "$randomBankAccountIban", "pattern": "^TR[0-9]{2}999[0-9]{2}0[0-9]{16}$", "check": "iban" },
+    { "name": "$randomCreditCardNumber", "pattern": "^(411111|555555|999999)[0-9]{10}$", "check": "luhn" }
+  ],
+  "unresolved": ["$randomFoo", "$GUID", "randomEmail", "$random", "$randomemail"]
+}
