@@ -1,5 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import { Building2, LogOut, UserCog } from 'lucide-react';
+import { lazy, Suspense, useCallback, useRef, useState } from 'react';
+import { Building2, Info, LogOut, UserCog } from 'lucide-react';
 import { Avatar } from './Avatar';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
@@ -9,6 +9,9 @@ import { useSession } from '../stores/session';
 import { useDismiss } from './useDismiss';
 import { useT } from '../i18n';
 
+// Hakkında penceresi yalnızca açılınca yüklenir.
+const AboutDialog = lazy(() => import('./AboutDialog').then((m) => ({ default: m.AboutDialog })));
+
 export function UserMenu() {
   const t = useT('shell');
   const user = useSession((s) => s.user);
@@ -16,6 +19,7 @@ export function UserMenu() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const close = useCallback(() => setOpen(false), []);
   useDismiss(ref, open, close);
@@ -79,6 +83,17 @@ export function UserMenu() {
           >
             <UserCog className="h-4 w-4" /> {t('userMenu.settings')}
           </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              close();
+              setAboutOpen(true);
+            }}
+            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-fg-muted hover:bg-muted hover:text-fg"
+          >
+            <Info className="h-4 w-4" /> {t('userMenu.about')}
+          </button>
           {!isLocalMode() && (
             <>
               <button
@@ -103,6 +118,11 @@ export function UserMenu() {
             </>
           )}
         </div>
+      )}
+      {aboutOpen && (
+        <Suspense fallback={null}>
+          <AboutDialog onClose={() => setAboutOpen(false)} />
+        </Suspense>
       )}
     </div>
   );

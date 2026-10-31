@@ -52,6 +52,12 @@ async function invoke<T>(command: string, args?: Record<string, unknown>): Promi
   }
 }
 
+/** Kurulu masaüstü uygulamasının sürümü (tauri.conf.json). */
+export async function appVersion(): Promise<string> {
+  const { getVersion } = await import('@tauri-apps/api/app');
+  return getVersion();
+}
+
 /** Yerel ajanın adresi ve oturum token'ı; ajan hazır değilse Rust tarafı bekler. */
 export function agentInfo(): Promise<LocalAgent> {
   return invoke<LocalAgent>('agent_info');

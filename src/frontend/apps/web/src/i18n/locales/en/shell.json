@@ -26,7 +26,8 @@
     "account": "Account menu",
     "settings": "Account settings",
     "team": "Team and organizations",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "about": "About"
   },
   "boot": {
     "loading": "Loading"
@@ -205,5 +206,10 @@
       "title": "Personal use could not start",
       "retry": "Try again"
     }
+  },
+  "about": {
+    "title": "About Apivator",
+    "version": "Version {version}",
+    "description": "An API development and testing tool. Build, send and test requests, and share them with your team."
   }
 }

@@ -26,7 +26,8 @@
     "account": "Hesap menüsü",
     "settings": "Hesap ayarları",
     "team": "Ekip ve organizasyonlar",
-    "logout": "Çıkış yap"
+    "logout": "Çıkış yap",
+    "about": "Hakkında"
   },
   "boot": {
     "loading": "Yükleniyor"
@@ -205,5 +206,10 @@
       "title": "Kişisel kullanım başlatılamadı",
       "retry": "Tekrar dene"
     }
+  },
+  "about": {
+    "title": "Apivator hakkında",
+    "version": "Sürüm {version}",
+    "description": "API geliştirme ve test aracı. İstekleri hazırlayın, gönderin, test edin ve ekibinizle paylaşın."
   }
 }
